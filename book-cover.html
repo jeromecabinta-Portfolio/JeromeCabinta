@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Cover Design | Jerome Cabinta</title>
+  <meta name="description" content="A premium collection of professional book cover designs across fiction, non-fiction, and educational genres by Jerome Cabinta." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+
+<body>
+  <div id="scroll-progress"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="custom-nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo custom-logo">
+        <span class="logo-j">JC.</span> <span class="logo-text">JEROME DIGITAL</span>
+      </a>
+      <ul class="nav-links custom-nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="nav-pill-socials">
+          <a href="https://www.facebook.com/profile.php?id=61579246614635" target="_blank" class="nav-pill">
+            <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/jerome_cabinta/" target="_blank" class="nav-pill">
+            <i class="fab fa-instagram"></i> <span>Instagram</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" target="_blank" class="nav-pill">
+            <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+          </a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">🌙</button>
+        <button class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BOOK COVER SLIDER -->
+  <section id="book-cover-slider" class="book-slider-section">
+
+    <!-- Back link -->
+    <a href="projects.html" class="book-back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+    <!-- Active Slide Area -->
+    <div class="book-slider-bg" id="book-slider-bg">
+
+      <!-- Left: Text Content -->
+      <div class="book-active-overlay" id="book-active-overlay">
+        <div class="book-active-content">
+          <span class="book-label" id="book-label">BOOK COVER DESIGN</span>
+          <h1 class="book-active-title" id="book-active-title">Book Cover 01</h1>
+          <p class="book-active-desc" id="book-active-desc">A professional book cover designed with attention to detail, combining compelling typography and visual hierarchy to create a captivating first impression.</p>
+          <div class="book-slider-nav">
+            <button class="book-nav-btn" id="book-prev"><i class="fas fa-arrow-left"></i></button>
+            <span class="book-nav-counter" id="book-nav-counter">01 / 14</span>
+            <button class="book-nav-btn" id="book-next"><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Active Book Cover Image -->
+      <div class="book-active-img-wrapper" id="book-active-img-wrapper">
+        <img src="Assets/Book%20Cover/Book/1.png" alt="Book Cover 1" class="book-active-img" id="book-active-img" />
+        <div class="book-float-badge"><i class="fas fa-book-open"></i></div>
+      </div>
+    </div>
+
+    <!-- Thumbnail Strip -->
+    <div class="book-thumb-strip" id="book-thumb-strip">
+      <div class="book-thumb active" data-index="0">
+        <img src="Assets/Book%20Cover/Book/1.png" alt="Book Cover 1" />
+        <div class="book-thumb-number">01</div>
+      </div>
+      <div class="book-thumb" data-index="1">
+        <img src="Assets/Book%20Cover/Book/2.png" alt="Book Cover 2" />
+        <div class="book-thumb-number">02</div>
+      </div>
+      <div class="book-thumb" data-index="2">
+        <img src="Assets/Book%20Cover/Book/3.png" alt="Book Cover 3" />
+        <div class="book-thumb-number">03</div>
+      </div>
+      <div class="book-thumb" data-index="3">
+        <img src="Assets/Book%20Cover/Book/4.png" alt="Book Cover 4" />
+        <div class="book-thumb-number">04</div>
+      </div>
+      <div class="book-thumb" data-index="4">
+        <img src="Assets/Book%20Cover/Book/5.png" alt="Book Cover 5" />
+        <div class="book-thumb-number">05</div>
+      </div>
+      <div class="book-thumb" data-index="5">
+        <img src="Assets/Book%20Cover/Book/6.png" alt="Book Cover 6" />
+        <div class="book-thumb-number">06</div>
+      </div>
+      <div class="book-thumb" data-index="6">
+        <img src="Assets/Book%20Cover/Book/7.png" alt="Book Cover 7" />
+        <div class="book-thumb-number">07</div>
+      </div>
+      <div class="book-thumb" data-index="7">
+        <img src="Assets/Book%20Cover/Book/8.png" alt="Book Cover 8" />
+        <div class="book-thumb-number">08</div>
+      </div>
+      <div class="book-thumb" data-index="8">
+        <img src="Assets/Book%20Cover/Book/9.png" alt="Book Cover 9" />
+        <div class="book-thumb-number">09</div>
+      </div>
+      <div class="book-thumb" data-index="9">
+        <img src="Assets/Book%20Cover/Book/10.png" alt="Book Cover 10" />
+        <div class="book-thumb-number">10</div>
+      </div>
+      <div class="book-thumb" data-index="10">
+        <img src="Assets/Book%20Cover/Book/11.png" alt="Book Cover 11" />
+        <div class="book-thumb-number">11</div>
+      </div>
+      <div class="book-thumb" data-index="11">
+        <img src="Assets/Book%20Cover/Book/12.png" alt="Book Cover 12" />
+        <div class="book-thumb-number">12</div>
+      </div>
+      <div class="book-thumb" data-index="12">
+        <img src="Assets/Book%20Cover/Book/13.png" alt="Book Cover 13" />
+        <div class="book-thumb-number">13</div>
+      </div>
+      <div class="book-thumb" data-index="13">
+        <img src="Assets/Book%20Cover/Book/14.png" alt="Book Cover 14" />
+        <div class="book-thumb-number">14</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PROJECT OVERVIEW -->
+  <section class="book-overview-section">
+    <div class="book-overview-container">
+      <div class="book-overview-header">
+        <span class="section-tag">Project Overview</span>
+        <h2 class="section-title">Book Cover Design</h2>
+        <p class="book-overview-text">A collection of professional book cover designs across various genres including
+          fiction, non-fiction, and educational materials. Each cover is crafted with compelling typography, purposeful
+          visual hierarchy, and genre-appropriate aesthetics to create captivating first impressions that draw readers in.</p>
+      </div>
+      <div class="book-stats-grid">
+        <div class="book-stat-card">
+          <div class="book-stat-icon"><i class="fas fa-palette"></i></div>
+          <h4>Visual Design</h4>
+          <p>Every cover is designed with a harmonious color palette and eye-catching composition that stands out on shelves and digital stores.</p>
+        </div>
+        <div class="book-stat-card">
+          <div class="book-stat-icon"><i class="fas fa-font"></i></div>
+          <h4>Typography</h4>
+          <p>Careful font selection and typographic hierarchy that communicates genre, tone, and professionalism at a glance.</p>
+        </div>
+        <div class="book-stat-card">
+          <div class="book-stat-icon"><i class="fas fa-book"></i></div>
+          <h4>Genre Versatility</h4>
+          <p>From fiction to educational materials, each design adapts its visual language to match the book's content and target audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>©Jerome Cabinta. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* =========================
+       BOOK COVER SLIDER (Lundev-style)
+    ========================= */
+    (function () {
+      const books = [];
+      for (let i = 1; i <= 14; i++) {
+        books.push({
+          title: `Book Cover ${String(i).padStart(2, "0")}`,
+          desc: "A professional book cover designed with attention to detail, combining compelling typography and visual hierarchy to create a captivating first impression.",
+          img: `Assets/Book%20Cover/Book/${i}.png`
+        });
+      }
+
+      let currentIndex = 0;
+      let isAnimating = false;
+      const TOTAL = books.length;
+
+      // DOM
+      const activeTitle = document.getElementById("book-active-title");
+      const activeDesc = document.getElementById("book-active-desc");
+      const activeImg = document.getElementById("book-active-img");
+      const activeImgWrapper = document.getElementById("book-active-img-wrapper");
+      const thumbStrip = document.getElementById("book-thumb-strip");
+      const thumbs = thumbStrip.querySelectorAll(".book-thumb");
+      const prevBtn = document.getElementById("book-prev");
+      const nextBtn = document.getElementById("book-next");
+      const navCounter = document.getElementById("book-nav-counter");
+      const label = document.getElementById("book-label");
+      const overlay = document.getElementById("book-active-overlay");
+
+      function padIndex(i) {
+        return String(i + 1).padStart(2, "0");
+      }
+
+      function animateContentOut() {
+        const elements = [label, activeTitle, activeDesc];
+        elements.forEach((el, i) => {
+          el.style.transition = `all 0.35s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.04}s`;
+          el.style.opacity = "0";
+          el.style.transform = "translateY(25px)";
+          el.style.filter = "blur(8px)";
+        });
+      }
+
+      function animateContentIn() {
+        const elements = [label, activeTitle, activeDesc];
+        elements.forEach(el => {
+          el.style.transition = "none";
+          el.style.opacity = "0";
+          el.style.transform = "translateY(40px)";
+          el.style.filter = "blur(12px)";
+        });
+        void label.offsetWidth;
+        elements.forEach((el, i) => {
+          setTimeout(() => {
+            el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            el.style.filter = "blur(0px)";
+          }, 50);
+        });
+      }
+
+      function animateImageTransition(newSrc, newAlt) {
+        // 3D book flip effect
+        activeImgWrapper.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+        activeImgWrapper.style.transform = "perspective(1200px) rotateY(-15deg) scale(0.88)";
+        activeImgWrapper.style.opacity = "0";
+
+        setTimeout(() => {
+          activeImg.src = newSrc;
+          activeImg.alt = newAlt;
+
+          activeImgWrapper.style.transition = "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)";
+          activeImgWrapper.style.transform = "perspective(1200px) rotateY(0deg) scale(1)";
+          activeImgWrapper.style.opacity = "1";
+        }, 400);
+      }
+
+      function updateThumbs(newIndex) {
+        thumbs.forEach((t, i) => {
+          t.classList.toggle("active", i === newIndex);
+          const offset = i - newIndex;
+          t.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${Math.abs(offset) * 0.04}s`;
+        });
+
+        // Scroll active thumb into view
+        const activeThumb = thumbs[newIndex];
+        if (activeThumb) {
+          activeThumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      }
+
+      function goToSlide(newIndex) {
+        if (isAnimating || newIndex === currentIndex) return;
+        isAnimating = true;
+
+        const data = books[newIndex];
+
+        animateContentOut();
+        animateImageTransition(data.img, data.title);
+        updateThumbs(newIndex);
+
+        setTimeout(() => {
+          activeTitle.textContent = data.title;
+          activeDesc.textContent = data.desc;
+          navCounter.textContent = `${padIndex(newIndex)} / ${String(TOTAL).padStart(2, "0")}`;
+
+          animateContentIn();
+          currentIndex = newIndex;
+
+          setTimeout(() => {
+            isAnimating = false;
+          }, 600);
+        }, 400);
+      }
+
+      // Button clicks
+      prevBtn.addEventListener("click", () => {
+        goToSlide((currentIndex - 1 + TOTAL) % TOTAL);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        goToSlide((currentIndex + 1) % TOTAL);
+      });
+
+      // Thumbnail clicks
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          goToSlide(parseInt(thumb.dataset.index));
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") goToSlide((currentIndex + 1) % TOTAL);
+        if (e.key === "ArrowLeft") goToSlide((currentIndex - 1 + TOTAL) % TOTAL);
+      });
+
+      // Touch / Swipe
+      let touchStartX = 0;
+      const section = document.querySelector(".book-slider-section");
+      section.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      section.addEventListener("touchend", (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goToSlide((currentIndex + 1) % TOTAL);
+          else goToSlide((currentIndex - 1 + TOTAL) % TOTAL);
+        }
+      }, { passive: true });
+
+      // Initialize
+      animateContentIn();
+    })();
+  </script>
+</body>
+
+</html>

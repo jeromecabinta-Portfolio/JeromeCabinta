@@ -1,0 +1,523 @@
+
+/* =========================
+   Agape Roofing Case Study
+========================= */
+:root {
+    --agape-orange: #f39200;
+    --agape-dark: #111111;
+    --agape-gray: #333333;
+    --agape-white: #ffffff;
+}
+
+body.case-study-page {
+    background-color: var(--agape-dark);
+    color: var(--agape-white);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.case-study-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header / Hero */
+.agape-hero {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    padding: 60px;
+    border-radius: 24px;
+    margin-bottom: 40px;
+    align-items: center;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.agape-logo-section {
+    text-align: left;
+}
+
+.agape-logo-section h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 0;
+    line-height: 1;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.agape-logo-section .roofing-text {
+    color: var(--agape-orange);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: -5px;
+}
+
+.agape-desc-section p {
+    font-size: 1.1rem;
+    color: #bbb;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.agape-stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.stat-icon {
+    background: var(--agape-orange);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    box-shadow: 0 10px 20px rgba(243, 146, 0, 0.2);
+}
+
+.stat-content h4 {
+    color: var(--agape-orange);
+    margin: 0 0 5px 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.stat-content p {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.section-heading {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 24px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    border-left: 4px solid var(--agape-orange);
+    border-radius: 0 8px 8px 0;
+}
+
+/* Sample Posts Row */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.post-card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.post-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--agape-orange);
+}
+
+.post-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+}
+
+.post-label {
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    backdrop-filter: blur(5px);
+}
+
+/* Carousel Set - Slides match new image */
+.carousel-set {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #333;
+    margin-bottom: 60px;
+}
+
+.slides-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 25px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: auto;
+    scrollbar-color: var(--agape-orange) #333;
+}
+
+.slides-scroll::-webkit-scrollbar {
+    height: 8px;
+    display: block;
+}
+
+.slides-scroll::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+.slides-scroll::-webkit-scrollbar-thumb {
+    background: var(--agape-orange);
+    border-radius: 10px;
+}
+
+.slide-item {
+    min-width: 280px;
+    scroll-snap-align: center;
+    background: white;
+    color: black;
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .slide-item {
+        min-width: 85%;
+        /* Shows a peek of the next slide */
+    }
+
+    .agape-hero {
+        padding: 30px 20px;
+    }
+
+    .agape-logo-section img {
+        max-width: 100% !important;
+    }
+}
+
+.slide-header {
+    background: #111;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slide-num-badge {
+    background: var(--agape-orange);
+    color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.slide-body {
+    padding: 25px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-icon {
+    font-size: 3rem;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.slide-title {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.slide-text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Before After Slider Interaction */
+.ba-section-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.ba-slider-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.ba-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ba-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    border-right: 2px solid white;
+}
+
+.ba-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: white;
+    border-radius: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    cursor: ew-resize;
+}
+
+.ba-label {
+    position: absolute;
+    top: 20px;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-weight: 800;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    z-index: 4;
+}
+
+.ba-label.before {
+    left: 20px;
+}
+
+.ba-label.after {
+    right: 20px;
+}
+
+/* Analytics Dashboard - Updated Stats */
+.analytics-dashboard {
+    background: #ffffff;
+    color: #111111;
+    padding: 40px;
+    border-radius: 24px;
+    margin-bottom: 60px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.analytic-item {
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+}
+
+.analytic-item:first-child {
+    border: none;
+    padding-left: 0;
+}
+
+.analytic-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.analytic-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.analytic-growth {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #27ae60;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 5px;
+}
+
+.chart-placeholder {
+    height: 45px;
+    margin-top: 10px;
+}
+
+.audience-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #f5f5f5;
+    padding-top: 30px;
+}
+
+.audience-chart-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.donut {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: conic-gradient(#1e3a29 78%, #eeeeee 0);
+    position: relative;
+}
+
+.donut::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* Tools Footer */
+.tools-footer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px;
+    border-top: 1px solid #333;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 24px 24px;
+}
+
+.tool-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #aaa;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.tool-icon:hover {
+    color: var(--agape-orange);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    color: var(--agape-orange);
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 992px) {
+    .agape-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ba-section-container {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytic-item {
+        border-left: none;
+        border-bottom: 1px solid #eee;
+        padding-left: 0;
+        padding-bottom: 20px;
+    }
+
+    .analytic-item:last-child {
+        border: none;
+    }
+}

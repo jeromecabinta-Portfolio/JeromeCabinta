@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Marketing Category Portal | Jerome Cabinta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ===== SMM Hub Page Styles ===== */
+        .smm-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .smm-hero {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111 100%);
+            border-radius: 24px;
+            margin-bottom: 50px;
+            border: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .smm-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(243, 146, 0, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(65, 125, 252, 0.04) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        .smm-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .smm-badge {
+            display: inline-block;
+            background: var(--agape-orange);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+
+        .smm-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin: 0 0 16px 0;
+            background: linear-gradient(to bottom, #fff, #999);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .smm-hero p {
+            font-size: 1.05rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .smm-section-label {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            display: inline-block;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+            border-left: 4px solid var(--agape-orange);
+            border-radius: 0 8px 8px 0;
+            color: #fff;
+        }
+
+        /* ===== Campaign Folders Grid (Modern Glassmorphic Look) ===== */
+        .folders-section {
+            margin-bottom: 80px;
+        }
+
+        .folders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .folder-card {
+            background: rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            min-height: 280px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .folder-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(243, 146, 0, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .folder-card:hover::before {
+            opacity: 1;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--agape-orange);
+            box-shadow: 0 20px 40px rgba(243, 146, 0, 0.15);
+        }
+
+        .folder-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(253, 146, 0, 0.1);
+            color: var(--agape-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .folder-card:hover .folder-icon {
+            transform: scale(1.15) rotate(-5deg);
+            background: var(--agape-orange);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(243, 146, 0, 0.3);
+        }
+
+        .folder-details {
+            width: 100%;
+        }
+
+        .folder-details h3 {
+            font-size: 1.35rem;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            color: #fff;
+        }
+
+        .folder-details p {
+            font-size: 0.88rem;
+            color: #888;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+
+        .folder-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--agape-orange);
+            transition: gap 0.3s ease;
+        }
+
+        .folder-card:hover .folder-action {
+            gap: 15px;
+        }
+
+        /* ===== Footer ===== */
+        .smm-footer {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+        }
+
+        .smm-footer span {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .smm-hero {
+                padding: 60px 30px;
+            }
+
+            .smm-hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .folders-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .smm-showcase {
+                padding: 20px 15px;
+            }
+
+            .smm-hero {
+                padding: 45px 20px;
+                margin-bottom: 35px;
+                border-radius: 16px;
+            }
+
+            .smm-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .folder-card {
+                padding: 30px 20px;
+                min-height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .smm-hero {
+                padding: 35px 15px;
+            }
+
+            .smm-hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: -1px;
+            }
+
+            .folders-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scroll-progress"></div>
+    <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="custom-nav">
+      <div class="nav-container">
+        <a href="index.html" class="logo custom-logo">
+          <span class="logo-j">JC.</span> <span class="logo-text">JEROME DIGITAL</span>
+        </a>
+        <ul class="nav-links custom-nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="nav-pill-socials">
+            <a href="https://www.facebook.com/profile.php?id=61579246614635" class="nav-pill"><i
+                class="fab fa-facebook-f"></i> <span>Facebook</span></a>
+            <a href="https://www.instagram.com/jerome_cabinta/" class="nav-pill"><i class="fab fa-instagram"></i>
+              <span>Instagram</span></a>
+            <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" class="nav-pill"><i
+                class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
+          </div>
+          <button class="theme-toggle" id="theme-toggle">🌙</button>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="smm-showcase">
+        <a href="projects.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+
+        <!-- Hero -->
+        <div class="smm-hero">
+            <div class="smm-hero-content">
+                <span class="smm-badge">Social Media Marketing</span>
+                <h1>Category Portfolios</h1>
+                <p>Curated social media campaign directories grouping high-converting video product reels, high-resolution product mock-ups, and interactive brand styles.</p>
+            </div>
+        </div>
+
+        <!-- Folders Grid -->
+        <section class="folders-section">
+            <div class="smm-section-label">Campaign Project Folders</div>
+            <div class="folders-grid">
+                
+                <!-- Card 1: Sneakers Product Showcase -->
+                <a href="smm-sneakers.html" class="folder-card">
+                    <div class="folder-icon">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <div class="folder-details">
+                        <h3>Sneakers Product</h3>
+                        <p>Creative vertical product reels and commercial video campaigns promoting sneakers with conversion-focused content.</p>
+                        <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 2: Product Mock-ups -->
+                <a href="smm-mockup.html" class="folder-card">
+                    <div class="folder-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="folder-details">
+                        <h3>Product Mock-ups</h3>
+                        <p>Interactive branding renderings, virtual mockups, and high-fidelity packaging visualization collections.</p>
+                        <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 3: Branding Showcase -->
+                <a href="smm-branding.html" class="folder-card">
+                    <div class="folder-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="folder-details">
+                        <h3>Branding Showcase</h3>
+                        <p>Comprehensive typography guides, color stories, brand tone strategies, and identity style sheets.</p>
+                        <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 4: Ecommerce Output -->
+                <a href="smm-ecommerce.html" class="folder-card">
+                    <div class="folder-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="folder-details">
+                        <h3>Ecommerce Output</h3>
+                        <p>High-converting storefront visual designs, shopping experience layouts, checkout elements, and sales flows.</p>
+                        <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="smm-footer">
+            <span>Social Media Marketing Hub &mdash; Jerome Cabinta 2025</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

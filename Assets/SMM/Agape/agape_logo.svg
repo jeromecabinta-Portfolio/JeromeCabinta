@@ -1,0 +1,26 @@
+<svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Houses Background -->
+    <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Main House (Dark Blue) -->
+        <path d="M50,150 L180,50 L310,150" stroke="#002244" />
+        <rect x="150" y="100" width="30" height="30" stroke="#002244" fill="none" />
+        <path d="M60,150 L200,150" stroke="#002244" />
+        
+        <!-- Second House (Red) -->
+        <path d="M250,150 L320,90 L390,150" stroke="#CC0000" />
+        <rect x="305" y="120" width="20" height="20" stroke="#CC0000" fill="none" />
+        
+        <!-- Third House (Blue) -->
+        <path d="M330,150 L380,110 L430,150" stroke="#002244" />
+        <rect x="370" y="130" width="15" height="15" stroke="#002244" fill="none" />
+    </g>
+
+    <!-- AGAPE Text -->
+    <text x="50" y="230" font-family="Serif, Georgia" font-size="90" font-weight="900" fill="#A56D3F" letter-spacing="25">AGAPE</text>
+
+    <!-- Bottom Banner -->
+    <rect x="50" y="245" width="400" height="60" fill="#002244" />
+    <text x="60" y="285" font-family="Arial, Sans-Serif" font-size="28" font-weight="900" fill="white">ROOFING</text>
+    <text x="210" y="275" font-family="Arial, Sans-Serif" font-size="14" font-weight="900" fill="white">EXPERT AND</text>
+    <text x="210" y="295" font-family="Arial, Sans-Serif" font-size="14" font-weight="900" fill="white">HOME FURNISHING</text>
+</svg>
