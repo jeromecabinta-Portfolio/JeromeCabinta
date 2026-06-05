@@ -7796,3 +7796,112 @@ body.dark .section-subtitle {
     text-align: center;
   }
 }
+
+/* =============================================================
+   COMPREHENSIVE DARK MODE TEXT READABILITY FIXES
+   Fixes all text that becomes unreadable when dark mode is on
+   ============================================================= */
+
+/* ---- Slider / modal dots: active dot was #111 (invisible in dark) ---- */
+body.dark .slider-dots .dot.active {
+  background: #ffffff;
+}
+
+/* ---- skill-card hover border in dark mode ---- */
+body.dark .skill-card:hover {
+  border-color: rgba(65, 125, 252, 0.5);
+}
+
+/* ---- Section label in dark mode (border was rgba(0,0,0,0.1) – nearly invisible) ---- */
+body.dark .section-label {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ---- Contact link cards: white bg + dark text (already in 3811-3818 but reinforce) ---- */
+body.dark .contact-link-card {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+body.dark .contact-link-card span {
+  color: var(--text);
+}
+
+/* ---- Floating badges on about/contact: text visible in both modes ---- */
+body.dark .float-shape span {
+  color: #ffffff;
+}
+
+/* ---- Story subtitle color (uses var(--text-light) already — reinforce) ---- */
+body.dark .story-subtitle {
+  color: var(--text-light);
+}
+
+/* ---- Profile image badge background in dark ---- */
+body.dark .profile-img-badge {
+  background: var(--surface-2);
+}
+
+/* ---- Project card hover border in dark mode ---- */
+body.dark .project-card:hover {
+  border-color: rgba(65, 125, 252, 0.35);
+}
+
+/* ---- Service card hover border in dark mode ---- */
+body.dark .service-card:hover {
+  border-color: rgba(65, 125, 252, 0.35);
+}
+
+/* ---- Testimonial card hover border in dark mode ---- */
+body.dark .testimonial-card:hover {
+  border-color: rgba(65, 125, 252, 0.35);
+}
+
+/* ---- Nav links in mobile dropdown (dark bg) ---- */
+body.dark .nav-links {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* ---- Back-to-top button in dark ---- */
+body.dark #back-to-top {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* ---- Results section cards (dark border) ---- */
+body.dark .result-card {
+  border-color: var(--border);
+}
+
+/* ---- Soft-skills pill text visible in dark ---- */
+body.dark .pill-grid span {
+  color: var(--text);
+}
+
+/* ---- Feature items text in hero ---- */
+body.dark .feature-item span {
+  color: var(--text);
+}
+
+/* ---- Section tag pill readable in dark ---- */
+body.dark .section-tag {
+  background: var(--surface);
+  color: var(--text-light);
+  border-color: var(--border);
+}
+
+/* ---- Modal slider dot active in dark ---- */
+body.dark .slider-dots .dot {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---- About-dot (non-active) visible in dark ---- */
+body.dark .about-dot {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---- Cer-dot (non-active) visible in dark ---- */
+body.dark .cer-dot {
+  background: rgba(255, 255, 255, 0.25);
+}

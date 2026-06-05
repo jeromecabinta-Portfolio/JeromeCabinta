@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* ===== Force dark background for this dark-themed page ===== */
+        body {
+            background: #0a0a0c !important;
+            color: #ffffff;
+        }
+
         /* ===== SMM Hub Page Styles ===== */
         .smm-showcase {
             max-width: 1200px;
@@ -83,7 +89,7 @@
         }
 
         .smm-section-label {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 12px 24px;
             display: inline-block;
             text-transform: uppercase;
@@ -93,7 +99,7 @@
             letter-spacing: 2px;
             border-left: 4px solid var(--agape-orange);
             border-radius: 0 8px 8px 0;
-            color: #fff;
+            color: #ffffff;
         }
 
         /* ===== Campaign Folders Grid (Modern Glassmorphic Look) ===== */
@@ -108,9 +114,9 @@
         }
 
         .folder-card {
-            background: rgba(26, 26, 26, 0.5);
+            background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             padding: 40px 30px;
             text-decoration: none;
@@ -123,7 +129,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .folder-card::before {
@@ -179,7 +185,7 @@
 
         .folder-details p {
             font-size: 0.88rem;
-            color: #888;
+            color: #aaaaaa;
             margin: 0 0 20px 0;
             line-height: 1.5;
         }
@@ -205,14 +211,14 @@
             display: flex;
             justify-content: center;
             padding: 40px;
-            border-top: 1px solid #222;
+            border-top: 1px solid #2a2a2a;
             margin-top: 40px;
         }
 
         .smm-footer span {
             font-weight: 800;
             font-size: 0.85rem;
-            color: #555;
+            color: #888;
         }
 
         /* ===== Responsive ===== */
