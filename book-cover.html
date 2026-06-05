@@ -11,6 +11,11 @@
 </head>
 
 <body>
+  <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  </script>
   <div id="scroll-progress"></div>
   <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 

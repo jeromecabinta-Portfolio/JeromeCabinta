@@ -291,7 +291,7 @@ body:not(.dark) .navbar {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-socials {
     display: none;
   }
@@ -7100,8 +7100,8 @@ html, body {
 
 /* Hide desktop nav links below 900px — use hamburger */
 @media (max-width: 900px) {
-  .custom-nav-links {
-    display: none;
+  .custom-nav-links:not(.show) {
+    display: none !important;
   }
   .hamburger {
     display: flex !important;
