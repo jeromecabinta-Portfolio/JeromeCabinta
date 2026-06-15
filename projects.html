@@ -11,10 +11,19 @@
 
 <body>
   <script>
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark");
-    }
-  </script>
+
+  // Initialize theme from localStorage
+  const isDark = localStorage.getItem("theme") === "dark";
+  if (isDark) {
+    document.body.classList.add("dark");
+  }
+  // Set theme toggle button icon accordingly
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+  }
+</script>
+  
   <div id="scroll-progress"></div>
   <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
   <!-- NAVBAR -->

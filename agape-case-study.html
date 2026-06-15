@@ -8,10 +8,29 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* ===== Force dark background for this dark-themed page ===== */
+        /* Theme variables */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --hero-bg: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-text: #222222;
+            --accent: #f39200; /* agape orange */
+            --accent-bg: rgba(243, 146, 0, 0.1);
+            --section-label-bg: rgba(255, 255, 255, 0.08);
+        }
         body {
-            background: #0a0a0c !important;
-            color: #ffffff;
+            background: var(--bg-color) !important;
+            color: var(--text-color);
+        }
+        .dark {
+            --bg-color: #0a0a0c;
+            --text-color: #ffffff;
+            --hero-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111 100%);
+            --card-bg: rgba(26, 26, 26, 0.95);
+            --card-text: #ffffff;
+            --section-label-bg: rgba(0, 0, 0, 0.1);
+            --accent-bg: rgba(243, 146, 0, 0.2);
         }
 
         /* ===== SMM Hub Page Styles ===== */
@@ -24,7 +43,7 @@
         .smm-hero {
             text-align: center;
             padding: 80px 40px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111 100%);
+            background: var(--hero-bg);
             border-radius: 24px;
             margin-bottom: 50px;
             border: 1px solid #222;
@@ -57,7 +76,7 @@
 
         .smm-badge {
             display: inline-block;
-            background: var(--agape-orange);
+            background: var(--accent);
             color: #fff;
             font-size: 0.7rem;
             font-weight: 900;
@@ -82,14 +101,14 @@
 
         .smm-hero p {
             font-size: 1.05rem;
-            color: #888;
+            color: var(--text-color);
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
         .smm-section-label {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--section-label-bg);
             padding: 12px 24px;
             display: inline-block;
             text-transform: uppercase;
@@ -97,9 +116,9 @@
             font-size: 0.85rem;
             margin-bottom: 35px;
             letter-spacing: 2px;
-            border-left: 4px solid var(--agape-orange);
+            border-left: 4px solid var(--accent);
             border-radius: 0 8px 8px 0;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         /* ===== Campaign Folders Grid (Modern Glassmorphic Look) ===== */
@@ -114,13 +133,13 @@
         }
 
         .folder-card {
-            background: rgba(26, 26, 26, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             padding: 40px 30px;
             text-decoration: none;
-            color: #fff;
+            color: var(--card-text);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -147,7 +166,7 @@
 
         .folder-card:hover {
             transform: translateY(-10px);
-            border-color: var(--agape-orange);
+            border-color: var(--accent);
             box-shadow: 0 20px 40px rgba(243, 146, 0, 0.15);
         }
 
@@ -155,8 +174,8 @@
             width: 60px;
             height: 60px;
             border-radius: 16px;
-            background: rgba(253, 146, 0, 0.1);
-            color: var(--agape-orange);
+            background: var(--accent-bg);
+            color: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -167,7 +186,7 @@
 
         .folder-card:hover .folder-icon {
             transform: scale(1.15) rotate(-5deg);
-            background: var(--agape-orange);
+            background: var(--accent);
             color: #fff;
             box-shadow: 0 8px 20px rgba(243, 146, 0, 0.3);
         }
@@ -180,12 +199,12 @@
             font-size: 1.35rem;
             font-weight: 900;
             margin: 0 0 10px 0;
-            color: #fff;
+            color: var(--card-text);
         }
 
         .folder-details p {
             font-size: 0.88rem;
-            color: #aaaaaa;
+            color: var(--text-color);
             margin: 0 0 20px 0;
             line-height: 1.5;
         }
@@ -198,7 +217,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--agape-orange);
+            color: var(--accent);
             transition: gap 0.3s ease;
         }
 
@@ -218,7 +237,7 @@
         .smm-footer span {
             font-weight: 800;
             font-size: 0.85rem;
-            color: #888;
+            color: var(--text-color);
         }
 
         /* ===== Responsive ===== */
@@ -278,6 +297,7 @@
 
 <body>
     <script>
+        // Apply saved theme
         if (localStorage.getItem("theme") === "dark") {
             document.body.classList.add("dark");
         }
