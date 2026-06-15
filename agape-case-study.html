@@ -15,14 +15,17 @@
             --hero-bg: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
             --card-bg: rgba(255, 255, 255, 0.9);
             --card-text: #222222;
-            --accent: #f39200; /* agape orange */
+            --accent: #f39200;
+            /* agape orange */
             --accent-bg: rgba(243, 146, 0, 0.1);
             --section-label-bg: rgba(255, 255, 255, 0.08);
         }
+
         body {
             background: var(--bg-color) !important;
             color: var(--text-color);
         }
+
         .dark {
             --bg-color: #0a0a0c;
             --text-color: #ffffff;
@@ -60,13 +63,18 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle at 30% 40%, rgba(243, 146, 0, 0.06) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(65, 125, 252, 0.04) 0%, transparent 50%);
+                radial-gradient(circle at 70% 60%, rgba(65, 125, 252, 0.04) 0%, transparent 50%);
             animation: heroGlow 8s ease-in-out infinite alternate;
         }
 
         @keyframes heroGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(10deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
         }
 
         .smm-hero-content {
@@ -307,35 +315,36 @@
 
     <!-- NAVBAR -->
     <nav class="navbar" id="custom-nav">
-      <div class="nav-container">
-        <a href="index.html" class="logo custom-logo">
-          <span class="logo-j">JC.</span> <span class="logo-text">JEROME DIGITAL</span>
-        </a>
-        <ul class="nav-links custom-nav-links" id="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="nav-actions">
-          <div class="nav-pill-socials">
-            <a href="https://www.facebook.com/profile.php?id=61579246614635" class="nav-pill"><i
-                class="fab fa-facebook-f"></i> <span>Facebook</span></a>
-            <a href="https://www.instagram.com/jerome_cabinta/" class="nav-pill"><i class="fab fa-instagram"></i>
-              <span>Instagram</span></a>
-            <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" class="nav-pill"><i
-                class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
-          </div>
-          <button class="theme-toggle" id="theme-toggle">🌙</button>
-          <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <div class="nav-container">
+            <a href="index.html" class="logo custom-logo">
+                <span class="logo-j">JC.</span> <span class="logo-text">JEROME DIGITAL</span>
+            </a>
+            <ul class="nav-links custom-nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-pill-socials">
+                    <a href="https://www.facebook.com/profile.php?id=61579246614635" class="nav-pill"><i
+                            class="fab fa-facebook-f"></i> <span>Facebook</span></a>
+                    <a href="https://www.instagram.com/jerome_cabinta/" class="nav-pill"><i
+                            class="fab fa-instagram"></i>
+                        <span>Instagram</span></a>
+                    <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" class="nav-pill"><i
+                            class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-      </div>
     </nav>
 
     <div class="smm-showcase">
@@ -345,8 +354,9 @@
         <div class="smm-hero">
             <div class="smm-hero-content">
                 <span class="smm-badge">Social Media Marketing</span>
-                <h1>Category Portfolios</h1>
-                <p>Curated social media campaign directories grouping high-converting video product reels, high-resolution product mock-ups, and interactive brand styles.</p>
+                <h1>Category</h1>
+                <p>Curated social media campaign directories grouping high-converting video product reels,
+                    high-resolution product mock-ups, and interactive brand styles.</p>
             </div>
         </div>
 
@@ -354,7 +364,7 @@
         <section class="folders-section">
             <div class="smm-section-label">Campaign Project Folders</div>
             <div class="folders-grid">
-                
+
                 <!-- Card 1: Sneakers Product Showcase -->
                 <a href="smm-sneakers.html" class="folder-card">
                     <div class="folder-icon">
@@ -362,7 +372,8 @@
                     </div>
                     <div class="folder-details">
                         <h3>Sneakers Product</h3>
-                        <p>Creative vertical product reels and commercial video campaigns promoting sneakers with conversion-focused content.</p>
+                        <p>Creative vertical product reels and commercial video campaigns promoting sneakers with
+                            conversion-focused content.</p>
                         <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -374,7 +385,8 @@
                     </div>
                     <div class="folder-details">
                         <h3>Product Mock-ups</h3>
-                        <p>Interactive branding renderings, virtual mockups, and high-fidelity packaging visualization collections.</p>
+                        <p>Interactive branding renderings, virtual mockups, and high-fidelity packaging visualization
+                            collections.</p>
                         <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -386,7 +398,8 @@
                     </div>
                     <div class="folder-details">
                         <h3>Branding Showcase</h3>
-                        <p>Comprehensive typography guides, color stories, brand tone strategies, and identity style sheets.</p>
+                        <p>Comprehensive typography guides, color stories, brand tone strategies, and identity style
+                            sheets.</p>
                         <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -397,8 +410,10 @@
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="folder-details">
-                        <h3>Ecommerce Output</h3>
-                        <p>High-converting storefront visual designs, shopping experience layouts, checkout elements, and sales flows.</p>
+                        <h3>Creative Advertising Design</h3>
+                        <p>Strategic advertising designs including social media creatives, promotional campaigns,
+                            digital marketing assets, and branded visuals focused on audience engagement and business
+                            growth.</p>
                         <span class="folder-action">Open Folder <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
