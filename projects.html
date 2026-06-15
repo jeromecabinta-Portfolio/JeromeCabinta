@@ -12,18 +12,18 @@
 <body>
   <script>
 
-  // Initialize theme from localStorage
-  const isDark = localStorage.getItem("theme") === "dark";
-  if (isDark) {
-    document.body.classList.add("dark");
-  }
-  // Set theme toggle button icon accordingly
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
-  }
-</script>
-  
+    // Initialize theme from localStorage
+    const isDark = localStorage.getItem("theme") === "dark";
+    if (isDark) {
+      document.body.classList.add("dark");
+    }
+    // Set theme toggle button icon accordingly
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+    }
+  </script>
+
   <div id="scroll-progress"></div>
   <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
   <!-- NAVBAR -->
@@ -88,8 +88,9 @@
       <div class="project-card">
         <img src="Assets/Social Media Ads/SMA.png" alt="Social Media Ads">
         <div class="project-info">
-          <h3>Digital, Ads</h3>
-          <p>Created engaging ads for digital campaigns.</p>
+          <h3>Event Marketing Designs</h3>
+          <p>Event-focused advertising and promotional designs crafted to maximize visibility, audience participation,
+            and overall event success.</p>
           <div class="project-actions">
             <a href="social-media-ads.html" class="view-project-link">View Project</a>
           </div>
@@ -156,10 +157,9 @@
       <div class="project-card">
         <img src="Assets/Video/placeholder.png" alt="Video Content Project">
         <div class="project-info">
-          <h3>Short Form Video Editing</h3>
-          <p>I specialize in short-form video editing and motion graphics using AI tools, creating high-quality visual
-            content that strengthens brand identity,
-            communicates key messages clearly, and drives audience engagement.</p>
+          <h3>AI Video Editing </h3>
+          <p>Produced AI-enhanced short-form videos optimized for social media platforms, combining dynamic editing,
+            captions, visual effects, and trend-driven storytelling to increase engagement and audience retention.</p>
           <button class="view-project" data-title="Video Content & Motion Graphics"
             data-description="A premium collection of cinematic video productions, brand reels, and motion graphic showcases. Click to explore the full gallery of 10 video projects."
             data-video="https://youtu.be/O2p9aFnjZdc, 
@@ -167,7 +167,8 @@
             https://youtu.be/tBKk3VFobHQ, 
             https://youtu.be/pAaGgQ4gF1E, 
             https://youtu.be/0lLjbv1wpSs, 
-            https://youtu.be/g0L0pPLDtUs">
+            https://youtu.be/g0L0pPLDtUs,
+            https://youtube.com/shorts/nZdjpSrIBXo">
             View Project
           </button>
         </div>
