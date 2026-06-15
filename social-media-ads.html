@@ -86,13 +86,6 @@
         <section class="feed-section">
             <h2 class="feed-title">Feed</h2>
 
-            <!-- Category Filter Tabs -->
-            <div class="feed-filter-container">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="church">Agape Reaching People Ministry</button>
-                <button class="filter-btn" data-filter="personal">Personal Project</button>
-            </div>
-
             <div class="posts-grid feed-grid">
                 <!-- Ad 1 -->
                 <div class="post-card">
@@ -229,38 +222,7 @@
                         alt="Ad 32">
 
                 </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/33.jpg"
-                        alt="Ad 33">
 
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/34.jpg"
-                        alt="Ad 34">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/35.jpg"
-                        alt="Ad 35">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/36.jpg"
-                        alt="Ad 36">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/37.jpg"
-                        alt="Ad 37">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/38.jpg"
-                        alt="Ad 38">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/39.jpg"
-                        alt="Ad 39">
-
-                </div>
-                <div class="post-card"><img src="Assets/Social%20Media%20Ads/calvary%20baptist%20church/40.jpg"
-                        alt="Ad 40">
-
-                </div>
             </div>
         </section>
 
@@ -308,68 +270,6 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Category Filter Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const postCards = document.querySelectorAll('.post-card');
-
-            // Dynamically assign categories based on image source numbers
-            postCards.forEach(card => {
-                const img = card.querySelector('img');
-                if (img) {
-                    const src = img.getAttribute('src');
-                    // Check if it ends with /33.jpg to /40.jpg
-                    const match = src.match(/(\d+)\.(png|jpg|jpeg)/);
-                    if (match) {
-                        const num = parseInt(match[1]);
-                        if (num >= 33 && num <= 40) {
-                            card.setAttribute('data-category', 'personal');
-                        } else {
-                            card.setAttribute('data-category', 'church');
-                        }
-                    } else {
-                        card.setAttribute('data-category', 'church');
-                    }
-                }
-
-                // Add smooth transition inline styles for a premium feel
-                card.style.transition = "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
-                card.style.opacity = "1";
-                card.style.transform = "scale(1)";
-            });
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    postCards.forEach(card => {
-                        const category = card.getAttribute('data-category');
-                        if (filterValue === 'all' || category === filterValue) {
-                            // First display it
-                            card.style.display = 'block';
-                            // Stagger scale and opacity for elegant fade-in
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 50);
-                        } else {
-                            // Fade out first
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.95)';
-                            // Then hide after transition ends
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 400);
-                        }
-                    });
-                });
-            });
-        });
     </script>
 </body>
 
