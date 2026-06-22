@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* ===== Theme Variables for Apex Outdoors ===== */
+        :root {
+            --apex-green: #3b4632;
+            --apex-green-rgb: 59, 70, 50;
+            --apex-beige: #eae6dc;
+            --apex-cream: #faf7f2;
+            --apex-charcoal: #262626;
+            --apex-olive-light: #5d674f;
+            --apex-gold: #c5a059;
+            
+            --brand-accent: var(--apex-green);
+            --brand-accent-rgb: 59, 70, 50;
+        }
+
+        body.dark {
+            --brand-accent: var(--apex-gold);
+            --brand-accent-rgb: 197, 160, 89;
+        }
+
         /* ===== Branding Showcase Specific Styles ===== */
         .branding-showcase {
             max-width: 1200px;
@@ -17,11 +36,11 @@
 
         .branding-hero {
             text-align: center;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--apex-beige) 0%, #d8d3c5 100%);
             border-radius: 24px;
             margin-bottom: 40px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(var(--apex-green-rgb), 0.15);
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -29,9 +48,20 @@
         }
 
         body.dark .branding-hero {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1c1c1c 50%, #141414 100%);
-            border: 1px solid rgba(243, 146, 0, 0.15);
+            background: linear-gradient(135deg, #1b2016 0%, #0d100b 100%);
+            border: 1px solid rgba(234, 230, 220, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .branding-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(var(--apex-green-rgb), 0.08) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .branding-hero-content {
@@ -41,7 +71,7 @@
 
         .category-tag {
             display: inline-block;
-            background: var(--agape-orange);
+            background: var(--brand-accent);
             color: #fff;
             font-size: 0.7rem;
             font-weight: 900;
@@ -50,12 +80,17 @@
             padding: 6px 16px;
             border-radius: 999px;
             margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark .category-tag {
+            color: #111;
         }
 
         .branding-hero h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             margin: 0 0 12px 0;
             color: var(--text);
             transition: color 0.3s ease;
@@ -68,10 +103,18 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .branding-hero p {
+        .branding-hero p.hero-subtitle {
+            font-family: Georgia, serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--brand-accent);
+            margin-bottom: 15px;
+        }
+
+        .branding-hero p.hero-lead {
             font-size: 1rem;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.6;
         }
@@ -85,49 +128,10 @@
             font-size: 0.85rem;
             margin-bottom: 25px;
             letter-spacing: 2px;
-            border-left: 4px solid var(--agape-orange);
+            border-left: 4px solid var(--brand-accent);
             border-radius: 0 8px 8px 0;
             color: var(--text);
             transition: all 0.3s ease;
-        }
-
-        /* Placeholder Styles */
-        .placeholder-box {
-            background: var(--surface-2);
-            border: 2px dashed var(--border);
-            border-radius: 24px;
-            padding: 80px 40px;
-            text-align: center;
-            color: var(--text-light);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            min-height: 400px;
-            transition: all 0.3s ease;
-        }
-
-        .placeholder-box i {
-            font-size: 4rem;
-            color: var(--agape-orange);
-            opacity: 0.6;
-            animation: pulse 2s infinite;
-        }
-
-        .placeholder-box h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text);
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-
-        .placeholder-box p {
-            font-size: 0.95rem;
-            max-width: 500px;
-            line-height: 1.6;
-            margin: 0;
         }
 
         .back-link {
@@ -135,7 +139,7 @@
             align-items: center;
             gap: 10px;
             margin-bottom: 30px;
-            color: var(--agape-orange);
+            color: var(--brand-accent);
             font-weight: 800;
             text-decoration: none;
             text-transform: uppercase;
@@ -145,6 +149,526 @@
 
         .back-link:hover {
             transform: translateX(-5px);
+        }
+
+        /* ===== Design System Showcase Section ===== */
+        .brand-overview-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .brand-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.dark .brand-card {
+            background: rgba(30, 31, 35, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(var(--apex-green-rgb), 0.1);
+            padding-bottom: 10px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.dark .brand-card h3 {
+            border-bottom-color: rgba(234, 230, 220, 0.1);
+        }
+
+        .brand-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .pillar-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .pillar-icon {
+            background: rgba(var(--apex-green-rgb), 0.1);
+            color: var(--apex-green);
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .pillar-icon {
+            background: rgba(234, 230, 220, 0.1);
+            color: var(--apex-beige);
+        }
+
+        .pillar-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text);
+        }
+
+        .pillar-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Color Swatches */
+        .color-palette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .color-swatch-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .color-swatch-wrapper:hover .color-swatch {
+            transform: scale(1.08);
+        }
+
+        .color-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text);
+            display: block;
+        }
+
+        .color-hex {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            font-family: monospace;
+        }
+
+        .typography-preview {
+            background: var(--surface-2);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .typo-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .typo-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        /* ===== Asset Gallery ===== */
+        .brand-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .brand-gallery-card {
+            background: var(--surface);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        body.dark .brand-gallery-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .brand-gallery-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand-accent);
+            box-shadow: 0 15px 35px rgba(var(--apex-green-rgb), 0.1);
+        }
+
+        body.dark .brand-gallery-card:hover {
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.1);
+        }
+
+        .brand-gallery-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: var(--surface-2);
+            overflow: hidden;
+        }
+
+        .brand-gallery-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .brand-gallery-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .brand-gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            color: #fff;
+            gap: 10px;
+        }
+
+        .brand-gallery-card:hover .brand-gallery-overlay {
+            opacity: 1;
+        }
+
+        .brand-gallery-overlay i {
+            font-size: 1.5rem;
+            background: var(--brand-accent);
+            color: #fff;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        body.dark .brand-gallery-overlay i {
+            color: #111;
+        }
+
+        .brand-gallery-card:hover .brand-gallery-overlay i {
+            transform: scale(1.1);
+        }
+
+        .brand-gallery-overlay span {
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .brand-gallery-info {
+            padding: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .brand-gallery-info h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text);
+            margin: 0 0 6px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .brand-gallery-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* ===== Lightbox Modal Styles ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(15px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 900px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.9);
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        body.dark .lightbox-content {
+            background: #141518;
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            background: var(--surface-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            border: 1px solid var(--border);
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+            background: var(--brand-accent);
+            color: #fff;
+            border-color: var(--brand-accent);
+        }
+        
+        body.dark .lightbox-close:hover {
+            color: #111;
+        }
+
+        .lightbox-slider-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 40px;
+            background: #090a0d;
+            min-height: 480px;
+        }
+
+        .lightbox-image-container {
+            position: relative;
+            max-width: 80%;
+            max-height: 60vh;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .lightbox-image-container img {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.2s ease;
+        }
+
+        .lightbox-image-container img.zoomed {
+            transform: scale(1.5);
+            cursor: zoom-out;
+        }
+
+        .lightbox-image-container img:not(.zoomed) {
+            cursor: zoom-in;
+        }
+
+        .lightbox-zoom-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-image-container:hover .lightbox-zoom-indicator {
+            opacity: 1;
+        }
+
+        .lightbox-nav-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--brand-accent);
+            color: #fff;
+            border-color: var(--brand-accent);
+            transform: scale(1.1);
+        }
+        
+        body.dark .lightbox-nav-btn:hover {
+            color: #111;
+        }
+
+        .lightbox-details {
+            padding: 24px 30px;
+            border-top: 1px solid var(--border);
+            position: relative;
+            min-height: 110px;
+        }
+
+        .lightbox-details h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            color: var(--text);
+        }
+
+        .lightbox-details p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.5;
+            max-width: 80%;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            right: 30px;
+            top: 24px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            background: var(--surface-2);
+            padding: 6px 14px;
+            border-radius: 999px;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .brand-overview-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .branding-hero {
+                padding: 50px 20px;
+            }
+            .branding-hero h1 {
+                font-size: 2.2rem;
+            }
+            .branding-hero p.hero-subtitle {
+                font-size: 1.15rem;
+            }
+            .color-palette-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .lightbox-slider-wrapper {
+                padding: 20px 10px;
+                min-height: 320px;
+            }
+            .lightbox-image-container {
+                max-width: 90%;
+            }
+            .lightbox-nav-btn {
+                width: 38px;
+                height: 38px;
+            }
+            .lightbox-details {
+                padding: 20px 15px;
+            }
+            .lightbox-details p {
+                max-width: 100%;
+                margin-top: 8px;
+            }
+            .lightbox-counter {
+                position: static;
+                display: inline-block;
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
@@ -198,21 +722,104 @@
         <!-- Hero -->
         <div class="branding-hero">
             <div class="branding-hero-content">
-                <span class="category-tag">Branding Campaigns</span>
-                <h1>Branding Campaigns</h1>
-                <p>Complete branding visual identity rollouts, typography guides, tone-of-voice frameworks, and
-                    comprehensive digital campaign styles.</p>
+                <span class="category-tag">Brand Campaign Rollout</span>
+                <h1>Apex Outdoors</h1>
+                <p class="hero-subtitle">Rooted in Peaks, Made for You.</p>
+                <p class="hero-lead">A comprehensive visual identity rollout and creative digital campaign style suite for a premium, sustainable outdoor gear brand.</p>
             </div>
         </div>
 
-        <!-- Content -->
+        <!-- Design System Tokens -->
+        <section style="margin-bottom: 60px;">
+            <div class="smm-section-label">Brand Identity System</div>
+            <div class="brand-overview-grid">
+                <!-- Brand Narrative Card -->
+                <div class="brand-card">
+                    <h3>Brand Vision</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.5; margin-bottom: 20px;">
+                        Apex Outdoors bridges high-altitude technical performance with a deep respect for the wilderness. The visual identity fuses rugged durability with eco-conscious design philosophy, establishing a premium visual presence for outdoor enthusiasts.
+                    </p>
+                    <div class="brand-pillars">
+                        <div class="pillar-item">
+                            <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
+                            <div>
+                                <h4>Technical Fabrics</h4>
+                                <p>High-performance weaves designed for extreme mountain peaks.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <div class="pillar-icon"><i class="fas fa-cloud-showers-heavy"></i></div>
+                            <div>
+                                <h4>Weather Resistant</h4>
+                                <p>Engineered to repel elements while maintaining breathable comfort.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-item">
+                            <div class="pillar-icon"><i class="fas fa-leaf"></i></div>
+                            <div>
+                                <h4>Sustainable Materials</h4>
+                                <p>Using recycled, organic fibers that protect and honor the environment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Specifications (Color + Typography) -->
+                <div class="brand-card">
+                    <h3>Design System Tokens</h3>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 12px;">Color Palette</h4>
+                        <div class="color-palette-grid">
+                            <div class="color-swatch-wrapper">
+                                <div class="color-swatch" style="background-color: #3b4632; border: 1px solid rgba(0,0,0,0.1);"></div>
+                                <span class="color-name">Alpine Olive</span>
+                                <span class="color-hex">#3B4632</span>
+                            </div>
+                            <div class="color-swatch-wrapper">
+                                <div class="color-swatch" style="background-color: #eae6dc; border: 1px solid rgba(0,0,0,0.1);"></div>
+                                <span class="color-name">Summit Cream</span>
+                                <span class="color-hex">#EAE6DC</span>
+                            </div>
+                            <div class="color-swatch-wrapper">
+                                <div class="color-swatch" style="background-color: #faf7f2; border: 1px solid rgba(0,0,0,0.1);"></div>
+                                <span class="color-name">Ice White</span>
+                                <span class="color-hex">#FAF7F2</span>
+                            </div>
+                            <div class="color-swatch-wrapper">
+                                <div class="color-swatch" style="background-color: #262626; border: 1px solid rgba(0,0,0,0.1);"></div>
+                                <span class="color-name">Obsidian</span>
+                                <span class="color-hex">#262626</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 12px;">Brand Typography</h4>
+                        <div class="typography-preview">
+                            <div class="typo-group" style="margin-bottom: 12px;">
+                                <span class="typo-label">Headings: Serif Display</span>
+                                <div style="font-size: 1.25rem; font-weight: 700; font-family: Georgia, serif; color: var(--text);">
+                                    Rooted in Peaks, Made for You.
+                                </div>
+                            </div>
+                            <div class="typo-group">
+                                <span class="typo-label">Body & Labels: Modern Sans-Serif</span>
+                                <div style="font-size: 0.85rem; font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text-light); line-height: 1.4;">
+                                    Engineered for Adventure. Performance isn't a trend, it's our promise.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Content -->
         <section style="margin-bottom: 60px;">
             <div class="smm-section-label">Showcase Gallery</div>
-            <div class="placeholder-box">
-                <i class="fas fa-bullhorn"></i>
-                <h3>Branding Campaigns Coming Soon</h3>
-                <p>Assets are being prepared. This folder will showcase high-quality brand voice guides, graphic style
-                    suites, and strategic media placements once uploaded.</p>
+            <div class="brand-gallery-grid" id="brand-gallery-grid">
+                <!-- Injected via JavaScript -->
             </div>
         </section>
 
@@ -221,7 +828,230 @@
         </div>
     </div>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="lightbox">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            
+            <div class="lightbox-slider-wrapper">
+                <button class="lightbox-nav-btn" id="lightbox-prev" title="Previous (Left Arrow)"><i class="fas fa-chevron-left"></i></button>
+                
+                <div class="lightbox-image-container">
+                    <img id="lightbox-img" src="" alt="Brand Campaign Asset">
+                    <div class="lightbox-zoom-indicator" id="lightbox-zoom-indicator"><i class="fas fa-search-plus"></i></div>
+                </div>
+                
+                <button class="lightbox-nav-btn" id="lightbox-next" title="Next (Right Arrow)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div class="lightbox-details">
+                <h3 id="lightbox-title">Asset Title</h3>
+                <p id="lightbox-desc">Asset Description</p>
+                <div class="lightbox-counter" id="lightbox-counter">01 / 16</div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        (function () {
+            // 16 Brand Campaign Assets Array
+            const campaignAssets = [
+                {
+                    img: "Assets/Brand%20Campaign/1.png",
+                    title: "Apex Outdoors Brand Campaign Poster",
+                    desc: "Hero visual asset and poster showcasing the central brand concept: 'Rooted in Peaks, Made for You.' Fuses high-altitude backpacker photography with core brand messaging."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/2.png",
+                    title: "Product Design & Technical Specs",
+                    desc: "A detailed design asset focusing on technical apparel layouts. Highlights weather-proofing, fabric structures, and premium manufacturing details."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/3.png",
+                    title: "Core Campaign Pillars Visual Guide",
+                    desc: "Graphic rollout describing the three foundations of Apex Outdoors: Technical Fabrics, Weather Resistance, and Sustainable Sourcing."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/4.png",
+                    title: "Brand Style Guide: Typography & Color",
+                    desc: "Identity spec sheet outlining the selected color palettes (Alpine Olive, Summit Cream, Ice White, Obsidian) and serif-sans typography hierarchy."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/5.png",
+                    title: "Logo System & Brandmarks",
+                    desc: "Grid detailing mountain peak logo configurations, secondary symbols, and colorways for diverse applications."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/6.png",
+                    title: "Desktop E-Commerce Homepage Prototype",
+                    desc: "UI layout concept for the Apex Outdoors web experience, featuring a clean hero banner, product collections, and sustainability narratives."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/7.png",
+                    title: "Mobile Application UI Mockup",
+                    desc: "UX concepts for the brand's mobile app, incorporating GPS trail tracking alongside apparel shopping."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/8.png",
+                    title: "Print & Editorial Magazine Layout",
+                    desc: "A double-page spread branding advertisement designed for outdoor and lifestyle magazines."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/9.png",
+                    title: "Social Media Campaign Grid Templates",
+                    desc: "Creative Instagram layout templates designed to showcase apparel details and user-generated content under #RootedInWild."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/10.png",
+                    title: "Outdoor Apparel Colorway Board",
+                    desc: "Color variations, textile details, and design specifications for Apex Outdoors technical shells."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/11.png",
+                    title: "Apex Technical Backpack Spec Sheet",
+                    desc: "Detailed blueprint highlighting utility, storage, and material specs for multi-day expedition hiking backpacks."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/12.png",
+                    title: "Sustainable Shell Jacket Highlight",
+                    desc: "Thematic product advertisement for shell jackets highlighting sustainability: 'Thoughtful gear for a better journey.'"
+                },
+                {
+                    img: "Assets/Brand%20Campaign/13.png",
+                    title: "Stationery & Corporate Identity Suite",
+                    desc: "Corporate business cards, letterheads, and notebooks carrying the Apex Outdoors identity guidelines."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/14.jpg",
+                    title: "Outdoor Accessory Merchandise Ideas",
+                    desc: "Visual mockups of branded accessories, including thermal mugs, explorer compasses, and gear tags."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/15.jpg",
+                    title: "Fleet Vehicle Wrapping Designs",
+                    desc: "Conceptual graphic wrap for expedition utility vans, extending the brand's outdoor adventure motif."
+                },
+                {
+                    img: "Assets/Brand%20Campaign/16.jpg",
+                    title: "Launch Banner & Sustainability Poster",
+                    desc: "Campaign banner showcasing the slogan: 'GOOD FOR YOU. GOOD FOR THE WILD. Performance isn't a trend, it's our promise.'"
+                }
+            ];
+
+            let currentIndex = 0;
+            const TOTAL = campaignAssets.length;
+
+            // DOM elements
+            const galleryGrid = document.getElementById("brand-gallery-grid");
+            const lightbox = document.getElementById("lightbox-modal");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxTitle = document.getElementById("lightbox-title");
+            const lightboxDesc = document.getElementById("lightbox-desc");
+            const lightboxCounter = document.getElementById("lightbox-counter");
+            const closeBtn = document.getElementById("lightbox-close");
+            const prevBtn = document.getElementById("lightbox-prev");
+            const nextBtn = document.getElementById("lightbox-next");
+
+            // Build Gallery Grid
+            campaignAssets.forEach((asset, idx) => {
+                const card = document.createElement("div");
+                card.className = "brand-gallery-card";
+                card.innerHTML = `
+                    <div class="brand-gallery-image-wrapper">
+                        <img src="${asset.img}" alt="${asset.title}" loading="lazy">
+                        <div class="brand-gallery-overlay">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            <span>View Asset</span>
+                        </div>
+                    </div>
+                    <div class="brand-gallery-info">
+                        <h4>${asset.title}</h4>
+                        <p>${asset.desc.substring(0, 65)}...</p>
+                    </div>
+                `;
+                card.addEventListener("click", () => {
+                    openLightbox(idx);
+                });
+                galleryGrid.appendChild(card);
+            });
+
+            // Lightbox Functions
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxContent();
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden"; // Disable scroll
+                
+                // Trigger animation
+                setTimeout(() => {
+                    lightbox.style.opacity = "1";
+                }, 10);
+            }
+
+            function closeLightbox() {
+                lightbox.style.opacity = "0";
+                lightboxImg.classList.remove("zoomed");
+                setTimeout(() => {
+                    lightbox.classList.remove("active");
+                    document.body.style.overflow = ""; // Enable scroll
+                }, 300);
+            }
+
+            function updateLightboxContent() {
+                const asset = campaignAssets[currentIndex];
+                lightboxImg.style.opacity = "0";
+                
+                setTimeout(() => {
+                    lightboxImg.src = asset.img.replace(/%20/g, ' '); // Decode space for cleaner visual loading or keep encoded
+                    lightboxImg.alt = asset.title;
+                    lightboxTitle.textContent = asset.title;
+                    lightboxDesc.textContent = asset.desc;
+                    lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
+                    
+                    lightboxImg.style.opacity = "1";
+                }, 150);
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % TOTAL;
+                updateLightboxContent();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + TOTAL) % TOTAL;
+                updateLightboxContent();
+            }
+
+            // Event Listeners
+            closeBtn.addEventListener("click", closeLightbox);
+            document.querySelector(".lightbox-backdrop").addEventListener("click", closeLightbox);
+            nextBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                nextSlide();
+            });
+            prevBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                prevSlide();
+            });
+
+            // Zoom toggle
+            lightboxImg.addEventListener("click", (e) => {
+                e.stopPropagation();
+                lightboxImg.classList.toggle("zoomed");
+            });
+
+            // Keyboard Controls
+            document.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("active")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowRight") nextSlide();
+                if (e.key === "ArrowLeft") prevSlide();
+            });
+        })();
+    </script>
 </body>
+
 
 </html>
