@@ -8,11 +8,40 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        /* ===== Page Container ===== */
+        .case-study-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ===== Back Link ===== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: var(--agape-orange);
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* ===== Ads Hero ===== */
         .ads-hero {
-            padding: 100px 20px;
+            padding: 80px 40px;
             text-align: center;
             background: var(--surface);
-            border-bottom: 1px solid var(--border);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
         }
 
         .ads-hero h1 {
@@ -20,6 +49,7 @@
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            color: var(--text);
         }
 
         .ads-hero p {
@@ -27,6 +57,159 @@
             color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
+        }
+
+        /* ===== Feed Section ===== */
+        .feed-section {
+            margin-bottom: 60px;
+        }
+
+        .feed-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--text);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* ===== Posts Grid ===== */
+        .feed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .post-card {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark .post-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .post-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* ===== Section Heading ===== */
+        .section-heading {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-left: 16px;
+            border-left: 4px solid var(--agape-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== Stats Grid ===== */
+        .agape-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--agape-orange);
+        }
+
+        .stat-icon {
+            background: rgba(243, 146, 0, 0.12);
+            color: var(--agape-orange);
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover .stat-icon {
+            background: var(--agape-orange);
+            color: #fff;
+        }
+
+        .stat-content h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0 0 6px 0;
+        }
+
+        .stat-content p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .ads-hero {
+                padding: 50px 20px;
+            }
+
+            .ads-hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .feed-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ads-hero h1 {
+                font-size: 2rem;
+            }
+
+            .feed-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
     </style>
 </head>
