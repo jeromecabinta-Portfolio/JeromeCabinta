@@ -2010,7 +2010,7 @@ body.dark .cer-dot.active {
   background: var(--surface);
   border: 1px solid rgba(65, 125, 252, 0.3);
   border-radius: 20px;
-  padding: 15px 10px;
+  padding: 30px 15px;
   text-align: center;
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
@@ -2064,10 +2064,10 @@ body.dark .cer-dot.active {
 
 .skill-card img,
 .skill-card i.tool-icon-fa {
-  width: 40px;
-  height: 40px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
   transition: transform 0.3s ease;
   animation: toolFloat 3.5s ease-in-out infinite alternate;
   display: flex;
@@ -2076,7 +2076,7 @@ body.dark .cer-dot.active {
 }
 
 .skill-card i.tool-icon-fa {
-  font-size: 32px;
+  font-size: 80px;
   /* Slightly smaller to fit visually */
 }
 
