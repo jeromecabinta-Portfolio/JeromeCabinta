@@ -270,15 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getYouTubeVideoId(url) {
-      const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-      if (shortMatch) return shortMatch[1];
-      const longMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-      if (longMatch) return longMatch[1];
-      return null;
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : null;
     }
 
     function isYouTubeUrl(url) {
-      return url.includes("youtu.be/") || url.includes("youtube.com/watch");
+      return Boolean(getYouTubeVideoId(url));
     }
 
     function stopCurrentMedia() {
