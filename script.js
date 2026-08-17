@@ -1307,4 +1307,113 @@ document.addEventListener("DOMContentLoaded", () => {
     startProgressTimer();
   }
 
+  /* ==========================================================================
+     SCALE BRAND & REVENUE CONTACT FORM & COPY EMAIL
+     ========================================================================== */
+  const copyEmailBtn = document.getElementById("copyEmailBtn");
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener("click", () => {
+      const email = "jeromecabinta7@gmail.com";
+      const setCopiedState = () => {
+        const btnText = copyEmailBtn.querySelector(".btn-text") || copyEmailBtn;
+        const originalHtml = btnText.innerHTML;
+        copyEmailBtn.classList.add("copied");
+        btnText.innerHTML = "Copied! ✓";
+        setTimeout(() => {
+          copyEmailBtn.classList.remove("copied");
+          btnText.innerHTML = originalHtml;
+        }, 2200);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email)
+          .then(setCopiedState)
+          .catch(() => {
+            fallbackCopy();
+          });
+      } else {
+        fallbackCopy();
+      }
+
+      function fallbackCopy() {
+        try {
+          const tempInput = document.createElement("textarea");
+          tempInput.value = email;
+          tempInput.style.position = "fixed";
+          tempInput.style.left = "-9999px";
+          tempInput.style.top = "-9999px";
+          document.body.appendChild(tempInput);
+          tempInput.focus();
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+        } catch (err) {}
+        setCopiedState();
+      }
+    });
+  }
+
+  const growthProposalForm = document.getElementById("growthProposalForm");
+  const proposalFeedback = document.getElementById("proposalFeedback");
+  const submitProposalBtn = document.getElementById("submitProposalBtn");
+
+  if (growthProposalForm) {
+    growthProposalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById("clientName") ? document.getElementById("clientName").value.trim() : "";
+      const email = document.getElementById("clientEmail") ? document.getElementById("clientEmail").value.trim() : "";
+      const goals = document.getElementById("clientHandlesGoals") ? document.getElementById("clientHandlesGoals").value.trim() : "";
+
+      if (!name || !email || !goals) {
+        if (proposalFeedback) {
+          proposalFeedback.className = "proposal-feedback error";
+          proposalFeedback.textContent = "Please fill in all fields.";
+        }
+        return;
+      }
+
+      if (submitProposalBtn) {
+        submitProposalBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Preparing Brief...</span>';
+        submitProposalBtn.disabled = true;
+      }
+
+      // Build mailto link to immediately launch user's email client
+      const subject = encodeURIComponent(`Growth Proposal Request from ${name}`);
+      const body = encodeURIComponent(
+        `Hi Jerome,\n\nI would like to request a Social Media Growth Audit and strategy roadmap.\n\n` +
+        `Name & Brand: ${name}\n` +
+        `Email: ${email}\n\n` +
+        `Handles & Goals:\n${goals}\n\n` +
+        `Looking forward to hearing from you within 24 hours!`
+      );
+      const mailtoUrl = `mailto:jeromecabinta7@gmail.com?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+
+        if (proposalFeedback) {
+          proposalFeedback.className = "proposal-feedback success";
+          proposalFeedback.innerHTML = '✨ Brief submitted! Opening email client...';
+        }
+
+        if (submitProposalBtn) {
+          submitProposalBtn.innerHTML = '<i class="fas fa-check"></i> <span>Brief Sent!</span>';
+          submitProposalBtn.disabled = false;
+        }
+
+        growthProposalForm.reset();
+
+        setTimeout(() => {
+          if (submitProposalBtn) {
+            submitProposalBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Submit Growth Brief</span>';
+          }
+          if (proposalFeedback) {
+            proposalFeedback.textContent = '';
+          }
+        }, 5000);
+      }, 700);
+    });
+  }
+
 });

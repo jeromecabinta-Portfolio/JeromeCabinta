@@ -3759,6 +3759,472 @@ body:not(.dark) .exp-list {
   }
 }
 
+/* ==========================================================================
+   SCALE BRAND & REVENUE CONTACT SECTION
+   ========================================================================== */
+.scale-contact-section {
+  position: relative;
+  width: 100%;
+  max-width: var(--container, 1400px);
+  margin: 0 auto;
+  padding: 60px 24px 90px;
+  overflow: hidden;
+}
+
+.scale-contact-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 50px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Column Styling */
+.scale-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.scale-headline {
+  font-size: clamp(2.3rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--text, #111111);
+  margin-bottom: 18px;
+}
+
+body.dark .scale-headline {
+  color: #ffffff;
+}
+
+.scale-gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 45%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.scale-dot {
+  color: #ec4899;
+}
+
+.scale-subtitle {
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: var(--text-light, #666666);
+  margin-bottom: 34px;
+  max-width: 580px;
+}
+
+body.dark .scale-subtitle {
+  color: #94a3b8;
+}
+
+/* Action Cards */
+.scale-action-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+body.dark .scale-action-card {
+  background: #111522;
+  border-color: #1f273b;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.scale-action-card:hover {
+  transform: translateY(-2px);
+  border-color: #818cf8;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.12);
+}
+
+body.dark .scale-action-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+.scale-card-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.scale-icon-box {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+body.dark .scale-icon-box {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #818cf8;
+}
+
+.scale-action-card:hover .scale-icon-box {
+  transform: scale(1.06);
+}
+
+.scale-card-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.scale-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+body.dark .scale-card-label {
+  color: #64748b;
+}
+
+.scale-card-val {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text, #111111);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.dark .scale-card-val {
+  color: #f1f5f9;
+}
+
+.scale-card-val.email-text {
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+/* Social Media Icons in Card */
+.scale-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.scale-social-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:not(.dark) .scale-social-pill {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.scale-social-pill:hover {
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.scale-social-pill.ig:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(225, 48, 108, 0.45) !important;
+}
+
+.scale-social-pill.tt:hover {
+  background: linear-gradient(135deg, #00f2fe 0%, #fe2c55 100%) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(254, 44, 85, 0.45) !important;
+}
+
+.scale-social-pill.li:hover {
+  background: #0a66c2 !important;
+  border-color: #0a66c2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(10, 102, 194, 0.45) !important;
+}
+
+.scale-social-pill.fb:hover {
+  background: #1877f2 !important;
+  border-color: #1877f2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.45) !important;
+}
+
+.scale-social-pill.x:hover {
+  background: #0f172a !important;
+  border-color: #38bdf8 !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35) !important;
+}
+
+.scale-card-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark .scale-card-btn {
+  background: #1c2333;
+  border-color: #2b354d;
+  color: #cbd5e1;
+}
+
+.scale-card-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.dark .scale-card-btn:hover {
+  background: #283248;
+  border-color: #3f4e70;
+  color: #ffffff;
+}
+
+.scale-card-btn.copied {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+/* Right Column: Growth Proposal Card */
+.scale-form-col {
+  width: 100%;
+}
+
+.growth-proposal-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 26px;
+  padding: 36px 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .growth-proposal-card {
+  background: #0d111c;
+  border-color: #1c2438;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.proposal-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.proposal-heading {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #4f46e5;
+}
+
+body.dark .proposal-heading {
+  color: #60a5fa;
+}
+
+.proposal-badge {
+  background: rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+body.dark .proposal-badge {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+}
+
+/* Form Styles */
+.growth-form .form-group {
+  margin-bottom: 18px;
+}
+
+.growth-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text, #334155);
+  margin-bottom: 7px;
+}
+
+body.dark .growth-form label {
+  color: #94a3b8;
+}
+
+.growth-form input,
+.growth-form textarea {
+  width: 100%;
+  background: var(--bg, #f8fafc);
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  color: var(--text, #111111);
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+body.dark .growth-form input,
+body.dark .growth-form textarea {
+  background: #080a12;
+  border-color: #1a2234;
+  color: #f1f5f9;
+}
+
+.growth-form input::placeholder,
+.growth-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+body.dark .growth-form input::placeholder,
+body.dark .growth-form textarea::placeholder {
+  color: #475569;
+}
+
+.growth-form input:focus,
+.growth-form textarea:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.18);
+}
+
+.growth-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-proposal-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #6366f1 0%, #c026d3 50%, #ec4899 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(192, 38, 211, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 22px;
+}
+
+.submit-proposal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(236, 72, 153, 0.48);
+  filter: brightness(1.08);
+}
+
+.submit-proposal-btn:active {
+  transform: translateY(0);
+}
+
+.proposal-feedback {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  min-height: 24px;
+  transition: all 0.3s ease;
+}
+
+.proposal-feedback.success {
+  color: #10b981;
+}
+
+.proposal-feedback.error {
+  color: #ef4444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .scale-contact-container {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  
+  .scale-headline {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .scale-action-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .scale-card-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .growth-proposal-card {
+    padding: 24px 20px;
+  }
+}
+
 /* =========================
    CONTACT SECTION 3D
 ========================= */
