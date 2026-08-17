@@ -1416,4 +1416,227 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* ==========================================================================
+     NAVBAR ACTIVE SCROLLSPY & SMOOTH SCROLL
+     ========================================================================== */
+  const sections = document.querySelectorAll("section[id]");
+  const navAnchorLinks = document.querySelectorAll(".nav-links a[href^='#']");
+
+  if (sections.length > 0 && navAnchorLinks.length > 0) {
+    function highlightNavOnScroll() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const navOffset = 160;
+
+      sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - navOffset;
+        const sectionId = current.getAttribute("id");
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          navAnchorLinks.forEach((link) => {
+            if (link.getAttribute("href") === `#${sectionId}`) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+
+      if (scrollY < 150 && navAnchorLinks[0]) {
+        navAnchorLinks.forEach(l => l.classList.remove("active"));
+        navAnchorLinks[0].classList.add("active");
+      }
+    }
+
+    window.addEventListener("scroll", highlightNavOnScroll, { passive: true });
+    highlightNavOnScroll();
+  }
+
+  /* ==========================================================================
+     TESTIMONIAL SLIDER ENGINE
+     ========================================================================== */
+  const testiBg = document.getElementById("testi-slider-bg");
+  if (testiBg) {
+    const testimonials = [
+      {
+        name: "Jonel Uligan",
+        role: "Web Developer",
+        text: '"Thank you Jerome for your commitment and enthusiasm for the work. All the best!"',
+        img: "Assets/Test/JU.avif",
+        stars: 5
+      },
+      {
+        name: "Angelito James Bustos",
+        role: "School Administrative",
+        text: '"Jerome is one of the most dedicated and reliable employees I\'ve worked with. He is proactive in addressing issues, always coming up with creative and effective solutions."',
+        img: "Assets/Test/JB.avif",
+        stars: 5
+      },
+      {
+        name: "Arlene Diola",
+        role: "Graphics Designer",
+        text: '"Thank you, Jerome, for your dedication and creative energy. Your attention to detail and collaborative spirit truly made a difference."',
+        img: "Assets/Test/AR.jpg",
+        stars: 5
+      },
+      {
+        name: "Rodilene Binay-an Ricardo",
+        role: "MPSP - Coordinator",
+        text: '"Thank you, Jerome, for your dedication and creative energy. Your attention to detail and collaborative spirit truly made a difference."',
+        img: "Assets/Test/RR.avif",
+        stars: 5
+      },
+      {
+        name: "Gemma Lawangen",
+        role: "Social Media Manager",
+        text: '"Jerome is a reliable and creative team player. He consistently delivers high-quality work and brings fresh ideas to every project."',
+        img: "Assets/Test/Jem.png",
+        stars: 5
+      }
+    ];
+
+    let currentTestiIndex = 0;
+    let isTestiAnimating = false;
+
+    const activeName = document.getElementById("testi-active-name");
+    const activeRole = document.getElementById("testi-active-role");
+    const activeText = document.getElementById("testi-active-text");
+    const activeStars = document.getElementById("testi-active-stars");
+    const activeImg = document.getElementById("testi-active-img");
+    const activeImgWrapper = document.getElementById("testi-active-img-wrapper");
+    const thumbStrip = document.getElementById("testi-thumb-strip");
+    const thumbs = thumbStrip ? thumbStrip.querySelectorAll(".testi-thumb") : [];
+    const prevBtn = document.getElementById("testi-prev");
+    const nextBtn = document.getElementById("testi-next");
+    const counterCurrent = document.getElementById("testi-counter-current");
+    const label = document.getElementById("testi-label");
+
+    function padIndex(i) {
+      return String(i + 1).padStart(2, "0");
+    }
+
+    function generateStars(count) {
+      return Array.from({ length: count }, () => '<i class="fas fa-star"></i>').join("");
+    }
+
+    function animateContentOut() {
+      const elements = [label, activeName, activeRole, activeText, activeStars].filter(Boolean);
+      elements.forEach((el, i) => {
+        el.style.transition = `all 0.35s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.04}s`;
+        el.style.opacity = "0";
+        el.style.transform = "translateY(25px)";
+        el.style.filter = "blur(8px)";
+      });
+    }
+
+    function animateContentIn() {
+      const elements = [label, activeName, activeRole, activeText, activeStars].filter(Boolean);
+      elements.forEach(el => {
+        el.style.transition = "none";
+        el.style.opacity = "0";
+        el.style.transform = "translateY(40px)";
+        el.style.filter = "blur(12px)";
+      });
+
+      if (label) void label.offsetWidth;
+
+      elements.forEach((el, i) => {
+        setTimeout(() => {
+          el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          el.style.filter = "blur(0px)";
+        }, 50);
+      });
+    }
+
+    function animateImageTransition(newSrc, newAlt) {
+      if (!activeImgWrapper || !activeImg) return;
+      activeImgWrapper.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+      activeImgWrapper.style.transform = "scale(0.85)";
+      activeImgWrapper.style.opacity = "0";
+
+      setTimeout(() => {
+        activeImg.src = newSrc;
+        activeImg.alt = newAlt;
+        activeImgWrapper.style.transition = "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)";
+        activeImgWrapper.style.transform = "scale(1)";
+        activeImgWrapper.style.opacity = "1";
+      }, 400);
+    }
+
+    function updateThumbs(newIndex) {
+      thumbs.forEach((t, i) => {
+        t.classList.toggle("active", i === newIndex);
+        const offset = i - newIndex;
+        t.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${Math.abs(offset) * 0.05}s`;
+      });
+    }
+
+    function goToTestiSlide(newIndex) {
+      if (isTestiAnimating || newIndex === currentTestiIndex) return;
+      isTestiAnimating = true;
+
+      const data = testimonials[newIndex];
+      animateContentOut();
+      animateImageTransition(data.img, data.name);
+      updateThumbs(newIndex);
+
+      setTimeout(() => {
+        if (activeName) activeName.textContent = data.name;
+        if (activeRole) activeRole.textContent = data.role;
+        if (activeText) activeText.textContent = data.text;
+        if (activeStars) activeStars.innerHTML = generateStars(data.stars);
+        if (counterCurrent) counterCurrent.textContent = padIndex(newIndex);
+
+        animateContentIn();
+        currentTestiIndex = newIndex;
+
+        setTimeout(() => {
+          isTestiAnimating = false;
+        }, 600);
+      }, 400);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        const newIndex = (currentTestiIndex - 1 + testimonials.length) % testimonials.length;
+        goToTestiSlide(newIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        const newIndex = (currentTestiIndex + 1) % testimonials.length;
+        goToTestiSlide(newIndex);
+      });
+    }
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        const idx = parseInt(thumb.dataset.index);
+        goToTestiSlide(idx);
+      });
+    });
+
+    let autoSlide = setInterval(() => {
+      const newIndex = (currentTestiIndex + 1) % testimonials.length;
+      goToTestiSlide(newIndex);
+    }, 6000);
+
+    const testiSection = document.querySelector(".testi-slider-section");
+    if (testiSection) {
+      testiSection.addEventListener("mouseenter", () => clearInterval(autoSlide));
+      testiSection.addEventListener("mouseleave", () => {
+        autoSlide = setInterval(() => {
+          const newIndex = (currentTestiIndex + 1) % testimonials.length;
+          goToTestiSlide(newIndex);
+        }, 6000);
+      });
+    }
+
+    animateContentIn();
+  }
+
 });

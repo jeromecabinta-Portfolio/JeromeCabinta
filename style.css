@@ -917,6 +917,23 @@ body:not(.dark) .badge-desc {
 .custom-nav-links li a {
   font-size: 0.9rem;
   font-weight: 600;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.custom-nav-links li a.active {
+  color: #417dfc !important;
+}
+
+.custom-nav-links li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #417dfc;
+  border-radius: 2px;
 }
 
 .custom-btn-nav {
