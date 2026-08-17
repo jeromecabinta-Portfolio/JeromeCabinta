@@ -218,7 +218,7 @@
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #000;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #111111 100%);
             overflow: hidden;
             display: block;
             text-decoration: none;
@@ -536,9 +536,9 @@
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=ck0YE26vL3s" target="_blank" rel="noopener"
                         class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'ck0YE26vL3s')">
-                        <img src="https://img.youtube.com/vi/ck0YE26vL3s/maxresdefault.jpg"
-                            onerror="this.src='https://img.youtube.com/vi/ck0YE26vL3s/hqdefault.jpg'"
-                            alt="Promotional Video Reel 1" class="yt-thumb">
+                        <img src="https://img.youtube.com/vi/ck0YE26vL3s/hqdefault.jpg" alt="Promotional Video Reel 1"
+                            class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
+                            onerror="handleYtThumbError(this, 'ck0YE26vL3s')">
                         <div class="play-btn-overlay">
                             <div class="play-icon"><i class="fas fa-play"></i></div>
                             <span class="play-text"><i class="fab fa-youtube"></i> Watch on YouTube</span>
@@ -555,9 +555,9 @@
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=wQIhCfpL8Dg" target="_blank" rel="noopener"
                         class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'wQIhCfpL8Dg')">
-                        <img src="https://img.youtube.com/vi/wQIhCfpL8Dg/maxresdefault.jpg"
-                            onerror="this.src='https://img.youtube.com/vi/wQIhCfpL8Dg/hqdefault.jpg'"
-                            alt="Promotional Video Reel 2" class="yt-thumb">
+                        <img src="https://img.youtube.com/vi/wQIhCfpL8Dg/hqdefault.jpg" alt="Promotional Video Reel 2"
+                            class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
+                            onerror="handleYtThumbError(this, 'wQIhCfpL8Dg')">
                         <div class="play-btn-overlay">
                             <div class="play-icon"><i class="fas fa-play"></i></div>
                             <span class="play-text"><i class="fab fa-youtube"></i> Watch on YouTube</span>
@@ -574,9 +574,9 @@
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=K90Kaj9RFqc" target="_blank" rel="noopener"
                         class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'K90Kaj9RFqc')">
-                        <img src="https://img.youtube.com/vi/K90Kaj9RFqc/maxresdefault.jpg"
-                            onerror="this.src='https://img.youtube.com/vi/K90Kaj9RFqc/hqdefault.jpg'"
-                            alt="Promotional Video Reel 3" class="yt-thumb">
+                        <img src="https://img.youtube.com/vi/K90Kaj9RFqc/hqdefault.jpg" alt="Promotional Video Reel 3"
+                            class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
+                            onerror="handleYtThumbError(this, 'K90Kaj9RFqc')">
                         <div class="play-btn-overlay">
                             <div class="play-icon"><i class="fas fa-play"></i></div>
                             <span class="play-text"><i class="fab fa-youtube"></i> Watch on YouTube</span>
@@ -627,11 +627,22 @@
             }
         }
 
-        function playYouTubeVideo(event, element, videoId) {
-            if (window.location.protocol.startsWith('http')) {
-                event.preventDefault();
-                element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        function handleYtThumbError(img, videoId) {
+            if (!img.dataset.retryStep) {
+                img.dataset.retryStep = "1";
+                img.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+            } else if (img.dataset.retryStep === "1") {
+                img.dataset.retryStep = "2";
+                img.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+            } else if (img.dataset.retryStep === "2") {
+                img.dataset.retryStep = "3";
+                img.src = "Assets/Video/placeholder.png";
             }
+        }
+
+        function playYouTubeVideo(event, element, videoId) {
+            event.preventDefault();
+            element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>`;
         }
 
         // Attach video hover events
