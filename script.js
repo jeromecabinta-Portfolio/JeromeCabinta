@@ -418,23 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Make entire project card clickable (card image, title, card body)
-    document.querySelectorAll(".project-card").forEach(card => {
-      card.addEventListener("click", (e) => {
-        if (e.target.closest("a") || e.target.closest("button")) return;
 
-        const btn = card.querySelector(".view-project");
-        if (btn) {
-          btn.click();
-          return;
-        }
-
-        const link = card.querySelector(".view-project-link");
-        if (link && link.href) {
-          window.location.href = link.href;
-        }
-      });
-    });
 
     prevBtn.addEventListener("click", () => {
       if (!currentImages.length) return;
