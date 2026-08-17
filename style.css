@@ -2463,11 +2463,29 @@ body.light .social-btn {
   position: absolute;
   top: 18px;
   right: 24px;
-  font-size: 2.2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--surface-2, rgba(255, 255, 255, 0.15));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.25));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
-  color: var(--text);
-  z-index: 20;
+  color: var(--text, #fff);
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  outline: none;
+}
+
+.close:hover {
+  background: #ff4757;
+  color: #ffffff;
+  border-color: #ff4757;
+  transform: scale(1.12) rotate(90deg);
 }
 
 .modal-slider-wrapper {
@@ -2556,8 +2574,19 @@ body.light .social-btn {
 }
 
 .slider-dots .dot.active {
-  background: #111;
+  background: var(--accent, #3b82f6);
   transform: scale(1.15);
+}
+
+.compact-counter {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-light, #aaaaaa);
+  background: var(--surface-2, rgba(255, 255, 255, 0.1));
+  padding: 4px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.15));
+  letter-spacing: 1px;
 }
 
 #modal-title {
@@ -2979,9 +3008,11 @@ body.dark .author-name {
   }
 
   .close {
-    top: 10px;
+    top: 12px;
     right: 14px;
-    font-size: 1.8rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 
   /* YouTube thumbnail on mobile */
@@ -8117,4 +8148,203 @@ body.dark .about-dot {
 /* ---- Cer-dot (non-active) visible in dark ---- */
 body.dark .cer-dot {
   background: rgba(255, 255, 255, 0.25);
+}
+
+/* ==========================================================================
+   GLOBAL LIGHTBOX MODAL SYSTEM (Feed & Project Gallery Pop-out)
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1050px;
+  width: 100%;
+  background: var(--surface, #1e1e1e);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: var(--surface-2, rgba(255, 255, 255, 0.12));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text, #ffffff);
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+.lightbox-close:hover {
+  background: #ff4757;
+  color: #ffffff;
+  border-color: #ff4757;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.lightbox-slider-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.lightbox-image-container {
+  position: relative;
+  max-width: 850px;
+  max-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0d0d0d;
+}
+
+.lightbox-image-container img {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.lightbox-nav-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface-2, rgba(255, 255, 255, 0.15));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.2));
+  color: var(--text, #ffffff);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--accent, #3b82f6);
+  color: #ffffff;
+  border-color: var(--accent, #3b82f6);
+  transform: scale(1.1);
+}
+
+.lightbox-details {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.lightbox-details h3 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+  color: var(--text, #ffffff);
+}
+
+.lightbox-counter {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-light, #aaaaaa);
+  letter-spacing: 1px;
+}
+
+/* Post card hover zoom indicator */
+.posts-grid .post-card, .feed-grid .post-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.posts-grid .post-card::after, .feed-grid .post-card::after {
+  content: '\f00e';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.posts-grid .post-card:hover::after, .feed-grid .post-card:hover::after {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .lightbox-content {
+    padding: 16px 10px 20px;
+    border-radius: 18px;
+  }
+  .lightbox-close {
+    top: 10px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  .lightbox-nav-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .lightbox-image-container img {
+    max-height: 55vh;
+  }
 }

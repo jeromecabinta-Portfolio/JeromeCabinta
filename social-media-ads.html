@@ -441,6 +441,29 @@
         </footer>
     </div>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="lightbox">
+        <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close modal"><i class="fas fa-times"></i></button>
+
+            <div class="lightbox-slider-wrapper">
+                <button class="lightbox-nav-btn" id="lightbox-prev" title="Previous Image"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="lightbox-image-container">
+                    <img id="lightbox-img" src="" alt="Social Media Ad Design">
+                </div>
+
+                <button class="lightbox-nav-btn" id="lightbox-next" title="Next Image"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="lightbox-details">
+                <h3 id="lightbox-title">Social Media Ad Creative</h3>
+                <div class="lightbox-counter" id="lightbox-counter">01 / 40</div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         // Simple reveal logic for this page
@@ -453,6 +476,69 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lightbox Modal for Feed images
+        document.addEventListener("DOMContentLoaded", () => {
+            const lightbox = document.getElementById("lightbox-modal");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxTitle = document.getElementById("lightbox-title");
+            const lightboxCounter = document.getElementById("lightbox-counter");
+            const closeBtn = document.getElementById("lightbox-close");
+            const backdrop = document.getElementById("lightbox-backdrop");
+            const prevBtn = document.getElementById("lightbox-prev");
+            const nextBtn = document.getElementById("lightbox-next");
+
+            const postCards = Array.from(document.querySelectorAll(".feed-grid .post-card img, .posts-grid .post-card img"));
+            if (postCards.length === 0 || !lightbox) return;
+
+            const imagesList = postCards.map((img, i) => ({
+                src: img.src,
+                alt: img.alt || `Social Media Ad Creative ${i + 1}`
+            }));
+
+            let currentIndex = 0;
+
+            function showImage(index) {
+                if (index < 0) index = imagesList.length - 1;
+                if (index >= imagesList.length) index = 0;
+                currentIndex = index;
+
+                lightboxImg.src = imagesList[currentIndex].src;
+                lightboxImg.alt = imagesList[currentIndex].alt;
+                if (lightboxTitle) lightboxTitle.textContent = imagesList[currentIndex].alt;
+                if (lightboxCounter) lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(imagesList.length).padStart(2, '0')}`;
+            }
+
+            function openLightbox(index) {
+                showImage(index);
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+
+            postCards.forEach((imgEl, index) => {
+                const card = imgEl.closest(".post-card") || imgEl;
+                card.style.cursor = "pointer";
+                card.addEventListener("click", () => openLightbox(index));
+            });
+
+            if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+            if (backdrop) backdrop.addEventListener("click", closeLightbox);
+
+            if (prevBtn) prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+            if (nextBtn) nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+
+            document.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("active")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+                if (e.key === "ArrowRight") showImage(currentIndex + 1);
+            });
+        });
     </script>
 </body>
 

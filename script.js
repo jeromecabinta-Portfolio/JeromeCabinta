@@ -257,6 +257,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderDots() {
       if (!dotsContainer) return;
       dotsContainer.innerHTML = "";
+
+      if (currentImages.length > 8) {
+        dotsContainer.innerHTML = `<span class="compact-counter">${String(currentIndex + 1).padStart(2, '0')} / ${String(currentImages.length).padStart(2, '0')}</span>`;
+        return;
+      }
+
       currentImages.forEach((_, index) => {
         const dot = document.createElement("span");
         dot.classList.add("dot");
@@ -337,9 +343,12 @@ document.addEventListener("DOMContentLoaded", () => {
         imageScroll.appendChild(video);
       } else {
         const link = document.createElement("a");
-        link.href = isWebsiteProject && currentLinks[currentIndex] ? currentLinks[currentIndex] : "#";
+        const targetUrl = isWebsiteProject && currentLinks[currentIndex] ? currentLinks[currentIndex] : currentMedia;
+        link.href = targetUrl;
         link.target = "_blank";
-        link.style.pointerEvents = isWebsiteProject && currentLinks[currentIndex] ? "auto" : "none";
+        link.rel = "noopener";
+        link.title = isWebsiteProject && currentLinks[currentIndex] ? "Visit Website" : "Click to view full image";
+        link.style.cursor = "pointer";
 
         const img = document.createElement("img");
         img.src = currentMedia;
@@ -350,15 +359,19 @@ document.addEventListener("DOMContentLoaded", () => {
         imageScroll.appendChild(link);
       }
 
-      if (isWebsiteProject && currentLinks[currentIndex]) {
-        if (modalVisitBtn) {
-          modalVisitBtn.href = currentLinks[currentIndex];
-          modalVisitBtn.style.display = "inline-flex";
+      const activeLink = currentLinks[currentIndex] || currentLinks[0];
+      if (activeLink && modalVisitBtn) {
+        modalVisitBtn.href = activeLink;
+        modalVisitBtn.style.display = "inline-flex";
+        if (activeLink.endsWith(".html")) {
+          modalVisitBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> View Full Gallery Page`;
+          modalVisitBtn.target = "_self";
+        } else {
+          modalVisitBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> Visit Website`;
+          modalVisitBtn.target = "_blank";
         }
-      } else {
-        if (modalVisitBtn) {
-          modalVisitBtn.style.display = "none";
-        }
+      } else if (modalVisitBtn) {
+        modalVisitBtn.style.display = "none";
       }
 
       renderDots();
@@ -402,6 +415,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
+      });
+    });
+
+    // Make entire project card clickable (card image, title, card body)
+    document.querySelectorAll(".project-card").forEach(card => {
+      card.addEventListener("click", (e) => {
+        if (e.target.closest("a") || e.target.closest("button")) return;
+
+        const btn = card.querySelector(".view-project");
+        if (btn) {
+          btn.click();
+          return;
+        }
+
+        const link = card.querySelector(".view-project-link");
+        if (link && link.href) {
+          window.location.href = link.href;
+        }
       });
     });
 
