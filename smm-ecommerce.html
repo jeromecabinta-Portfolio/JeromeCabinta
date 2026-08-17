@@ -535,7 +535,7 @@
                 <!-- YouTube Video Slot 1 -->
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=ck0YE26vL3s" target="_blank" rel="noopener"
-                        class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'ck0YE26vL3s')">
+                        class="youtube-wrapper">
                         <img src="https://img.youtube.com/vi/ck0YE26vL3s/hqdefault.jpg" alt="Promotional Video Reel 1"
                             class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
                             onerror="handleYtThumbError(this, 'ck0YE26vL3s')">
@@ -554,7 +554,7 @@
                 <!-- YouTube Video Slot 2 -->
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=wQIhCfpL8Dg" target="_blank" rel="noopener"
-                        class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'wQIhCfpL8Dg')">
+                        class="youtube-wrapper">
                         <img src="https://img.youtube.com/vi/wQIhCfpL8Dg/hqdefault.jpg" alt="Promotional Video Reel 2"
                             class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
                             onerror="handleYtThumbError(this, 'wQIhCfpL8Dg')">
@@ -573,7 +573,7 @@
                 <!-- YouTube Video Slot 3 -->
                 <div class="video-card">
                     <a href="https://www.youtube.com/watch?v=K90Kaj9RFqc" target="_blank" rel="noopener"
-                        class="youtube-wrapper" onclick="playYouTubeVideo(event, this, 'K90Kaj9RFqc')">
+                        class="youtube-wrapper">
                         <img src="https://img.youtube.com/vi/K90Kaj9RFqc/hqdefault.jpg" alt="Promotional Video Reel 3"
                             class="yt-thumb" referrerpolicy="no-referrer" loading="lazy"
                             onerror="handleYtThumbError(this, 'K90Kaj9RFqc')">
@@ -595,6 +595,31 @@
             style="display: flex; justify-content: center; padding: 40px 0; border-top: 1px solid var(--border); margin-top: 40px;">
             <span style="font-weight: 800; font-size: 0.85rem; color: var(--text-light);">Social Media Marketing &mdash;
                 Jerome Cabinta 2025</span>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="lightbox">
+        <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close modal"><i
+                class="fas fa-times"></i></button>
+        <div class="lightbox-content">
+            <div class="lightbox-slider-wrapper">
+                <button class="lightbox-nav-btn" id="lightbox-prev" title="Previous Image"><i
+                        class="fas fa-chevron-left"></i></button>
+
+                <div class="lightbox-image-container">
+                    <img id="lightbox-img" src="" alt="Graphic Showcase Design">
+                </div>
+
+                <button class="lightbox-nav-btn" id="lightbox-next" title="Next Image"><i
+                        class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="lightbox-details">
+                <h3 id="lightbox-title">Graphic Showcase Design</h3>
+                <div class="lightbox-counter" id="lightbox-counter">01 / 08</div>
+            </div>
         </div>
     </div>
 
@@ -640,10 +665,68 @@
             }
         }
 
-        function playYouTubeVideo(event, element, videoId) {
-            event.preventDefault();
-            element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>`;
-        }
+        // Lightbox Modal for Graphic Showcase Gallery images
+        document.addEventListener("DOMContentLoaded", () => {
+            const lightbox = document.getElementById("lightbox-modal");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxTitle = document.getElementById("lightbox-title");
+            const lightboxCounter = document.getElementById("lightbox-counter");
+            const closeBtn = document.getElementById("lightbox-close");
+            const backdrop = document.getElementById("lightbox-backdrop");
+            const prevBtn = document.getElementById("lightbox-prev");
+            const nextBtn = document.getElementById("lightbox-next");
+
+            const postCards = Array.from(document.querySelectorAll(".posts-grid .post-card img"));
+            if (postCards.length === 0 || !lightbox) return;
+
+            const imagesList = postCards.map((img, i) => ({
+                src: img.src,
+                alt: img.alt || `Graphic Showcase Design ${i + 1}`
+            }));
+
+            let currentIndex = 0;
+
+            function showImage(index) {
+                if (index < 0) index = imagesList.length - 1;
+                if (index >= imagesList.length) index = 0;
+                currentIndex = index;
+
+                lightboxImg.src = imagesList[currentIndex].src;
+                lightboxImg.alt = imagesList[currentIndex].alt;
+                if (lightboxTitle) lightboxTitle.textContent = imagesList[currentIndex].alt;
+                if (lightboxCounter) lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(imagesList.length).padStart(2, '0')}`;
+            }
+
+            function openLightbox(index) {
+                showImage(index);
+                lightbox.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+
+            postCards.forEach((imgEl, index) => {
+                const card = imgEl.closest(".post-card") || imgEl;
+                card.style.cursor = "pointer";
+                card.addEventListener("click", () => openLightbox(index));
+            });
+
+            if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+            if (backdrop) backdrop.addEventListener("click", closeLightbox);
+
+            if (prevBtn) prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+            if (nextBtn) nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+
+            document.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("active")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+                if (e.key === "ArrowRight") showImage(currentIndex + 1);
+            });
+        });
 
         // Attach video hover events
         document.querySelectorAll('.video-card').forEach(card => {
