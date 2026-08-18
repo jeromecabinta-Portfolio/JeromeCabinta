@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const thumb = document.createElement("img");
         thumb.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         thumb.alt = "YouTube Video Thumbnail";
-        thumb.onerror = function() {
+        thumb.onerror = function () {
           this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         };
 
@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnGridView = document.getElementById("btn-grid-view");
 
   if (reelsWrapper && gridWrapper && btnReelsView && btnGridView) {
-    
+
     // Reels Player State
     const slides = document.querySelectorAll(".reel-slide");
     const progressSegments = document.querySelectorAll(".progress-bar-segment");
@@ -570,14 +570,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let progressPercent = 0;
     let isSliderPaused = false;
     let isMuted = true;
-    
+
     const slideDuration = 6000; // 6 seconds per slide
     const progressInterval = 30; // update progress every 30ms
 
     // Sidebar Action states
     const slideLikesCount = [12842, 9410, 15124, 8931, 22409, 18742, 11218, 7604];
     const slideLikesState = Array(totalSlides).fill(false);
-    
+
     const slideSavesCount = [1420, 895, 1980, 942, 3405, 2390, 1245, 680];
     const slideSavesState = Array(totalSlides).fill(false);
 
@@ -671,7 +671,7 @@ document.addEventListener("DOMContentLoaded", () => {
         notch.style.transform = "translateX(-50%) scale(1.05)";
         notch.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.2)";
         notch.style.transition = "transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease";
-        
+
         setTimeout(() => {
           notch.style.transform = "translateX(-50%) scale(1)";
           notch.style.boxShadow = "none";
@@ -728,46 +728,46 @@ document.addEventListener("DOMContentLoaded", () => {
     function initHighlandSynth() {
       if (audioCtx) return;
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      
+
       // 1. Wind ambient drone
       const osc1 = audioCtx.createOscillator();
       const osc2 = audioCtx.createOscillator();
       const lowpass = audioCtx.createBiquadFilter();
       windGain = audioCtx.createGain();
-      
+
       osc1.type = "sawtooth";
       osc1.frequency.value = 65.41; // C2
-      
+
       osc2.type = "triangle";
       osc2.frequency.value = 98.00; // G2
-      
+
       lowpass.type = "lowpass";
       lowpass.frequency.value = 140;
       lowpass.Q.value = 3.0;
-      
+
       windGain.gain.setValueAtTime(0, audioCtx.currentTime);
       windGain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 2.0); // smooth fade-in
-      
+
       // Sweep filter frequency slowly to mimic dynamic wind
       const lfo = audioCtx.createOscillator();
       const lfoGain = audioCtx.createGain();
       lfo.frequency.value = 0.08; // very slow, 12 seconds per sweep
       lfoGain.gain.value = 50; // swing between 90Hz and 190Hz
-      
+
       lfo.connect(lfoGain);
       lfoGain.connect(lowpass.frequency);
-      
+
       osc1.connect(lowpass);
       osc2.connect(lowpass);
       lowpass.connect(windGain);
       windGain.connect(audioCtx.destination);
-      
+
       osc1.start();
       osc2.start();
       lfo.start();
-      
+
       windDroneNode = { osc1, osc2, lfo, lowpass };
-      
+
       // 2. Start random pentatonic chimes
       startRandomBells();
     }
@@ -784,7 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
               windDroneNode.lfo.stop();
             }
             audioCtx.close();
-          } catch(e) {}
+          } catch (e) { }
           audioCtx = null;
           windDroneNode = null;
           windGain = null;
@@ -806,33 +806,33 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!audioCtx) return;
       const pentatonicScale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99]; // C4 to G5 pentatonic scale
       const randomFreq = pentatonicScale[Math.floor(Math.random() * pentatonicScale.length)];
-      
+
       const osc = audioCtx.createOscillator();
       const bellGain = audioCtx.createGain();
       const delay = audioCtx.createDelay();
       const feedback = audioCtx.createGain();
-      
+
       osc.type = "sine";
       osc.frequency.value = randomFreq;
-      
+
       bellGain.gain.setValueAtTime(0, audioCtx.currentTime);
       bellGain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.02); // quick attack
       bellGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5); // long decay
-      
+
       // Add a soft delay / echo effect
       delay.delayTime.value = 0.35;
       feedback.gain.value = 0.3; // fade out echo
-      
+
       delay.connect(feedback);
       feedback.connect(delay);
-      
+
       osc.connect(bellGain);
       bellGain.connect(audioCtx.destination);
-      
+
       // Connect delay path
       bellGain.connect(delay);
       delay.connect(audioCtx.destination);
-      
+
       osc.start();
       osc.stop(audioCtx.currentTime + 2.6);
     }
@@ -841,22 +841,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!audioCtx) return;
       // Double chime on interaction
       const frequencies = [880.00, 1046.50]; // A5 and C6 chimes
-      
+
       frequencies.forEach((freq, index) => {
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
-        
+
         osc.type = "sine";
         osc.frequency.value = freq;
-        
+
         const startTime = audioCtx.currentTime + (index * 0.08);
         gainNode.gain.setValueAtTime(0, startTime);
         gainNode.gain.linearRampToValueAtTime(0.05, startTime + 0.01);
         gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.6);
-        
+
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-        
+
         osc.start(startTime);
         osc.stop(startTime + 0.65);
       });
@@ -866,16 +866,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderCommentsList(slideIndex) {
       commentsContainer.innerHTML = "";
       const comments = slideCommentsData[slideIndex] || [];
-      
+
       comments.forEach(comment => {
         const item = document.createElement("div");
         item.className = "comment-item";
-        
+
         // Define avatars dynamically
         let avatar = "Assets/About/Me.01.png";
         if (comment.name === "benguet_wanderer") avatar = "Assets/About/Me.01.png";
         else if (comment.name !== "you") avatar = "Assets/About/Me.01.png"; // Fallback to avatar
-        
+
         item.innerHTML = `
           <img src="${avatar}" alt="${comment.name}" class="commenter-avatar">
           <div class="comment-details">
@@ -892,11 +892,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Active Slide logic
     function showSlide(index) {
       currentReelIndex = index;
-      
+
       // Toggle slides visibility
       slides.forEach(slide => slide.classList.remove("active"));
       slides[index].classList.add("active");
-      
+
       // Update segmented progress bar widths
       progressSegments.forEach((segment, i) => {
         const fill = segment.querySelector(".fill");
@@ -906,7 +906,7 @@ document.addEventListener("DOMContentLoaded", () => {
           fill.style.width = "0%";
         }
       });
-      
+
       // Retrieve metadata from data attributes
       const slideEl = slides[index];
       const title = slideEl.getAttribute("data-title");
@@ -990,7 +990,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }, progressInterval);
-      
+
       // Update spinning record
       audioDisc.classList.remove("paused");
     }
@@ -1075,7 +1075,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       const state = !slideLikesState[currentReelIndex];
       slideLikesState[currentReelIndex] = state;
-      
+
       if (state) {
         likeButton.classList.add("active");
         triggerChimeFeedback();
@@ -1091,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         likeButton.classList.remove("active");
       }
-      
+
       likeCountEl.textContent = formatCount(slideLikesCount[currentReelIndex] + (state ? 1 : 0));
     });
 
@@ -1099,12 +1099,12 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       const state = !slideSavesState[currentReelIndex];
       slideSavesState[currentReelIndex] = state;
-      
+
       if (state) {
         saveButton.classList.add("active");
         saveButton.classList.add("saved");
         triggerChimeFeedback();
-        
+
         // Spin bookmark
         const icon = saveButton.querySelector("i");
         icon.style.transform = "rotate(360deg)";
@@ -1117,7 +1117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveButton.classList.remove("active");
         saveButton.classList.remove("saved");
       }
-      
+
       saveCountEl.textContent = formatCount(slideSavesCount[currentReelIndex] + (state ? 1 : 0));
     });
 
@@ -1126,7 +1126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       commentsSheet.classList.add("open");
       detailSheet.classList.remove("open"); // close other sheet
-      
+
       // Pause slider
       isSliderPaused = true;
       stopProgressTimer();
@@ -1136,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCloseComments.addEventListener("click", (e) => {
       e.stopPropagation();
       commentsSheet.classList.remove("open");
-      
+
       // Resume slider
       isSliderPaused = false;
       playToggle.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1147,20 +1147,20 @@ document.addEventListener("DOMContentLoaded", () => {
     function postComment() {
       const text = newCommentInput.value.trim();
       if (!text) return;
-      
+
       slideCommentsData[currentReelIndex].push({
         name: "you",
         text: text,
         time: "Just now"
       });
-      
+
       newCommentInput.value = "";
       renderCommentsList(currentReelIndex);
-      
+
       const newLen = slideCommentsData[currentReelIndex].length;
       commentCountEl.textContent = newLen;
       commentsNumText.textContent = newLen;
-      
+
       triggerChimeFeedback();
     }
 
@@ -1181,7 +1181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       detailSheet.classList.add("open");
       commentsSheet.classList.remove("open"); // close other sheet
-      
+
       // Pause slider
       isSliderPaused = true;
       stopProgressTimer();
@@ -1191,7 +1191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCloseSheet.addEventListener("click", (e) => {
       e.stopPropagation();
       detailSheet.classList.remove("open");
-      
+
       // Resume slider
       isSliderPaused = false;
       playToggle.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1201,11 +1201,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Drag-down handle bar to close sheet
     const handleBar = document.querySelector(".sheet-handle-bar");
     let touchStartY = 0;
-    
+
     handleBar.addEventListener("touchstart", (e) => {
       touchStartY = e.touches[0].clientY;
-    }, {passive: true});
-    
+    }, { passive: true });
+
     handleBar.addEventListener("touchmove", (e) => {
       const touchY = e.touches[0].clientY;
       const diffY = touchY - touchStartY;
@@ -1215,19 +1215,19 @@ document.addEventListener("DOMContentLoaded", () => {
         playToggle.innerHTML = '<i class="fas fa-pause"></i>';
         startProgressTimer();
       }
-    }, {passive: true});
+    }, { passive: true });
 
     // Copy to Clipboard & Deep linking
     shareButton.addEventListener("click", (e) => {
       e.stopPropagation();
-      
+
       // Create deep link URL using the active slide index
       const deepLink = window.location.origin + window.location.pathname + "?slide=" + currentReelIndex;
-      
+
       navigator.clipboard.writeText(deepLink).then(() => {
         toastNotification.classList.add("show");
         triggerChimeFeedback();
-        
+
         setTimeout(() => {
           toastNotification.classList.remove("show");
         }, 2200);
@@ -1255,21 +1255,21 @@ document.addEventListener("DOMContentLoaded", () => {
         isSliderPaused = true;
         stopProgressTimer();
       }
-    }, {passive: true});
+    }, { passive: true });
 
     screenArea.addEventListener("touchend", () => {
       if (!detailSheet.classList.contains("open") && !commentsSheet.classList.contains("open") && !playToggle.innerHTML.includes("play")) {
         isSliderPaused = false;
         startProgressTimer();
       }
-    }, {passive: true});
+    }, { passive: true });
 
     /* ==========================================================================
        FULLSCREEN THEATER MODE SWITCH
        ========================================================================== */
     fullscreenToggle.addEventListener("click", (e) => {
       e.stopPropagation();
-      
+
       if (reelsWrapper.classList.contains("fullscreen-mode")) {
         reelsWrapper.classList.remove("fullscreen-mode");
         fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i>';
@@ -1301,7 +1301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (startSlideIndex < 0 || startSlideIndex >= totalSlides) {
       startSlideIndex = 0;
     }
-    
+
     // Initial active slide setup
     showSlide(startSlideIndex);
     startProgressTimer();
@@ -1347,7 +1347,7 @@ document.addEventListener("DOMContentLoaded", () => {
           tempInput.select();
           document.execCommand("copy");
           document.body.removeChild(tempInput);
-        } catch (err) {}
+        } catch (err) { }
         setCopiedState();
       }
     });
@@ -1360,7 +1360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (growthProposalForm) {
     growthProposalForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      
+
       const name = document.getElementById("clientName") ? document.getElementById("clientName").value.trim() : "";
       const email = document.getElementById("clientEmail") ? document.getElementById("clientEmail").value.trim() : "";
       const goals = document.getElementById("clientHandlesGoals") ? document.getElementById("clientHandlesGoals").value.trim() : "";

@@ -4220,7 +4220,7 @@ body.dark .growth-form textarea::placeholder {
     grid-template-columns: 1fr;
     gap: 45px;
   }
-  
+
   .scale-headline {
     font-size: 2.3rem;
   }
@@ -4231,12 +4231,12 @@ body.dark .growth-form textarea::placeholder {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .scale-card-btn {
     width: 100%;
     margin-top: 10px;
   }
-  
+
   .growth-proposal-card {
     padding: 24px 20px;
   }
@@ -6889,6 +6889,8 @@ body.dark .testi-nav-btn {
   position: relative;
   z-index: 10;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 16px;
   padding: 24px 40px 40px;
   overflow-x: auto;
@@ -7059,6 +7061,7 @@ body.dark .testi-nav-btn {
   .testi-thumb-strip {
     padding: 16px 20px 30px;
     gap: 12px;
+    justify-content: flex-start;
   }
 
   .testi-thumb {
@@ -7401,6 +7404,8 @@ body.dark .book-active-img-wrapper {
   position: relative;
   z-index: 10;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 14px;
   padding: 20px 40px 36px;
   overflow-x: auto;
@@ -7594,6 +7599,7 @@ body.dark .book-stat-card:hover {
   .book-thumb-strip {
     padding: 14px 20px 28px;
     gap: 10px;
+    justify-content: flex-start;
   }
 
   .book-thumb {
