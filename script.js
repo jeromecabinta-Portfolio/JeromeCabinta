@@ -1574,6 +1574,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    function resetAutoSlide() {
+      if (autoSlide) clearInterval(autoSlide);
+      autoSlide = setInterval(() => {
+        const newIndex = (currentTestiIndex + 1) % testimonials.length;
+        goToTestiSlide(newIndex);
+      }, 6000);
+    }
+
     function goToTestiSlide(newIndex) {
       if (isTestiAnimating || newIndex === currentTestiIndex) return;
       isTestiAnimating = true;
@@ -1592,6 +1600,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         animateContentIn();
         currentTestiIndex = newIndex;
+        resetAutoSlide();
 
         setTimeout(() => {
           isTestiAnimating = false;
@@ -1628,15 +1637,193 @@ document.addEventListener("DOMContentLoaded", () => {
     const testiSection = document.querySelector(".testi-slider-section");
     if (testiSection) {
       testiSection.addEventListener("mouseenter", () => clearInterval(autoSlide));
-      testiSection.addEventListener("mouseleave", () => {
-        autoSlide = setInterval(() => {
-          const newIndex = (currentTestiIndex + 1) % testimonials.length;
-          goToTestiSlide(newIndex);
-        }, 6000);
-      });
+      testiSection.addEventListener("mouseleave", () => resetAutoSlide());
     }
 
     animateContentIn();
   }
 
-});
+  /* ==========================================================================
+     BEHANCE 2026 INTERACTIVE HANDLERS
+     ========================================================================== */
+
+  /* 1. SINGLE POST FILTER TABS */
+  const filterBtns = document.querySelectorAll(".filter-tab-btn");
+  const postCards = document.querySelectorAll(".post-card-behance");
+
+  if (filterBtns.length > 0 && postCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filterValue = btn.getAttribute("data-filter");
+
+        postCards.forEach(card => {
+          const category = card.getAttribute("data-category");
+          if (filterValue === "all" || category === filterValue || (category && category.split(" ").includes(filterValue))) {
+            card.style.display = "flex";
+            card.style.opacity = "0";
+            card.style.transform = "translateY(15px)";
+            setTimeout(() => {
+              card.style.transition = "all 0.35s ease";
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 30);
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  }
+
+  /* 2. INTERACTIVE MULTI-SLIDE CAROUSELS */
+  const carouselDecks = document.querySelectorAll(".carousel-deck-card");
+  carouselDecks.forEach(deck => {
+    const slides = deck.querySelectorAll(".carousel-slide-item");
+    const dots = deck.querySelectorAll(".carousel-dot-indicator");
+    const prevBtn = deck.querySelector(".prev-btn");
+    const nextBtn = deck.querySelector(".next-btn");
+    const currentSlideSpan = deck.querySelector(".current-slide");
+    let currentIndex = 0;
+
+    function updateSlide(index) {
+      slides.forEach(s => s.classList.remove("active"));
+      dots.forEach(d => d.classList.remove("active"));
+      if (slides[index]) slides[index].classList.add("active");
+      if (dots[index]) dots[index].classList.add("active");
+      if (currentSlideSpan) currentSlideSpan.textContent = index + 1;
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlide(currentIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        currentIndex = idx;
+        updateSlide(currentIndex);
+      });
+    });
+  });
+
+  /* 3. VIDEO MODAL PLAYER */
+  const videoModal = document.getElementById("videoModal");
+  const videoModalClose = document.getElementById("videoModalClose");
+  const videoContainer = document.getElementById("videoModalContainer");
+  const videoModalTitle = document.getElementById("videoModalTitle");
+
+  document.querySelectorAll(".open-video-modal").forEach(trigger => {
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const videoSrc = trigger.getAttribute("data-video-src");
+      const title = trigger.getAttribute("data-title") || "Video Showcase";
+      if (!videoSrc) return;
+
+      if (videoModalTitle) videoModalTitle.textContent = title;
+      if (videoContainer) videoContainer.innerHTML = "";
+
+      if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
+        let embedUrl = videoSrc;
+        if (videoSrc.includes("watch?v=")) {
+          embedUrl = videoSrc.replace("watch?v=", "embed/");
+        } else if (videoSrc.includes("youtu.be/")) {
+          embedUrl = videoSrc.replace("youtu.be/", "www.youtube.com/embed/");
+        }
+        if (!embedUrl.includes("autoplay=1")) {
+          embedUrl += (embedUrl.includes("?") ? "&" : "?") + "autoplay=1";
+        }
+        if (videoContainer) {
+          videoContainer.innerHTML = `<iframe src="${embedUrl}" style="width:100%; height:100%; border:none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        }
+      } else {
+        if (videoContainer) {
+          videoContainer.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline style="width:100%; height:100%; object-fit:contain; background:#000;"></video>`;
+        }
+      }
+
+      if (videoModal) {
+        videoModal.style.display = "flex";
+        videoModal.classList.add("active");
+      }
+    });
+  });
+
+  if (videoModalClose && videoModal) {
+    videoModalClose.addEventListener("click", () => {
+      videoModal.style.display = "none";
+      videoModal.classList.remove("active");
+      if (videoContainer) videoContainer.innerHTML = "";
+    });
+  }
+
+  if (videoModal) {
+    videoModal.addEventListener("click", (e) => {
+      if (e.target === videoModal) {
+        videoModal.style.display = "none";
+        videoModal.classList.remove("active");
+        if (videoContainer) videoContainer.innerHTML = "";
+      }
+    });
+  }
+
+  /* 4. LIGHTBOX FOR POSTS, THUMBNAILS & STORIES */
+  const mainModal = document.getElementById("project-modal");
+  const modalImgElement = document.getElementById("modal-img");
+  const modalTitleElement = document.getElementById("modal-title");
+  const modalDescElement = document.getElementById("modal-desc");
+  const modalVisitBtnElement = document.getElementById("modal-visit-btn");
+
+  document.querySelectorAll(".post-card-behance, .open-lightbox").forEach(card => {
+    card.addEventListener("click", (e) => {
+      // Don't open if clicked on video trigger
+      if (e.target.closest(".open-video-modal")) return;
+
+      const img = card.getAttribute("data-img");
+      const title = card.getAttribute("data-title");
+      const desc = card.getAttribute("data-desc") || "";
+      const link = card.getAttribute("data-link") || "#";
+
+      if (img && modalImgElement && mainModal) {
+        modalImgElement.src = img;
+        if (modalTitleElement) modalTitleElement.textContent = title || "Creative Showcase";
+        if (modalDescElement) modalDescElement.textContent = desc;
+        if (modalVisitBtnElement) {
+          modalVisitBtnElement.href = link;
+          modalVisitBtnElement.style.display = (link && link !== "#") ? "inline-flex" : "none";
+        }
+        mainModal.style.display = "flex";
+        mainModal.classList.add("active");
+      }
+    });
+  });
+
+  /* 5. APPRECIATE PROJECT BUTTON */
+  const appreciateBtn = document.getElementById("appreciateBtn");
+  const appreciateCount = document.getElementById("appreciateCount");
+  if (appreciateBtn && appreciateCount) {
+    let appreciated = false;
+    appreciateBtn.addEventListener("click", () => {
+      if (!appreciated) {
+        let count = parseInt(appreciateCount.textContent.replace(/,/g, "")) || 1482;
+        count += 1;
+        appreciateCount.textContent = count.toLocaleString();
+        appreciateBtn.style.background = "var(--behance-lime)";
+        appreciateBtn.style.color = "#000000";
+        appreciateBtn.innerHTML = `<i class="fas fa-thumbs-up"></i> <span>Appreciated!</span> <span style="background: rgba(0,0,0,0.15); padding: 2px 8px; border-radius: 999px; font-size: 0.8rem;">${count.toLocaleString()}</span>`;
+        appreciated = true;
+      }
+    });
+  }
+
+});
