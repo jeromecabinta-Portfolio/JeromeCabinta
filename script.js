@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.remove("show");
       });
     });
+
+    document.addEventListener("click", (e) => {
+      if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("show");
+      }
+    });
   }
 
   /* DARK MODE */
@@ -435,6 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal.addEventListener("click", () => {
       stopCurrentMedia();
       modal.style.display = "none";
+      modal.classList.remove("active");
       document.body.style.overflow = "auto";
     });
 
@@ -442,15 +450,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target === modal) {
         stopCurrentMedia();
         modal.style.display = "none";
+        modal.classList.remove("active");
         document.body.style.overflow = "auto";
       }
     });
 
     document.addEventListener("keydown", (e) => {
-      if (modal.style.display === "block") {
+      if (modal.style.display === "block" || modal.classList.contains("active")) {
         if (e.key === "Escape") {
           stopCurrentMedia();
           modal.style.display = "none";
+          modal.classList.remove("active");
           document.body.style.overflow = "auto";
         }
         if (e.key === "ArrowRight" && currentImages.length) {
@@ -1733,7 +1743,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (videoModalTitle) videoModalTitle.textContent = title;
       if (videoContainer) videoContainer.innerHTML = "";
 
+      const modalContent = videoModal ? videoModal.querySelector(".modal-content") : null;
+      const isVertical = videoSrc.includes("Assets/Reels/") || videoSrc.includes("/Shoes/") || trigger.closest(".reel-card-behance");
+
       if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
+        if (videoContainer) {
+          videoContainer.style.aspectRatio = "16 / 9";
+          videoContainer.style.maxHeight = "none";
+        }
+        if (modalContent) modalContent.style.maxWidth = "800px";
+
         let embedUrl = videoSrc;
         if (videoSrc.includes("watch?v=")) {
           embedUrl = videoSrc.replace("watch?v=", "embed/");
@@ -1748,6 +1767,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } else {
         if (videoContainer) {
+          if (isVertical) {
+            videoContainer.style.aspectRatio = "9 / 16";
+            videoContainer.style.maxHeight = "72vh";
+            if (modalContent) modalContent.style.maxWidth = "440px";
+          } else {
+            videoContainer.style.aspectRatio = "16 / 9";
+            videoContainer.style.maxHeight = "none";
+            if (modalContent) modalContent.style.maxWidth = "800px";
+          }
           videoContainer.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline style="width:100%; height:100%; object-fit:contain; background:#000;"></video>`;
         }
       }
@@ -1777,34 +1805,99 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* 4. LIGHTBOX FOR POSTS, THUMBNAILS & STORIES */
+  /* Reel Card Hover Video Playback & Card Click */
+  document.querySelectorAll(".reel-card-behance").forEach(card => {
+    const video = card.querySelector("video");
+    const overlay = card.querySelector(".open-video-modal");
+
+    if (video) {
+      card.addEventListener("mouseenter", () => {
+        video.play().catch(() => {});
+      });
+
+      card.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+
+    card.addEventListener("click", (e) => {
+      if (e.target.closest(".open-video-modal")) return; // Let overlay handler fire naturally
+      if (overlay) overlay.click();
+    });
+  });
+
+  /* 4. LIGHTBOX FOR POSTS, THUMBNAILS, CERTIFICATES & STORIES */
   const mainModal = document.getElementById("project-modal");
-  const modalImgElement = document.getElementById("modal-img");
   const modalTitleElement = document.getElementById("modal-title");
   const modalDescElement = document.getElementById("modal-desc");
   const modalVisitBtnElement = document.getElementById("modal-visit-btn");
+  const imageScrollContainer = document.getElementById("modal-image-scroll");
+  const sliderPrevBtn = document.querySelector(".slider-btn.prev");
+  const sliderNextBtn = document.querySelector(".slider-btn.next");
+  const sliderDotsContainer = document.getElementById("slider-dots");
 
-  document.querySelectorAll(".post-card-behance, .open-lightbox").forEach(card => {
+  document.querySelectorAll(".post-card-behance, .open-lightbox, .certificate-card-behance").forEach(card => {
     card.addEventListener("click", (e) => {
       // Don't open if clicked on video trigger
       if (e.target.closest(".open-video-modal")) return;
 
-      const img = card.getAttribute("data-img");
-      const title = card.getAttribute("data-title");
+      const img = card.getAttribute("data-img") || (card.querySelector("img") ? card.querySelector("img").src : "");
+      const title = card.getAttribute("data-title") || (card.querySelector(".post-card-title") ? card.querySelector(".post-card-title").textContent : "") || "Verified Credential";
       const desc = card.getAttribute("data-desc") || "";
-      const link = card.getAttribute("data-link") || "#";
+      const link = card.getAttribute("data-link") || img;
 
-      if (img && modalImgElement && mainModal) {
-        modalImgElement.src = img;
-        if (modalTitleElement) modalTitleElement.textContent = title || "Creative Showcase";
-        if (modalDescElement) modalDescElement.textContent = desc;
-        if (modalVisitBtnElement) {
-          modalVisitBtnElement.href = link;
-          modalVisitBtnElement.style.display = (link && link !== "#") ? "inline-flex" : "none";
-        }
-        mainModal.style.display = "flex";
-        mainModal.classList.add("active");
+      if (!img || !mainModal || !imageScrollContainer) return;
+
+      // Hide multi-image slider navigation controls for single image view
+      if (sliderPrevBtn) sliderPrevBtn.style.display = "none";
+      if (sliderNextBtn) sliderNextBtn.style.display = "none";
+      if (sliderDotsContainer) {
+        sliderDotsContainer.innerHTML = "";
+        sliderDotsContainer.style.display = "none";
       }
+
+      // Populate preview image cleanly
+      imageScrollContainer.innerHTML = "";
+      const linkWrapper = document.createElement("a");
+      linkWrapper.href = img;
+      linkWrapper.target = "_blank";
+      linkWrapper.rel = "noopener";
+      linkWrapper.title = "Click to view full resolution image";
+      linkWrapper.style.cursor = "zoom-in";
+      linkWrapper.style.display = "block";
+      linkWrapper.style.width = "100%";
+
+      const imageElem = document.createElement("img");
+      imageElem.src = img;
+      imageElem.alt = title;
+      imageElem.id = "modal-img";
+      imageElem.style.width = "100%";
+      imageElem.style.maxHeight = "72vh";
+      imageElem.style.objectFit = "contain";
+      imageElem.style.display = "block";
+      imageElem.style.margin = "0 auto";
+
+      linkWrapper.appendChild(imageElem);
+      imageScrollContainer.appendChild(linkWrapper);
+
+      if (modalTitleElement) modalTitleElement.textContent = title;
+      if (modalDescElement) modalDescElement.textContent = desc;
+
+      if (modalVisitBtnElement) {
+        if (link && link !== "#" && !link.startsWith("Assets/")) {
+          modalVisitBtnElement.href = link;
+          modalVisitBtnElement.target = "_blank";
+          modalVisitBtnElement.style.display = "inline-flex";
+          modalVisitBtnElement.innerHTML = `<i class="fas fa-arrow-up-right-from-square"></i> Visit Project`;
+        } else {
+          modalVisitBtnElement.style.display = "none";
+        }
+      }
+
+      mainModal.style.display = "block";
+      mainModal.classList.add("active");
+      document.body.style.overflow = "hidden";
     });
   });
 
