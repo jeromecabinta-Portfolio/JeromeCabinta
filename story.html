@@ -11,9 +11,14 @@
 
 <body>
   <script>
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark");
-    }
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.remove("dark");
+      } else {
+        document.body.classList.add("dark");
+      }
+    })();
   </script>
   <div id="scroll-progress"></div>
   <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
@@ -86,10 +91,16 @@
 
     <div class="story-full-text">
       <h2>The Beginning</h2>
-      <p>I was born in Benguet, the strawberry capital of the Philippines. Driven by curiosity and digital strategy, I set out to master how content spreads across global feeds. As a graduate of Information Technology with certifications in Data Analytics, I discovered that data and creative storytelling were the exact tools needed to crack social algorithms and drive real business revenue.</p>
+      <p>I was born in Benguet, the strawberry capital of the Philippines. Driven by curiosity and digital strategy, I
+        set out to master how content spreads across global feeds. As a graduate of Information Technology with
+        certifications in Data Analytics, I discovered that data and creative storytelling were the exact tools needed
+        to crack social algorithms and drive real business revenue.</p>
 
       <h2>Discovering My Path</h2>
-      <p>I bridge the gap between brand storytelling and algorithm science. By analyzing audience behavior and platform trends, I create scroll-stopping content that turns passive viewers into loyal customers. My superpower? Taking one piece of content and repurposing it across 4 platforms to maximize ROI. Here you will find my campaigns, viral strategies, and proven growth metrics.</p>
+      <p>I bridge the gap between brand storytelling and algorithm science. By analyzing audience behavior and platform
+        trends, I create scroll-stopping content that turns passive viewers into loyal customers. My superpower? Taking
+        one piece of content and repurposing it across 4 platforms to maximize ROI. Here you will find my campaigns,
+        viral strategies, and proven growth metrics.</p>
 
       <div class="quick-facts">
         <h3 class="facts-title">Quick facts</h3>
@@ -154,8 +165,9 @@
         <div class="benguet-header">
           <span class="section-tag"><i class="fas fa-mountain"></i> Explore Benguet</span>
           <h2 class="gallery-title">Benguet: Tourist Spots & Products</h2>
-          <p class="benguet-subtitle">Experience the magic of my hometown through our interactive highland Reels or classic grid view.</p>
-          
+          <p class="benguet-subtitle">Experience the magic of my hometown through our interactive highland Reels or
+            classic grid view.</p>
+
           <div class="view-toggle-container">
             <button class="toggle-btn active" id="btn-reels-view" title="Switch to Reels Immersive View">
               <i class="fas fa-mobile-alt"></i> Reels Experience
@@ -169,7 +181,7 @@
         <!-- REELS INTERACTIVE EXPERIENCE CONTAINER -->
         <div class="benguet-reels-container active" id="reels-view-wrapper">
           <div class="reels-glow-aura"></div>
-          
+
           <!-- iPhone 15 Pro Mockup Frame -->
           <div class="iphone-mockup" id="iphone-player">
             <!-- Dynamic Island/Notch -->
@@ -177,26 +189,42 @@
               <div class="camera"></div>
               <div class="speaker"></div>
             </div>
-            
+
             <!-- Side buttons for visual fidelity -->
             <div class="iphone-btn volume-up"></div>
             <div class="iphone-btn volume-down"></div>
             <div class="iphone-btn power"></div>
-            
+
             <!-- Screen Area -->
             <div class="iphone-screen">
               <!-- Reels Progress Bars Segmented -->
               <div class="reels-progress-header">
-                <div class="progress-bar-segment" data-index="0"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="1"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="2"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="3"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="4"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="5"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="6"><div class="fill"></div></div>
-                <div class="progress-bar-segment" data-index="7"><div class="fill"></div></div>
+                <div class="progress-bar-segment" data-index="0">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="1">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="2">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="3">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="4">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="5">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="6">
+                  <div class="fill"></div>
+                </div>
+                <div class="progress-bar-segment" data-index="7">
+                  <div class="fill"></div>
+                </div>
               </div>
-              
+
               <!-- Reels Top Controls -->
               <div class="reels-top-bar">
                 <div class="reels-user-badge">
@@ -208,7 +236,7 @@
                     </span>
                   </div>
                 </div>
-                
+
                 <div class="reels-system-controls">
                   <button class="sys-btn" id="reel-sound-toggle" title="Toggle Sound">
                     <i class="fas fa-volume-mute"></i>
@@ -221,98 +249,82 @@
                   </button>
                 </div>
               </div>
-              
+
               <!-- Reels Slides Container -->
               <div class="reels-slides-wrapper" id="reels-slides-container">
-                
+
                 <!-- SLIDE 1: Strawberry Farm -->
-                <div class="reel-slide active" data-index="0"
-                     data-title="Strawberry Farm"
-                     data-tagline="The Sweet Heart of La Trinidad"
-                     data-location="La Trinidad, Benguet"
-                     data-tags="#HighlandHarvest #BenguetPride #SweetPickings #Strawberries"
-                     data-story="World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich volcanic soil and cool mountain climate of Benguet yield the sweetest and most robust berries in the country. Picking your own strawberries while surrounded by the fresh mountain breeze is a staple highland experience.">
+                <div class="reel-slide active" data-index="0" data-title="Strawberry Farm"
+                  data-tagline="The Sweet Heart of La Trinidad" data-location="La Trinidad, Benguet"
+                  data-tags="#HighlandHarvest #BenguetPride #SweetPickings #Strawberries"
+                  data-story="World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich volcanic soil and cool mountain climate of Benguet yield the sweetest and most robust berries in the country. Picking your own strawberries while surrounded by the fresh mountain breeze is a staple highland experience.">
                   <img src="Assets/Story/Straw.jpg" alt="Strawberry Farm" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 2: Cultural Heritage -->
-                <div class="reel-slide" data-index="1"
-                     data-title="Igorot Cultural Heritage"
-                     data-tagline="Ancient Roots, Living Legends"
-                     data-location="Benguet Highlands"
-                     data-tags="#IgorotPride #CordilleraCulture #LivingHeritage #Weaving"
-                     data-story="The heart of Benguet beats in the spirit of its people. The Igorot community proudly preserves ancient weaving techniques, traditional music played on hand-forged gongs, and indigenous dances. Every woven pattern in the native Tapis (skirts) and Wanes (loincloths) tells a sacred story of bravery, connection to the land, and cultural resilience.">
+                <div class="reel-slide" data-index="1" data-title="Igorot Cultural Heritage"
+                  data-tagline="Ancient Roots, Living Legends" data-location="Benguet Highlands"
+                  data-tags="#IgorotPride #CordilleraCulture #LivingHeritage #Weaving"
+                  data-story="The heart of Benguet beats in the spirit of its people. The Igorot community proudly preserves ancient weaving techniques, traditional music played on hand-forged gongs, and indigenous dances. Every woven pattern in the native Tapis (skirts) and Wanes (loincloths) tells a sacred story of bravery, connection to the land, and cultural resilience.">
                   <img src="Assets/Story/Igorot.jpg" alt="Cultural Heritage" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 3: Valley of Colors -->
-                <div class="reel-slide" data-index="2"
-                     data-title="Valley of Colors"
-                     data-tagline="A Giant Hillside Canvas"
-                     data-location="Stobosa, La Trinidad"
-                     data-tags="#CommunityArt #StobosaMurals #VibrantBenguet #StreetArt"
-                     data-story="A massive, colorful hillside community mural designed by local artists and painted collaboratively by over a hundred residents. Transforming an entire neighborhood of stone and wood houses into a single cohesive visual masterpiece, the Valley of Colors represents unity, positivity, and artistic innovation.">
+                <div class="reel-slide" data-index="2" data-title="Valley of Colors"
+                  data-tagline="A Giant Hillside Canvas" data-location="Stobosa, La Trinidad"
+                  data-tags="#CommunityArt #StobosaMurals #VibrantBenguet #StreetArt"
+                  data-story="A massive, colorful hillside community mural designed by local artists and painted collaboratively by over a hundred residents. Transforming an entire neighborhood of stone and wood houses into a single cohesive visual masterpiece, the Valley of Colors represents unity, positivity, and artistic innovation.">
                   <img src="Assets/Story/Stobosa.png" alt="Valley of Colors" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 4: Benguet Coffee -->
-                <div class="reel-slide" data-index="3"
-                     data-title="Benguet Coffee Blend"
-                     data-tagline="Warmth in Every Highland Drop"
-                     data-location="Atok & Kibungan cooperatives"
-                     data-tags="#HighlandArabica #BenguetCoffee #RichAroma #CoffeeTime"
-                     data-story="Grown at extreme altitudes where fog blankets the slopes, premium Benguet Arabica coffee bean varieties boast rich chocolatey undertones, natural honey-like sweetness, and a soothing earthiness. Ground fresh and brewed slow, it is the perfect companion to warm your soul during the freezing, misty mountain mornings.">
+                <div class="reel-slide" data-index="3" data-title="Benguet Coffee Blend"
+                  data-tagline="Warmth in Every Highland Drop" data-location="Atok & Kibungan cooperatives"
+                  data-tags="#HighlandArabica #BenguetCoffee #RichAroma #CoffeeTime"
+                  data-story="Grown at extreme altitudes where fog blankets the slopes, premium Benguet Arabica coffee bean varieties boast rich chocolatey undertones, natural honey-like sweetness, and a soothing earthiness. Ground fresh and brewed slow, it is the perfect companion to warm your soul during the freezing, misty mountain mornings.">
                   <img src="Assets/Story/Coffee.png" alt="Benguet Coffee" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 5: Mount Pulag -->
-                <div class="reel-slide" data-index="4"
-                     data-title="Mount Pulag"
-                     data-tagline="Playground of the Gods"
-                     data-location="Kabayan, Benguet"
-                     data-tags="#SeaOfClouds #MountPulag #MountainClimbing #MilkyWay"
-                     data-story="The third-highest peak in the Philippines, rising 2,928 meters above sea level. Famed for its breathtaking, otherworldly 'Sea of Clouds' at sunrise and pristine dwarf bamboo slopes. Hiking up Pulag is a spiritual, cold adventure that rewards travelers with a front-row seat to the star-studded Milky Way and the vast sky.">
+                <div class="reel-slide" data-index="4" data-title="Mount Pulag" data-tagline="Playground of the Gods"
+                  data-location="Kabayan, Benguet" data-tags="#SeaOfClouds #MountPulag #MountainClimbing #MilkyWay"
+                  data-story="The third-highest peak in the Philippines, rising 2,928 meters above sea level. Famed for its breathtaking, otherworldly 'Sea of Clouds' at sunrise and pristine dwarf bamboo slopes. Hiking up Pulag is a spiritual, cold adventure that rewards travelers with a front-row seat to the star-studded Milky Way and the vast sky.">
                   <img src="Assets/Story/Pulag.png" alt="Mount Pulag" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 6: Northern Blossom Farm -->
-                <div class="reel-slide" data-index="5"
-                     data-title="Northern Blossom Flower Farm"
-                     data-tagline="Highland Paradise of Petals"
-                     data-location="Atok, Benguet"
-                     data-tags="#CabbageRoses #FlowerTerraces #ScenicAtok #Blossoms"
-                     data-story="Sprawling terraced flower farms displaying endless rows of stunning, vibrant colored flora like cabbage roses, snapdragons, and calla lilies. Nested against a spectacular, panoramic mountain range, this farm feels like stepping straight into a watercolor painting where petals stretch as far as the eye can see.">
-                  <img src="Assets/Story/Northern Blossom Flower Farm.jpg" alt="Northern Blossom Flower Farm" class="slide-bg">
+                <div class="reel-slide" data-index="5" data-title="Northern Blossom Flower Farm"
+                  data-tagline="Highland Paradise of Petals" data-location="Atok, Benguet"
+                  data-tags="#CabbageRoses #FlowerTerraces #ScenicAtok #Blossoms"
+                  data-story="Sprawling terraced flower farms displaying endless rows of stunning, vibrant colored flora like cabbage roses, snapdragons, and calla lilies. Nested against a spectacular, panoramic mountain range, this farm feels like stepping straight into a watercolor painting where petals stretch as far as the eye can see.">
+                  <img src="Assets/Story/Northern Blossom Flower Farm.jpg" alt="Northern Blossom Flower Farm"
+                    class="slide-bg">
                 </div>
 
                 <!-- SLIDE 7: Atok Highest Point -->
-                <div class="reel-slide" data-index="6"
-                     data-title="Atok Highest Point"
-                     data-tagline="Touching the Mountain Sky"
-                     data-location="Atok (7,400 feet elevation)"
-                     data-tags="#HighestPoint #HalsemaHighway #ScenicHighlands #MountainFog"
-                     data-story="Reaching a towering elevation of 7,400 feet above sea level along the Halsema Highway, this landmark offers panoramic viewing decks of cascading agricultural vegetable stone walls and dramatic swirling clouds. During freezing winter mornings, frost blankets the fields, creating a rare and magical snowy appearance.">
+                <div class="reel-slide" data-index="6" data-title="Atok Highest Point"
+                  data-tagline="Touching the Mountain Sky" data-location="Atok (7,400 feet elevation)"
+                  data-tags="#HighestPoint #HalsemaHighway #ScenicHighlands #MountainFog"
+                  data-story="Reaching a towering elevation of 7,400 feet above sea level along the Halsema Highway, this landmark offers panoramic viewing decks of cascading agricultural vegetable stone walls and dramatic swirling clouds. During freezing winter mornings, frost blankets the fields, creating a rare and magical snowy appearance.">
                   <img src="Assets/Story/Atok Highest Point.jpg" alt="Atok Highest Point" class="slide-bg">
                 </div>
 
                 <!-- SLIDE 8: Highland Products -->
-                <div class="reel-slide" data-index="7"
-                     data-title="Highland Fresh Produce"
-                     data-tagline="Salad Bowl of the Philippines"
-                     data-location="La Trinidad Trading Post"
-                     data-tags="#HighlandFarming #TradingPost #FreshVeggies #SaladBowl"
-                     data-story="The highly fertile soil and cool climates of Benguet's terraces supply fresh, organic cabbages, carrots, cauliflowers, and premium greens across the nation. It reflects the sustainable farming practices, rich agricultural heritage, and tireless dedication of the local highland farmers who feed the country.">
+                <div class="reel-slide" data-index="7" data-title="Highland Fresh Produce"
+                  data-tagline="Salad Bowl of the Philippines" data-location="La Trinidad Trading Post"
+                  data-tags="#HighlandFarming #TradingPost #FreshVeggies #SaladBowl"
+                  data-story="The highly fertile soil and cool climates of Benguet's terraces supply fresh, organic cabbages, carrots, cauliflowers, and premium greens across the nation. It reflects the sustainable farming practices, rich agricultural heritage, and tireless dedication of the local highland farmers who feed the country.">
                   <img src="Assets/Story/Veg.jpg" alt="Highland Vegetables" class="slide-bg">
                 </div>
 
               </div>
-              
+
               <!-- Tap Navigation Detectors (Invisible Overlay areas) -->
               <div class="reels-nav-overlay">
                 <div class="nav-zone nav-zone-left" id="reel-tap-left" title="Previous Slide"></div>
                 <div class="nav-zone nav-zone-right" id="reel-tap-right" title="Next Slide"></div>
               </div>
-              
+
               <!-- Reels Navigation Buttons (Visible for Desktop hover) -->
               <button class="reel-nav-arrow arrow-left" id="reel-arrow-left" title="Previous Slide">
                 <i class="fas fa-chevron-left"></i>
@@ -320,34 +332,34 @@
               <button class="reel-nav-arrow arrow-right" id="reel-arrow-right" title="Next Slide">
                 <i class="fas fa-chevron-right"></i>
               </button>
-              
+
               <!-- Reels Floating Action Sidebar -->
               <div class="reels-action-sidebar">
                 <div class="sidebar-action-btn" id="action-like" title="Like this post">
                   <div class="icon-circle"><i class="fas fa-heart"></i></div>
                   <span class="action-count" id="like-count">12.8K</span>
                 </div>
-                
+
                 <div class="sidebar-action-btn" id="action-comment" title="View comments">
                   <div class="icon-circle"><i class="fas fa-comment"></i></div>
                   <span class="action-count" id="comment-count">482</span>
                 </div>
-                
+
                 <div class="sidebar-action-btn" id="action-save" title="Save to bookmarks">
                   <div class="icon-circle"><i class="fas fa-bookmark"></i></div>
                   <span class="action-count" id="save-count">1.4K</span>
                 </div>
-                
+
                 <div class="sidebar-action-btn" id="action-share" title="Share this Reel">
                   <div class="icon-circle"><i class="fas fa-share"></i></div>
                   <span class="action-count">Share</span>
                 </div>
-                
+
                 <!-- Audio spinning disc and visualizer -->
                 <div class="sidebar-audio-spinner" id="audio-disc-container">
                   <div class="music-disc-glow"></div>
                   <img src="Assets/About/Me.01.png" alt="Jerome" class="spinning-disc">
-                  
+
                   <!-- Audio visualizer bars (small floating animation) -->
                   <div class="mini-visualizer">
                     <span class="v-bar"></span>
@@ -357,26 +369,28 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Slide Main Captions & Expandable Drawer Bottom Sheet -->
               <div class="reels-bottom-caption" id="reels-caption-panel">
                 <div class="caption-header">
                   <span class="slide-num">1 / 8</span>
-                  <span class="slide-location-badge"><i class="fas fa-map-marker-alt"></i> <span id="cap-loc">La Trinidad, Benguet</span></span>
+                  <span class="slide-location-badge"><i class="fas fa-map-marker-alt"></i> <span id="cap-loc">La
+                      Trinidad, Benguet</span></span>
                 </div>
-                
+
                 <h3 class="slide-display-title" id="cap-title">Strawberry Farm</h3>
                 <h4 class="slide-display-tagline" id="cap-tagline">The Sweet Heart of La Trinidad</h4>
-                
-                <p class="slide-display-desc-preview" id="cap-desc-prev">World-famous agricultural farm where visitors can pick fresh...</p>
-                
+
+                <p class="slide-display-desc-preview" id="cap-desc-prev">World-famous agricultural farm where visitors
+                  can pick fresh...</p>
+
                 <!-- Swipe / Tap Up Indicator -->
                 <div class="swipe-up-indicator" id="btn-expand-sheet">
                   <i class="fas fa-chevron-up bounce-anim"></i>
                   <span>Tap for Full Story</span>
                 </div>
               </div>
-              
+
               <!-- FULL STORY SHEET DRAWER (Sliding up from bottom) -->
               <div class="reels-detail-sheet" id="detail-sheet">
                 <div class="sheet-handle-bar">
@@ -384,26 +398,30 @@
                 </div>
                 <div class="sheet-content">
                   <div class="sheet-header">
-                    <span class="sheet-category"><i class="fas fa-map-marker-alt"></i> <span id="sheet-loc">La Trinidad, Benguet</span></span>
+                    <span class="sheet-category"><i class="fas fa-map-marker-alt"></i> <span id="sheet-loc">La Trinidad,
+                        Benguet</span></span>
                     <button class="sheet-close-btn" id="btn-close-sheet"><i class="fas fa-times"></i></button>
                   </div>
-                  
+
                   <h2 class="sheet-title" id="sheet-title-text">Strawberry Farm</h2>
                   <h4 class="sheet-tagline" id="sheet-tagline-text">The Sweet Heart of La Trinidad</h4>
-                  
+
                   <div class="sheet-divider"></div>
-                  
+
                   <p class="sheet-body-text" id="sheet-body-content">
-                    World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich volcanic soil and cool mountain climate of Benguet yield the sweetest and most robust berries in the country. Picking your own strawberries while surrounded by the fresh mountain breeze is a staple highland experience.
+                    World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich
+                    volcanic soil and cool mountain climate of Benguet yield the sweetest and most robust berries in the
+                    country. Picking your own strawberries while surrounded by the fresh mountain breeze is a staple
+                    highland experience.
                   </p>
-                  
+
                   <div class="sheet-tags" id="sheet-tags-content">
                     <span>#HighlandHarvest</span>
                     <span>#BenguetPride</span>
                     <span>#SweetPickings</span>
                     <span>#Strawberries</span>
                   </div>
-                  
+
                   <div class="sheet-footer">
                     <p class="author-credits">Curated & Crafted by <strong>Jerome Cabinta</strong></p>
                   </div>
@@ -416,11 +434,11 @@
                   <h3>Comments (<span id="comments-num-text">482</span>)</h3>
                   <button class="comments-close-btn" id="btn-close-comments"><i class="fas fa-times"></i></button>
                 </div>
-                
+
                 <div class="comments-list" id="comments-container">
                   <!-- Generated comments will be here -->
                 </div>
-                
+
                 <div class="comments-footer">
                   <img src="Assets/About/Me.01.png" alt="User" class="commenter-avatar">
                   <input type="text" placeholder="Add a comment..." class="comment-input" id="new-comment-input">
@@ -440,7 +458,7 @@
         <!-- TRADITIONAL GRID VIEW CONTAINER (Fallback and option) -->
         <div class="benguet-grid-container" id="grid-view-wrapper">
           <div class="gallery-grid">
-            
+
             <div class="gallery-item">
               <div class="gallery-img-wrapper">
                 <img src="Assets/Story/Straw.jpg" alt="Strawberry Farm">
@@ -451,7 +469,8 @@
               <div class="grid-details-card">
                 <h3>Strawberry Farm</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> La Trinidad</span>
-                <p>World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich volcanic soil yields the sweetest berries in the country.</p>
+                <p>World-famous agricultural farm where visitors can pick fresh, succulent strawberries. The rich
+                  volcanic soil yields the sweetest berries in the country.</p>
               </div>
             </div>
 
@@ -465,7 +484,8 @@
               <div class="grid-details-card">
                 <h3>Igorot Cultural Heritage</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Benguet Highlands</span>
-                <p>The heart of Benguet is its people. Traditional weaving, gong music, and sacred dances represent a deep connection to the ancestor lands.</p>
+                <p>The heart of Benguet is its people. Traditional weaving, gong music, and sacred dances represent a
+                  deep connection to the ancestor lands.</p>
               </div>
             </div>
 
@@ -479,7 +499,8 @@
               <div class="grid-details-card">
                 <h3>Valley of Colors</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Stobosa, La Trinidad</span>
-                <p>A massive, colorful hillside community mural that transforms a residential hillside of stone houses into a single cohesive visual masterpiece.</p>
+                <p>A massive, colorful hillside community mural that transforms a residential hillside of stone houses
+                  into a single cohesive visual masterpiece.</p>
               </div>
             </div>
 
@@ -493,7 +514,8 @@
               <div class="grid-details-card">
                 <h3>Benguet Coffee Blend</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Atok & Kibungan</span>
-                <p>Grown at extreme highland altitudes, premium Benguet Arabica coffee boasts sweet, chocolatey undertones and a rich highland aroma.</p>
+                <p>Grown at extreme highland altitudes, premium Benguet Arabica coffee boasts sweet, chocolatey
+                  undertones and a rich highland aroma.</p>
               </div>
             </div>
 
@@ -507,7 +529,8 @@
               <div class="grid-details-card">
                 <h3>Mount Pulag</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Kabayan, Benguet</span>
-                <p>The third-highest peak in the Philippines, famous for its majestic 'Sea of Clouds' and freezing dwarf bamboo summits.</p>
+                <p>The third-highest peak in the Philippines, famous for its majestic 'Sea of Clouds' and freezing dwarf
+                  bamboo summits.</p>
               </div>
             </div>
 
@@ -521,7 +544,8 @@
               <div class="grid-details-card">
                 <h3>Northern Blossom Flower Farm</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Atok, Benguet</span>
-                <p>Endless terraced fields showcasing stunning rows of snaps, cabbage roses, and colorful flowers with breathtaking mountain backdrops.</p>
+                <p>Endless terraced fields showcasing stunning rows of snaps, cabbage roses, and colorful flowers with
+                  breathtaking mountain backdrops.</p>
               </div>
             </div>
 
@@ -535,7 +559,8 @@
               <div class="grid-details-card">
                 <h3>Atok Highest Point</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Halsema Highway</span>
-                <p>Rising to 7,400 feet above sea level, this landmark offers panoramic mountain decks. Frost blankets fields during peak winter months.</p>
+                <p>Rising to 7,400 feet above sea level, this landmark offers panoramic mountain decks. Frost blankets
+                  fields during peak winter months.</p>
               </div>
             </div>
 
@@ -549,7 +574,8 @@
               <div class="grid-details-card">
                 <h3>Highland Fresh Produce</h3>
                 <span class="grid-loc"><i class="fas fa-map-marker-alt"></i> Trading Post</span>
-                <p>The rich volcanic soil of Benguet's terraces supplies organic cabbage, carrots, and highland greens to feed the entire nation.</p>
+                <p>The rich volcanic soil of Benguet's terraces supplies organic cabbage, carrots, and highland greens
+                  to feed the entire nation.</p>
               </div>
             </div>
 
@@ -559,35 +585,6 @@
 
     </div>
   </article>
-
-  <!-- CERTIFICATE -->
-  <section id="certificate" class="certificate section">
-    <div class="section-header">
-      <span class="section-tag">Certificates</span>
-      <h2 class="section-title">My Certificates</h2>
-    </div>
-    <div class="cer-image-center">
-      <div class="cer-carousel">
-        <button class="cer-btn prev" id="cerPrev">&#10094;</button>
-        <div class="cer-slides">
-          <img src="Assets/certificate/acf-cybersecurity-certificate.jpg"
-            alt="Certificate 1" class="cer-slide active">
-          <img src="Assets/certificate/cabinta-jerome-p.png" alt="Certificate 2" class="cer-slide">
-          <img src="Assets/certificate/Certificate_of_Completion.png" alt="Certificate 3" class="cer-slide">
-          <img src="Assets/certificate/TEFL-certificate-1.png" alt="Certificate 4" class="cer-slide">
-          <img src="Assets/certificate/WEI_82932.jpg" alt="Certificate 5" class="cer-slide">
-        </div>
-        <button class="cer-btn next" id="cerNext">&#10095;</button>
-      </div>
-      <div class="cer-dots">
-        <span class="cer-dot active"></span>
-        <span class="cer-dot"></span>
-        <span class="cer-dot"></span>
-        <span class="cer-dot"></span>
-        <span class="cer-dot"></span>
-      </div>
-    </div>
-  </section>
 
   <footer class="footer">
     <p>©Jerome Cabinta. All rights reserved.</p>

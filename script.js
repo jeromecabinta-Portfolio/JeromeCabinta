@@ -1,7 +1,12 @@
 /* THEME INITIALIZATION (Runs immediately to prevent flash) */
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-}
+(function () {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.remove("dark");
+  } else {
+    document.body.classList.add("dark");
+  }
+})();
 
 document.addEventListener("DOMContentLoaded", () => {
   /* MOBILE NAV */
@@ -14,10 +19,32 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.toggle("show");
     });
 
-    navLinks.querySelectorAll("a").forEach(link => {
+    const dropdownToggles = navLinks.querySelectorAll(".nav-dropdown-toggle");
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener("click", (e) => {
+        const parent = toggle.closest(".nav-dropdown-item");
+        if (parent) {
+          e.preventDefault();
+          e.stopPropagation();
+          parent.classList.toggle("open");
+        }
+      });
+    });
+
+    navLinks.querySelectorAll("a:not(.nav-dropdown-toggle)").forEach(link => {
       link.addEventListener("click", () => {
         hamburger.classList.remove("active");
         navLinks.classList.remove("show");
+        const openDropdowns = navLinks.querySelectorAll(".nav-dropdown-item.open");
+        openDropdowns.forEach(d => d.classList.remove("open"));
+
+        const targetFilter = link.getAttribute("data-switch-filter");
+        if (targetFilter) {
+          const filterBtn = document.querySelector(`.filter-tab-btn[data-filter="${targetFilter}"]`);
+          if (filterBtn) {
+            filterBtn.click();
+          }
+        }
       });
     });
 
@@ -25,24 +52,33 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove("active");
         navLinks.classList.remove("show");
+        const openDropdowns = navLinks.querySelectorAll(".nav-dropdown-item.open");
+        openDropdowns.forEach(d => d.classList.remove("open"));
       }
     });
   }
 
-  /* DARK MODE */
+  /* DARK / LIGHT MODE TOGGLE */
   const themeToggle = document.getElementById("theme-toggle");
 
-  /* SYNC TOGGLE ICON */
-  if (themeToggle) {
+  function syncThemeToggle() {
     const isDark = document.body.classList.contains("dark");
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    if (themeToggle) {
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+      themeToggle.setAttribute("title", isDark ? "Switch to Light Mode" : "Switch to Dark Mode");
+      themeToggle.setAttribute("aria-label", isDark ? "Switch to Light Mode" : "Switch to Dark Mode");
+    }
+  }
+
+  if (themeToggle) {
+    syncThemeToggle();
 
     themeToggle.addEventListener("click", () => {
       document.body.classList.add("theme-transitioning");
       document.body.classList.toggle("dark");
       const currentIsDark = document.body.classList.contains("dark");
-      themeToggle.textContent = currentIsDark ? "☀️" : "🌙";
       localStorage.setItem("theme", currentIsDark ? "dark" : "light");
+      syncThemeToggle();
       setTimeout(() => {
         document.body.classList.remove("theme-transitioning");
       }, 350);
@@ -253,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const dotsContainer = document.getElementById("slider-dots");
   const imageScroll = document.getElementById("modal-image-scroll");
   const modalLink = document.getElementById("modal-link");
-  const modalVisitBtn = document.getElementById("modal-visit-btn");
 
   if (modal && prevBtn && nextBtn && closeModal) {
     let currentImages = [];
@@ -364,21 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         link.appendChild(img);
         imageScroll.appendChild(link);
-      }
-
-      const activeLink = currentLinks[currentIndex] || currentLinks[0];
-      if (activeLink && modalVisitBtn) {
-        modalVisitBtn.href = activeLink;
-        modalVisitBtn.style.display = "inline-flex";
-        if (activeLink.endsWith(".html")) {
-          modalVisitBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> View Full Gallery Page`;
-          modalVisitBtn.target = "_self";
-        } else {
-          modalVisitBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> Visit Website`;
-          modalVisitBtn.target = "_blank";
-        }
-      } else if (modalVisitBtn) {
-        modalVisitBtn.style.display = "none";
       }
 
       renderDots();
@@ -1685,9 +1705,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     });
+
+    // Trigger the active filter on page load
+    const initialActiveBtn = document.querySelector(".filter-tab-btn.active") || filterBtns[0];
+    if (initialActiveBtn) {
+      initialActiveBtn.click();
+    }
   }
 
-  /* 2. INTERACTIVE MULTI-SLIDE CAROUSELS */
+  /* 2. INTERACTIVE MULTI-SLIDE CAROUSELS (With Button, Dot & Touch Swipe Support) */
   const carouselDecks = document.querySelectorAll(".carousel-deck-card");
   carouselDecks.forEach(deck => {
     const slides = deck.querySelectorAll(".carousel-slide-item");
@@ -1695,6 +1721,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = deck.querySelector(".prev-btn");
     const nextBtn = deck.querySelector(".next-btn");
     const currentSlideSpan = deck.querySelector(".current-slide");
+    const stageWrap = deck.querySelector(".carousel-stage-wrap");
     let currentIndex = 0;
 
     function updateSlide(index) {
@@ -1706,14 +1733,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
+      prevBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateSlide(currentIndex);
       });
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         currentIndex = (currentIndex + 1) % slides.length;
         updateSlide(currentIndex);
       });
@@ -1725,6 +1754,38 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlide(currentIndex);
       });
     });
+
+    // Touch Swipe Navigation for Mobile and Tablet
+    if (stageWrap) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      stageWrap.addEventListener("touchstart", (e) => {
+        if (e.touches && e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      stageWrap.addEventListener("touchend", (e) => {
+        if (e.changedTouches && e.changedTouches.length === 1) {
+          const touchEndX = e.changedTouches[0].clientX;
+          const touchEndY = e.changedTouches[0].clientY;
+          const diffX = touchEndX - touchStartX;
+          const diffY = touchEndY - touchStartY;
+
+          // Only trigger if horizontal swipe is dominant
+          if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX < 0) {
+              currentIndex = (currentIndex + 1) % slides.length;
+            } else {
+              currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            }
+            updateSlide(currentIndex);
+          }
+        }
+      }, { passive: true });
+    }
   });
 
   /* 3. VIDEO MODAL PLAYER */
@@ -1812,7 +1873,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (video) {
       card.addEventListener("mouseenter", () => {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       });
 
       card.addEventListener("mouseleave", () => {
@@ -1831,7 +1892,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainModal = document.getElementById("project-modal");
   const modalTitleElement = document.getElementById("modal-title");
   const modalDescElement = document.getElementById("modal-desc");
-  const modalVisitBtnElement = document.getElementById("modal-visit-btn");
   const imageScrollContainer = document.getElementById("modal-image-scroll");
   const sliderPrevBtn = document.querySelector(".slider-btn.prev");
   const sliderNextBtn = document.querySelector(".slider-btn.next");
@@ -1845,7 +1905,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = card.getAttribute("data-img") || (card.querySelector("img") ? card.querySelector("img").src : "");
       const title = card.getAttribute("data-title") || (card.querySelector(".post-card-title") ? card.querySelector(".post-card-title").textContent : "") || "Verified Credential";
       const desc = card.getAttribute("data-desc") || "";
-      const link = card.getAttribute("data-link") || img;
 
       if (!img || !mainModal || !imageScrollContainer) return;
 
@@ -1884,17 +1943,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (modalTitleElement) modalTitleElement.textContent = title;
       if (modalDescElement) modalDescElement.textContent = desc;
 
-      if (modalVisitBtnElement) {
-        if (link && link !== "#" && !link.startsWith("Assets/")) {
-          modalVisitBtnElement.href = link;
-          modalVisitBtnElement.target = "_blank";
-          modalVisitBtnElement.style.display = "inline-flex";
-          modalVisitBtnElement.innerHTML = `<i class="fas fa-arrow-up-right-from-square"></i> Visit Project`;
-        } else {
-          modalVisitBtnElement.style.display = "none";
-        }
-      }
-
       mainModal.style.display = "block";
       mainModal.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -1919,4 +1967,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-});
+});

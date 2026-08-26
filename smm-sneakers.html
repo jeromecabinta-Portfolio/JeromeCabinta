@@ -336,10 +336,15 @@
 
 <body>
     <script>
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark");
-        }
-    </script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.remove("dark");
+      } else {
+        document.body.classList.add("dark");
+      }
+    })();
+  </script>
     <div id="scroll-progress"></div>
     <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
@@ -351,11 +356,11 @@
         </a>
         <ul class="nav-links custom-nav-links" id="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#posts">Posts</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
           <div class="nav-pill-socials">

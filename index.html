@@ -19,16 +19,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2026.12" />
+  <link rel="stylesheet" href="style.css?v=2026.16" />
 </head>
 
 <body class="dark dark-grid-canvas">
   <script>
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.remove("dark");
-    } else {
-      document.body.classList.add("dark");
-    }
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.remove("dark");
+      } else {
+        document.body.classList.add("dark");
+      }
+    })();
   </script>
 
   <!-- Scroll Progress Indicator -->
@@ -48,11 +51,60 @@
       <ul class="nav-links custom-nav-links" id="nav-links">
         <li><a href="#hero" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#posts">Posts</a></li>
-        <li><a href="#reels">Reels / Shorts</a></li>
-        <li><a href="#carousels">Carousels</a></li>
-        <li><a href="#thumbnails">Thumbnails</a></li>
-        <li><a href="#certificates">Certificates</a></li>
+        <li class="nav-dropdown-item">
+          <a href="#posts" class="nav-dropdown-toggle" id="postsDropdownToggle" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            Posts <i class="fas fa-chevron-down nav-caret"></i>
+          </a>
+          <ul class="nav-dropdown-menu" aria-labelledby="postsDropdownToggle">
+            <li>
+              <a href="#posts" class="dropdown-link">
+                <div class="dropdown-link-icon"><i class="fas fa-images"></i></div>
+                <div class="dropdown-link-text">
+                  <span class="dropdown-link-title">Single Posts</span>
+                  <span class="dropdown-link-desc">Brand Campaigns &amp; Ads</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#reels" class="dropdown-link">
+                <div class="dropdown-link-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="dropdown-link-text">
+                  <span class="dropdown-link-title">Reels / Shorts</span>
+                  <span class="dropdown-link-desc">Short-Form Video Hooks</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#carousels" class="dropdown-link">
+                <div class="dropdown-link-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="dropdown-link-text">
+                  <span class="dropdown-link-title">Carousels</span>
+                  <span class="dropdown-link-desc">Multi-Slide Growth Decks</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#thumbnails" class="dropdown-link">
+                <div class="dropdown-link-icon"><i class="fas fa-photo-film"></i></div>
+                <div class="dropdown-link-text">
+                  <span class="dropdown-link-title">Thumbnails</span>
+                  <span class="dropdown-link-desc">High-CTR YouTube &amp; Covers</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#posts" class="dropdown-link" data-switch-filter="book-covers">
+                <div class="dropdown-link-icon"><i class="fas fa-book-open"></i></div>
+                <div class="dropdown-link-text">
+                  <span class="dropdown-link-title">Book Covers</span>
+                  <span class="dropdown-link-desc">Fiction, Non-Fiction &amp; Novels</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#skills">Tools &amp; Skills</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -66,6 +118,10 @@
           <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" target="_blank" rel="noopener noreferrer"
             class="nav-pill" title="LinkedIn">
             <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61579246614635" target="_blank" rel="noopener noreferrer"
+            class="nav-pill" title="Facebook">
+            <i class="fab fa-facebook-f"></i> <span>Facebook</span>
           </a>
         </div>
         <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
@@ -153,13 +209,12 @@
               <div class="hero-floating-left">
                 <div class="live-pulse-dot"></div>
                 <div>
-                  <div style="font-size: 0.85rem; font-weight: 800; color: #ffffff;">AVAILABLE FOR US REMOTE</div>
-                  <div style="font-size: 0.72rem; color: var(--behance-lime); font-family: var(--font-mono);">SMM
-                    STRATEGY &bull; DTC BRANDS</div>
+                  <div class="hero-badge-title">AVAILABLE FOR US REMOTE</div>
+                  <div class="hero-badge-subtitle">SMM STRATEGY &bull; DTC BRANDS</div>
                 </div>
               </div>
-              <div class="glass-pill-badge" style="padding: 6px 12px; font-size: 0.78rem;">
-                <i class="fas fa-shield-halved" style="color: var(--behance-lime);"></i> 2026 EDITION
+              <div class="glass-pill-badge hero-edition-badge">
+                <i class="fas fa-shield-halved"></i> <span>2026 EDITION</span>
               </div>
             </div>
           </div>
@@ -303,83 +358,6 @@
               <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px;">Baguio Central University</p>
               <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">Major in Social Studies.</p>
             </div>
-
-            <!-- Certificate 1: APAC Cybersecurity Fund -->
-            <div class="timeline-behance-card open-lightbox"
-              data-img="Assets/certificate/acf-cybersecurity-certificate.jpg"
-              data-title="Cyber Hygiene Training — APAC Cybersecurity Fund" data-category-name="Certification"
-              data-desc="Issued by PCCI HRDF, The Asia Foundation, and Google.org on January 27, 2026."
-              style="cursor: pointer;">
-              <div class="timeline-card-header">
-                <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Cyber Hygiene Training</h3>
-                <span class="timeline-year-tag"
-                  style="background: rgba(195, 255, 56, 0.15); color: var(--behance-lime); border: 1px solid var(--behance-lime);">CERTIFICATION
-                  &bull; 2026</span>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px;">APAC Cybersecurity Fund
-                &bull; PCCI HRDF &bull; Google.org</p>
-              <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">Certified in digital risk mitigation, threat
-                hygiene, and cloud asset security. <span
-                  style="color: var(--behance-lime); font-size: 0.82rem; font-weight: 700;"><i
-                    class="fas fa-arrow-up-right-from-square"></i> View Certificate</span></p>
-            </div>
-
-            <!-- Certificate 2: World English Institute -->
-            <div class="timeline-behance-card open-lightbox" data-img="Assets/certificate/WEI_82932.jpg"
-              data-title="World English Institute — Intermediate Course" data-category-name="Certification"
-              data-desc="Awarded on August 07, 2025 by World English Institute, Gresham, Oregon, USA."
-              style="cursor: pointer;">
-              <div class="timeline-card-header">
-                <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0;">World English Institute Intermediate Course
-                </h3>
-                <span class="timeline-year-tag"
-                  style="background: rgba(195, 255, 56, 0.15); color: var(--behance-lime); border: 1px solid var(--behance-lime);">CERTIFICATION
-                  &bull; 2025</span>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px;">World English Institute (USA)
-              </p>
-              <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">Professional English proficiency credential
-                for international communications and client correspondence. <span
-                  style="color: var(--behance-lime); font-size: 0.82rem; font-weight: 700;"><i
-                    class="fas fa-arrow-up-right-from-square"></i> View Certificate</span></p>
-            </div>
-
-            <!-- Certificate 3: TESDA -->
-            <div class="timeline-behance-card open-lightbox" data-img="Assets/certificate/Certificate_of_Completion.png"
-              data-title="English for Business and Entrepreneurship — TESDA" data-category-name="Certification"
-              data-desc="National Institute for Technical Education and Skills Development (NITESD), May 7, 2024."
-              style="cursor: pointer;">
-              <div class="timeline-card-header">
-                <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0;">English for Business &amp; Entrepreneurship
-                </h3>
-                <span class="timeline-year-tag"
-                  style="background: rgba(195, 255, 56, 0.15); color: var(--behance-lime); border: 1px solid var(--behance-lime);">CERTIFICATION
-                  &bull; 2024</span>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px;">TESDA &bull; NITESD</p>
-              <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">Specialized training in international
-                commercial correspondence, venture communication, and marketing English. <span
-                  style="color: var(--behance-lime); font-size: 0.82rem; font-weight: 700;"><i
-                    class="fas fa-arrow-up-right-from-square"></i> View Certificate</span></p>
-            </div>
-
-            <!-- Certificate 4: CARL Institute -->
-            <div class="timeline-behance-card open-lightbox" data-img="Assets/certificate/cabinta-jerome-p.png"
-              data-title="Educator's Legal Toolkit: Law 101 Essentials for the Classroom" data-category-name="Training"
-              data-desc="CARL Institute &amp; Carl E. Balita Review Center, May 17, 2024." style="cursor: pointer;">
-              <div class="timeline-card-header">
-                <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0;">Educator's Legal Toolkit: Law 101</h3>
-                <span class="timeline-year-tag"
-                  style="background: rgba(195, 255, 56, 0.15); color: var(--behance-lime); border: 1px solid var(--behance-lime);">TRAINING
-                  &bull; 2024</span>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px;">CARL Institute &bull; Carl E.
-                Balita Review Center</p>
-              <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">Comprehensive training on educational law,
-                institutional compliance, and classroom legal frameworks. <span
-                  style="color: var(--behance-lime); font-size: 0.82rem; font-weight: 700;"><i
-                    class="fas fa-arrow-up-right-from-square"></i> View Certificate</span></p>
-            </div>
           </div>
         </div>
       </div>
@@ -398,11 +376,10 @@
 
       <!-- Filter Buttons -->
       <div class="filter-tabs-container">
-        <button class="filter-tab-btn active" data-filter="all">All Posts</button>
-        <button class="filter-tab-btn" data-filter="branding">Brand Campaigns (12)</button>
-        <button class="filter-tab-btn" data-filter="ai-art">AI Art &amp; Visuals</button>
+        <button class="filter-tab-btn active" data-filter="branding">Brand Campaigns (12)</button>
         <button class="filter-tab-btn" data-filter="event-ads">Event &amp; Church Ads (32)</button>
         <button class="filter-tab-btn" data-filter="mockups">Mockups &amp; Products (12)</button>
+        <button class="filter-tab-btn" data-filter="book-covers">Book Covers (14)</button>
       </div>
 
       <!-- Post Cards Grid -->
@@ -504,8 +481,8 @@
         </div>
 
         <!-- Brand Campaign Post 7 -->
-        <div class="post-card-behance" data-category="branding ai-art" data-img="Assets/Brand Campaign/7.png"
-          data-title="Cyber Visual Manipulation" data-category-name="Brand Campaign &bull; AI Visuals"
+        <div class="post-card-behance" data-category="branding" data-img="Assets/Brand Campaign/7.png"
+          data-title="Cyber Visual Manipulation" data-category-name="Brand Campaign"
           data-desc="AI-generated and Photoshop-composited digital commercial artwork with advanced lighting effects.">
           <div class="post-card-img-wrap">
             <img src="Assets/Brand Campaign/7.png" alt="Cyber Visual Manipulation" loading="lazy" />
@@ -514,14 +491,14 @@
             </div>
           </div>
           <div class="post-card-info">
-            <span class="post-card-category">BRAND &bull; AI VISUALS</span>
+            <span class="post-card-category">BRAND CAMPAIGN</span>
             <h3 class="post-card-title">Cyber Visual Manipulation</h3>
           </div>
         </div>
 
         <!-- Brand Campaign Post 8 -->
-        <div class="post-card-behance" data-category="branding ai-art" data-img="Assets/Brand Campaign/8.png"
-          data-title="Commercial Concept Art" data-category-name="Brand Campaign &bull; AI Visuals"
+        <div class="post-card-behance" data-category="branding" data-img="Assets/Brand Campaign/8.png"
+          data-title="Commercial Concept Art" data-category-name="Brand Campaign"
           data-desc="Vibrant splash and product photo-manipulation designed for high CTR commercial social ads.">
           <div class="post-card-img-wrap">
             <img src="Assets/Brand Campaign/8.png" alt="Commercial Concept Art" loading="lazy" />
@@ -530,7 +507,7 @@
             </div>
           </div>
           <div class="post-card-info">
-            <span class="post-card-category">BRAND &bull; AI VISUALS</span>
+            <span class="post-card-category">BRAND CAMPAIGN</span>
             <h3 class="post-card-title">Commercial Concept Art</h3>
           </div>
         </div>
@@ -584,8 +561,8 @@
         </div>
 
         <!-- Brand Campaign Post 12 -->
-        <div class="post-card-behance" data-category="branding ai-art" data-img="Assets/Brand Campaign/12.png"
-          data-title="Futuristic Lifestyle Visual" data-category-name="Brand Campaign &bull; AI Visuals"
+        <div class="post-card-behance" data-category="branding" data-img="Assets/Brand Campaign/12.png"
+          data-title="Futuristic Lifestyle Visual" data-category-name="Brand Campaign"
           data-desc="Stylized concept combining AI rendering with typography and modern commercial branding overlays.">
           <div class="post-card-img-wrap">
             <img src="Assets/Brand Campaign/12.png" alt="Futuristic Lifestyle Visual" loading="lazy" />
@@ -594,7 +571,7 @@
             </div>
           </div>
           <div class="post-card-info">
-            <span class="post-card-category">BRAND &bull; AI VISUALS</span>
+            <span class="post-card-category">BRAND CAMPAIGN</span>
             <h3 class="post-card-title">Futuristic Lifestyle Visual</h3>
           </div>
         </div>
@@ -603,8 +580,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/1.png"
           data-title="In Christ — Sunday Service (April 26)" data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/1.png" alt="In Christ — Sunday Service (April 26)"
               loading="lazy" />
@@ -622,8 +598,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/2.png" data-title="In Christ — John 3:16 (April 19)"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/2.png" alt="In Christ — John 3:16 (April 19)"
               loading="lazy" />
@@ -641,8 +616,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/3.png"
           data-title="Join Us Worship Services (May 2-3)" data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/3.png" alt="Join Us Worship Services (May 2-3)"
               loading="lazy" />
@@ -660,8 +634,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/4.png" data-title="Worship With Us (May 23-24)"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/4.png" alt="Worship With Us (May 23-24)"
               loading="lazy" />
@@ -679,8 +652,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/5.png" data-title="Worship With Us (May 30-31)"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/5.png" alt="Worship With Us (May 30-31)"
               loading="lazy" />
@@ -698,8 +670,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/6.png" data-title="Sunday Worship Invitation"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/6.png" alt="Sunday Worship Invitation"
               loading="lazy" />
@@ -717,8 +688,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/7.png" data-title="Youth & Family Fellowship"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/7.png" alt="Youth & Family Fellowship"
               loading="lazy" />
@@ -736,8 +706,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/8.png" data-title="Midweek Prayer & Study"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/8.png" alt="Midweek Prayer & Study"
               loading="lazy" />
@@ -755,8 +724,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/9.png" data-title="Ministry Outreach Event"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/9.png" alt="Ministry Outreach Event"
               loading="lazy" />
@@ -774,8 +742,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/10.png" data-title="Worship & Fellowship Poster"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/10.png" alt="Worship & Fellowship Poster"
               loading="lazy" />
@@ -793,8 +760,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/11.png" data-title="Grace & Truth Sermon Series"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/11.png" alt="Grace & Truth Sermon Series"
               loading="lazy" />
@@ -812,8 +778,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/12.png" data-title="Kingdom Living Gathering"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/12.png" alt="Kingdom Living Gathering"
               loading="lazy" />
@@ -831,8 +796,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/13.png" data-title="Faith & Community Assembly"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/13.png" alt="Faith & Community Assembly"
               loading="lazy" />
@@ -850,8 +814,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/14.png" data-title="Praise & Thanksgiving Night"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/14.png" alt="Praise & Thanksgiving Night"
               loading="lazy" />
@@ -869,8 +832,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/15.png" data-title="Spiritual Renewal Weekend"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/15.png" alt="Spiritual Renewal Weekend"
               loading="lazy" />
@@ -888,8 +850,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/16.png" data-title="Sunday Celebration Service"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/16.png" alt="Sunday Celebration Service"
               loading="lazy" />
@@ -907,8 +868,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/17.png" data-title="Living Hope Ministry Campaign"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/17.png" alt="Living Hope Ministry Campaign"
               loading="lazy" />
@@ -926,8 +886,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/18.png" data-title="Discipleship & Leadership Night"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/18.png" alt="Discipleship & Leadership Night"
               loading="lazy" />
@@ -945,8 +904,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/19.png" data-title="Harvest & Blessing Service"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/19.png" alt="Harvest & Blessing Service"
               loading="lazy" />
@@ -964,8 +922,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/20.png" data-title="Gospel Outreach Campaign"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/20.png" alt="Gospel Outreach Campaign"
               loading="lazy" />
@@ -983,8 +940,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/21.png" data-title="Family & Faith Sunday"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/21.png" alt="Family & Faith Sunday"
               loading="lazy" />
@@ -1002,8 +958,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/22.png" data-title="Youth Ministry Night"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/22.png" alt="Youth Ministry Night"
               loading="lazy" />
@@ -1021,8 +976,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/23.png" data-title="Community Thanksgiving Poster"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/23.png" alt="Community Thanksgiving Poster"
               loading="lazy" />
@@ -1040,8 +994,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/24.png" data-title="Weekend Revival Service"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/24.png" alt="Weekend Revival Service"
               loading="lazy" />
@@ -1059,8 +1012,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/25.png" data-title="Prayer & Fasting Gathering"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/25.png" alt="Prayer & Fasting Gathering"
               loading="lazy" />
@@ -1078,8 +1030,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/26.png" data-title="Sunday Praise & Worship"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/26.png" alt="Sunday Praise & Worship"
               loading="lazy" />
@@ -1097,8 +1048,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/27.png" data-title="Biblical Foundation Series"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/27.png" alt="Biblical Foundation Series"
               loading="lazy" />
@@ -1116,8 +1066,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/28.png" data-title="Cross & Resurrection Banner"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/28.png" alt="Cross & Resurrection Banner"
               loading="lazy" />
@@ -1135,8 +1084,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/29.png" data-title="Walking by Faith Assembly"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/29.png" alt="Walking by Faith Assembly"
               loading="lazy" />
@@ -1154,8 +1102,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/30.png" data-title="Grace Revealed Ministry Ad"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/30.png" alt="Grace Revealed Ministry Ad"
               loading="lazy" />
@@ -1173,8 +1120,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/31.png" data-title="Annual Church Jubilee Poster"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/31.png" alt="Annual Church Jubilee Poster"
               loading="lazy" />
@@ -1192,8 +1138,7 @@
         <div class="post-card-behance" data-category="event-ads"
           data-img="Assets/Social Media Ads/calvary baptist church/32.png" data-title="Divine Fellowship Gathering"
           data-category-name="Event &amp; Church Ads"
-          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services."
-          data-link="social-media-ads.html">
+          data-desc="Official social media ad design for community outreach, ministry campaigns, and worship services.">
           <div class="post-card-img-wrap">
             <img src="Assets/Social Media Ads/calvary baptist church/32.png" alt="Divine Fellowship Gathering"
               loading="lazy" />
@@ -1210,8 +1155,7 @@
         <!-- Mockup Post 1 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/1.png"
           data-title="Product Packaging & Box Mockup" data-category-name="Mockups & Products"
-          data-desc="Photorealistic product mockup and 3D packaging layout for DTC client presentation."
-          data-link="smm-mockup.html">
+          data-desc="Photorealistic product mockup and 3D packaging layout for DTC client presentation.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/1.png" alt="Product Packaging & Box Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1227,8 +1171,7 @@
         <!-- Mockup Post 2 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/2.png"
           data-title="App & Digital Device Screen Mockup" data-category-name="Mockups & Products"
-          data-desc="High-resolution digital device mockup demonstrating multi-screen mobile responsiveness."
-          data-link="smm-mockup.html">
+          data-desc="High-resolution digital device mockup demonstrating multi-screen mobile responsiveness.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/2.png" alt="App & Digital Device Screen Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1244,8 +1187,7 @@
         <!-- Mockup Post 3 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/3.png"
           data-title="Brand Identity & Stationery Mockup" data-category-name="Mockups & Products"
-          data-desc="Premium corporate stationery, business cards, and brand asset mockup layout."
-          data-link="smm-mockup.html">
+          data-desc="Premium corporate stationery, business cards, and brand asset mockup layout.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/3.png" alt="Brand Identity & Stationery Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1261,8 +1203,7 @@
         <!-- Mockup Post 4 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/4.png"
           data-title="Cosmetic & Beauty Bottle Mockup" data-category-name="Mockups & Products"
-          data-desc="Clean, elegant cosmetic bottle packaging mockup with custom lighting and reflections."
-          data-link="smm-mockup.html">
+          data-desc="Clean, elegant cosmetic bottle packaging mockup with custom lighting and reflections.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/4.png" alt="Cosmetic & Beauty Bottle Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1278,8 +1219,7 @@
         <!-- Mockup Post 5 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/5.png"
           data-title="Beverage Can & Bottle Mockup" data-category-name="Mockups & Products"
-          data-desc="3D beverage container mockup designed for social media ad testing and product visualization."
-          data-link="smm-mockup.html">
+          data-desc="3D beverage container mockup designed for social media ad testing and product visualization.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/5.png" alt="Beverage Can & Bottle Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1295,8 +1235,7 @@
         <!-- Mockup Post 6 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/6.png"
           data-title="Apparel & T-Shirt Lifestyle Mockup" data-category-name="Mockups & Products"
-          data-desc="Streetwear apparel and fabric mockup showcasing print placement and realistic textile drape."
-          data-link="smm-mockup.html">
+          data-desc="Streetwear apparel and fabric mockup showcasing print placement and realistic textile drape.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/6.png" alt="Apparel & T-Shirt Lifestyle Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1312,8 +1251,7 @@
         <!-- Mockup Post 7 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/7.png"
           data-title="Minimalist Clean Device Showcase" data-category-name="Mockups & Products"
-          data-desc="Contemporary minimalist gadget screen mockup for UI/UX applications and website previews."
-          data-link="smm-mockup.html">
+          data-desc="Contemporary minimalist gadget screen mockup for UI/UX applications and website previews.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/7.png" alt="Minimalist Clean Device Showcase" loading="lazy" />
             <div class="post-card-overlay">
@@ -1329,8 +1267,7 @@
         <!-- Mockup Post 8 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/8.png"
           data-title="DTC Retail Box & Bag Presentation" data-category-name="Mockups & Products"
-          data-desc="E-commerce unboxing experience mockup including custom shipping boxes and retail bags."
-          data-link="smm-mockup.html">
+          data-desc="E-commerce unboxing experience mockup including custom shipping boxes and retail bags.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/8.png" alt="DTC Retail Box & Bag Presentation" loading="lazy" />
             <div class="post-card-overlay">
@@ -1346,8 +1283,7 @@
         <!-- Mockup Post 9 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/9.png"
           data-title="Modern Tech Hardware Mockup" data-category-name="Mockups & Products"
-          data-desc="Cutting-edge electronics and smart device presentation mockup with sleek dark-mode lighting."
-          data-link="smm-mockup.html">
+          data-desc="Cutting-edge electronics and smart device presentation mockup with sleek dark-mode lighting.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/9.png" alt="Modern Tech Hardware Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1363,8 +1299,7 @@
         <!-- Mockup Post 10 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/10.png"
           data-title="Commercial Editorial & Magazine Layout" data-category-name="Mockups & Products"
-          data-desc="Print publication and editorial spread mockup for lookbooks, portfolios, and catalogues."
-          data-link="smm-mockup.html">
+          data-desc="Print publication and editorial spread mockup for lookbooks, portfolios, and catalogues.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/10.png" alt="Commercial Editorial & Magazine Layout" loading="lazy" />
             <div class="post-card-overlay">
@@ -1380,8 +1315,7 @@
         <!-- Mockup Post 11 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/11.png"
           data-title="Outdoor & Activewear Apparel Mockup" data-category-name="Mockups & Products"
-          data-desc="Technical sportswear and hoodie mockup demonstrating athletic graphics and brand badge detailing."
-          data-link="smm-mockup.html">
+          data-desc="Technical sportswear and hoodie mockup demonstrating athletic graphics and brand badge detailing.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/11.png" alt="Outdoor & Activewear Apparel Mockup" loading="lazy" />
             <div class="post-card-overlay">
@@ -1397,8 +1331,7 @@
         <!-- Mockup Post 12 -->
         <div class="post-card-behance" data-category="mockups" data-img="Assets/Mock ups/12.png"
           data-title="Premium Luxury Packaging Presentation" data-category-name="Mockups & Products"
-          data-desc="High-end embossed packaging and luxury retail box presentation mockup with gold foil accents."
-          data-link="smm-mockup.html">
+          data-desc="High-end embossed packaging and luxury retail box presentation mockup with gold foil accents.">
           <div class="post-card-img-wrap">
             <img src="Assets/Mock ups/12.png" alt="Premium Luxury Packaging Presentation" loading="lazy" />
             <div class="post-card-overlay">
@@ -1410,6 +1343,219 @@
             <h3 class="post-card-title">Premium Luxury Packaging Presentation</h3>
           </div>
         </div>
+
+        <!-- ========================= BOOK COVERS (14) ========================= -->
+        <!-- Book Cover 1 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/1.png"
+          data-title="The Silent Echo — Fiction Novel" data-category-name="Book Cover Design"
+          data-desc="Professional editorial book cover combining bold typography with custom concept art.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/1.png" alt="The Silent Echo — Fiction Novel" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">The Silent Echo — Fiction Novel</h3>
+          </div>
+        </div>
+        <!-- Book Cover 2 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/2.png"
+          data-title="Digital Horizon — Tech & Innovation" data-category-name="Book Cover Design"
+          data-desc="Modern non-fiction book jacket design featuring futuristic geometric gradients.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/2.png" alt="Digital Horizon — Tech & Innovation" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Digital Horizon — Tech & Innovation</h3>
+          </div>
+        </div>
+        <!-- Book Cover 3 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/3.png"
+          data-title="Echoes of Eternity — Fantasy Series" data-category-name="Book Cover Design"
+          data-desc="Atmospheric fantasy novel cover with dynamic lighting and intricate title typography.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/3.png" alt="Echoes of Eternity — Fantasy Series" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Echoes of Eternity — Fantasy Series</h3>
+          </div>
+        </div>
+        <!-- Book Cover 4 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/4.png"
+          data-title="Mindset Mastery — Personal Growth" data-category-name="Book Cover Design"
+          data-desc="Minimalist self-development book cover layout optimized for Amazon KDP & print.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/4.png" alt="Mindset Mastery — Personal Growth" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Mindset Mastery — Personal Growth</h3>
+          </div>
+        </div>
+        <!-- Book Cover 5 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/5.png"
+          data-title="Beyond the Stars — Sci-Fi Thriller" data-category-name="Book Cover Design"
+          data-desc="Cinematic space exploration novel cover designed with high-contrast visual depth.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/5.png" alt="Beyond the Stars — Sci-Fi Thriller" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Beyond the Stars — Sci-Fi Thriller</h3>
+          </div>
+        </div>
+        <!-- Book Cover 6 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/6.png"
+          data-title="Urban Blueprint — Architecture & Art" data-category-name="Book Cover Design"
+          data-desc="Clean contemporary editorial book spread focusing on architectural aesthetics.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/6.png" alt="Urban Blueprint — Architecture & Art" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Urban Blueprint — Architecture & Art</h3>
+          </div>
+        </div>
+        <!-- Book Cover 7 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/7.png"
+          data-title="The Art of Strategy — Business Guide" data-category-name="Book Cover Design"
+          data-desc="Executive business and leadership book cover design engineered for commercial appeal.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/7.png" alt="The Art of Strategy — Business Guide" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">The Art of Strategy — Business Guide</h3>
+          </div>
+        </div>
+        <!-- Book Cover 8 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/8.png"
+          data-title="Whispers in the Dark — Mystery & Suspense" data-category-name="Book Cover Design"
+          data-desc="Dark and moody psychological thriller book jacket with evocative silhouettes.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/8.png" alt="Whispers in the Dark — Mystery & Suspense" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Whispers in the Dark — Mystery & Suspense</h3>
+          </div>
+        </div>
+        <!-- Book Cover 9 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/9.png"
+          data-title="Chronicles of the Soul — Poetry Anthology" data-category-name="Book Cover Design"
+          data-desc="Delicate literary poetry cover featuring refined serif typography and abstract textures.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/9.png" alt="Chronicles of the Soul — Poetry Anthology" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Chronicles of the Soul — Poetry Anthology</h3>
+          </div>
+        </div>
+        <!-- Book Cover 10 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/10.png"
+          data-title="Algorithmic Thinking — Tech & Code" data-category-name="Book Cover Design"
+          data-desc="Clean educational textbook cover design combining technical diagrams with modern layout.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/10.png" alt="Algorithmic Thinking — Tech & Code" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Algorithmic Thinking — Tech & Code</h3>
+          </div>
+        </div>
+        <!-- Book Cover 11 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/11.png"
+          data-title="Creative Resilience — Modern Creator" data-category-name="Book Cover Design"
+          data-desc="Vibrant creative handbook cover layout tailored for modern digital artists and entrepreneurs.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/11.png" alt="Creative Resilience — Modern Creator" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Creative Resilience — Modern Creator</h3>
+          </div>
+        </div>
+        <!-- Book Cover 12 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/12.png"
+          data-title="The Silent Fortress — Historical Drama" data-category-name="Book Cover Design"
+          data-desc="Epic historical narrative book cover featuring classical textures and dramatic lighting.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/12.png" alt="The Silent Fortress — Historical Drama" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">The Silent Fortress — Historical Drama</h3>
+          </div>
+        </div>
+        <!-- Book Cover 13 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/13.png"
+          data-title="Visions of Tomorrow — Speculative Design" data-category-name="Book Cover Design"
+          data-desc="Futuristic conceptual publication cover exploring next-generation digital culture.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/13.png" alt="Visions of Tomorrow — Speculative Design" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">Visions of Tomorrow — Speculative Design</h3>
+          </div>
+        </div>
+        <!-- Book Cover 14 -->
+        <div class="post-card-behance" data-category="book-covers" data-img="Assets/Book Cover/Book/14.png"
+          data-title="The Entrepreneur's Playbook — Scaling DTC" data-category-name="Book Cover Design"
+          data-desc="Bold, punchy business strategy book cover optimized for digital shelf visibility.">
+          <div class="post-card-img-wrap">
+            <img src="Assets/Book Cover/Book/14.png" alt="The Entrepreneur's Playbook — Scaling DTC" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">BOOK COVER DESIGN</span>
+            <h3 class="post-card-title">The Entrepreneur's Playbook — Scaling DTC</h3>
+          </div>
+        </div>
+
 
       </div>
     </div>
@@ -1622,17 +1768,25 @@
       </div>
 
       <div class="carousels-container-grid">
-        <!-- Carousel Deck 1: Housem8 Growth Framework -->
+        <!-- Carousel Deck 1: SMM Growth Strategy (Assets/carousell/1) -->
         <div class="carousel-deck-card" data-carousel-id="deck1">
           <div class="carousel-deck-header">
-            <h3 class="carousel-deck-title">Housem8 Growth Framework</h3>
-            <span class="carousel-slide-counter"><span class="current-slide">1</span> / 4</span>
+            <h3 class="carousel-deck-title">SMM Growth Strategy &bull; Vol. 01</h3>
+            <span class="carousel-slide-counter"><span class="current-slide">1</span> / 6</span>
           </div>
           <div class="carousel-stage-wrap">
-            <div class="carousel-slide-item active"><img src="Assets/SMM/Agape/SMM.png" alt="Slide 1" /></div>
-            <div class="carousel-slide-item"><img src="Assets/SMM/Agape/AGAPE ADS.png" alt="Slide 2" /></div>
-            <div class="carousel-slide-item"><img src="Assets/SMM/Agape/AGAPE ADS 1.png" alt="Slide 3" /></div>
-            <div class="carousel-slide-item"><img src="Assets/SMM/Agape/AGAPE ADS3.png" alt="Slide 4" /></div>
+            <div class="carousel-slide-item active"><img src="Assets/carousell/1/1.png" alt="Growth Strategy - Slide 1"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/1/2.png" alt="Growth Strategy - Slide 2"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/1/3.png" alt="Growth Strategy - Slide 3"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/1/4.png" alt="Growth Strategy - Slide 4"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/1/5.png" alt="Growth Strategy - Slide 5"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/1/11.png" alt="Growth Strategy - Slide 6"
+                loading="lazy" /></div>
           </div>
           <div class="carousel-nav-controls">
             <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i
@@ -1642,53 +1796,30 @@
               <span class="carousel-dot-indicator"></span>
               <span class="carousel-dot-indicator"></span>
               <span class="carousel-dot-indicator"></span>
+              <span class="carousel-dot-indicator"></span>
+              <span class="carousel-dot-indicator"></span>
             </div>
             <button class="carousel-btn next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
           </div>
         </div>
 
-        <!-- Carousel Deck 2: Apex Outdoors Brand Guide -->
+        <!-- Carousel Deck 2: Content Architecture (Assets/carousell/2) -->
         <div class="carousel-deck-card" data-carousel-id="deck2">
           <div class="carousel-deck-header">
-            <h3 class="carousel-deck-title">Apex Brand Guidelines</h3>
-            <span class="carousel-slide-counter"><span class="current-slide">1</span> / 4</span>
-          </div>
-          <div class="carousel-stage-wrap">
-            <div class="carousel-slide-item active"><img src="Assets/Brand Campaign/4.png" alt="Slide 1" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Brand Campaign/5.png" alt="Slide 2" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Brand Campaign/6.png" alt="Slide 3" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Brand Campaign/9.png" alt="Slide 4" /></div>
-          </div>
-          <div class="carousel-nav-controls">
-            <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i
-                class="fas fa-chevron-left"></i></button>
-            <div class="carousel-dots-wrap">
-              <span class="carousel-dot-indicator active"></span>
-              <span class="carousel-dot-indicator"></span>
-              <span class="carousel-dot-indicator"></span>
-              <span class="carousel-dot-indicator"></span>
-            </div>
-            <button class="carousel-btn next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </div>
-
-        <!-- Carousel Deck 3: Event Marketing Ads -->
-        <div class="carousel-deck-card" data-carousel-id="deck3">
-          <div class="carousel-deck-header">
-            <h3 class="carousel-deck-title">Agape Ministry Church Ads</h3>
+            <h3 class="carousel-deck-title">Content Architecture &bull; Vol. 02</h3>
             <span class="carousel-slide-counter"><span class="current-slide">1</span> / 5</span>
           </div>
           <div class="carousel-stage-wrap">
-            <div class="carousel-slide-item active"><img src="Assets/Social Media Ads/calvary baptist church/1.png"
-                alt="Slide 1 - In Christ (April 26)" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Social Media Ads/calvary baptist church/2.png"
-                alt="Slide 2 - In Christ (April 19)" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Social Media Ads/calvary baptist church/3.png"
-                alt="Slide 3 - Join Us Worship Services" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Social Media Ads/calvary baptist church/4.png"
-                alt="Slide 4 - Worship With Us (May 24)" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Social Media Ads/calvary baptist church/5.png"
-                alt="Slide 5 - Worship With Us (May 31)" /></div>
+            <div class="carousel-slide-item active"><img src="Assets/carousell/2/1.png"
+                alt="Content Architecture - Slide 1" loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/2/2.png" alt="Content Architecture - Slide 2"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/2/3.png" alt="Content Architecture - Slide 3"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/2/4.png" alt="Content Architecture - Slide 4"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/2/5.png" alt="Content Architecture - Slide 5"
+                loading="lazy" /></div>
           </div>
           <div class="carousel-nav-controls">
             <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i
@@ -1704,23 +1835,33 @@
           </div>
         </div>
 
-        <!-- Carousel Deck 4: Email Automation Flows -->
-        <div class="carousel-deck-card" data-carousel-id="deck4">
+        <!-- Carousel Deck 3: Brand Retention Systems (Assets/carousell/3) -->
+        <div class="carousel-deck-card" data-carousel-id="deck3">
           <div class="carousel-deck-header">
-            <h3 class="carousel-deck-title">Email Design &amp; Flows</h3>
-            <span class="carousel-slide-counter"><span class="current-slide">1</span> / 4</span>
+            <h3 class="carousel-deck-title">Brand Retention Systems &bull; Vol. 03</h3>
+            <span class="carousel-slide-counter"><span class="current-slide">1</span> / 6</span>
           </div>
           <div class="carousel-stage-wrap">
-            <div class="carousel-slide-item active"><img src="Assets/Email Design/1.png" alt="Slide 1" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Landing page/landing page.png" alt="Slide 2" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Mock ups/3.png" alt="Slide 3" /></div>
-            <div class="carousel-slide-item"><img src="Assets/Mock ups/4.png" alt="Slide 4" /></div>
+            <div class="carousel-slide-item active"><img src="Assets/carousell/3/1.png" alt="Brand Retention - Slide 1"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/3/2.png" alt="Brand Retention - Slide 2"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/3/3.png" alt="Brand Retention - Slide 3"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/3/4.png" alt="Brand Retention - Slide 4"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/3/5.png" alt="Brand Retention - Slide 5"
+                loading="lazy" /></div>
+            <div class="carousel-slide-item"><img src="Assets/carousell/3/6.png" alt="Brand Retention - Slide 6"
+                loading="lazy" /></div>
           </div>
           <div class="carousel-nav-controls">
             <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i
                 class="fas fa-chevron-left"></i></button>
             <div class="carousel-dots-wrap">
               <span class="carousel-dot-indicator active"></span>
+              <span class="carousel-dot-indicator"></span>
+              <span class="carousel-dot-indicator"></span>
               <span class="carousel-dot-indicator"></span>
               <span class="carousel-dot-indicator"></span>
               <span class="carousel-dot-indicator"></span>
@@ -1799,99 +1940,89 @@
   </section>
 
   <!-- =========================
-       #CERTIFICATES (VERIFIED CREDENTIALS & SPECIALIZATIONS)
+       TOOLS & SKILLS
   ========================= -->
-  <section id="certificates" class="section-behance" style="padding: 70px 0;">
+  <section id="skills" class="section-behance" style="padding: 70px 0;">
     <div class="behance-container">
-      <div class="behance-section-header">
-        <h2 class="behance-title-condensed">#CERTIFICATES</h2>
-        <span class="behance-subtitle-lime">Verified Accreditations, Cyber Security &amp; Professional
-          Credentials</span>
+      <div class="behance-section-header text-center">
+        <h2 class="behance-title-condensed">TOOLS &amp; SKILLS</h2>
+        <span class="behance-subtitle-lime">Creative Platforms &amp; Growth Technologies</span>
       </div>
 
-      <div class="certificates-showcase-grid">
-        <!-- Certificate 1: Cyber Hygiene Training -->
-        <div class="certificate-card-behance open-lightbox"
-          data-img="Assets/certificate/acf-cybersecurity-certificate.jpg"
-          data-title="Cyber Hygiene Training — APAC Cybersecurity Fund" data-category-name="Cyber Security"
-          data-desc="Awarded by PCCI HRDF, The Asia Foundation, and Google.org on January 27, 2026 for completing advanced cyber hygiene and security defense training.">
-          <div class="certificate-img-wrap">
-            <img src="Assets/certificate/acf-cybersecurity-certificate.jpg"
-              alt="Cyber Hygiene Training Certificate" loading="lazy" />
-            <div class="post-card-overlay">
-              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+      <div class="skills-category">
+        <div class="skills-category-header">
+          <h3 class="category-title"><i class="fas fa-palette"></i> DESIGN &amp; CREATIVE TOOLS</h3>
+          <span class="skills-badge">5 PLATFORMS</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/photoshop.png" alt="Photoshop" loading="lazy">
             </div>
+            <p class="skill-name">Photoshop</p>
           </div>
-          <div class="post-card-info">
-            <span class="post-card-category">APAC CYBERSECURITY FUND &bull; GOOGLE.ORG</span>
-            <h3 class="post-card-title">Cyber Hygiene Training</h3>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Figma.png" alt="Figma" loading="lazy">
+            </div>
+            <p class="skill-name">Figma</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Canva.png" alt="Canva" loading="lazy">
+            </div>
+            <p class="skill-name">Canva</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/XD.png" alt="Adobe XD" loading="lazy">
+            </div>
+            <p class="skill-name">Adobe XD</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Wix.png" alt="Wix" loading="lazy">
+            </div>
+            <p class="skill-name">Wix.com</p>
           </div>
         </div>
+      </div>
 
-        <!-- Certificate 2: World English Institute -->
-        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/WEI_82932.jpg"
-          data-title="World English Institute — Intermediate Course" data-category-name="English Proficiency"
-          data-desc="Awarded on August 07, 2025 by World English Institute (Gresham, Oregon, USA) certifying international business English proficiency.">
-          <div class="certificate-img-wrap">
-            <img src="Assets/certificate/WEI_82932.jpg" alt="World English Institute Certificate" loading="lazy" />
-            <div class="post-card-overlay">
-              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
-            </div>
-          </div>
-          <div class="post-card-info">
-            <span class="post-card-category">WORLD ENGLISH INSTITUTE (USA)</span>
-            <h3 class="post-card-title">English Proficiency Intermediate Course</h3>
-          </div>
+      <div class="skills-category" style="margin-top: 30px;">
+        <div class="skills-category-header">
+          <h3 class="category-title"><i class="fas fa-brain"></i> AI &amp; GROWTH PLATFORMS</h3>
+          <span class="skills-badge">5 PLATFORMS</span>
         </div>
-
-        <!-- Certificate 3: TESDA English for Business -->
-        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/Certificate_of_Completion.png"
-          data-title="English for Business and Entrepreneurship — TESDA" data-category-name="Business English"
-          data-desc="Credentialed by TESDA and National Institute for Technical Education (NITESD) on May 7, 2024 for mastering entrepreneurial correspondence and professional marketing English.">
-          <div class="certificate-img-wrap">
-            <img src="Assets/certificate/Certificate_of_Completion.png" alt="TESDA English for Business Certificate"
-              loading="lazy" />
-            <div class="post-card-overlay">
-              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/ChatGPT.png" alt="ChatGPT" loading="lazy">
             </div>
+            <p class="skill-name">ChatGPT</p>
           </div>
-          <div class="post-card-info">
-            <span class="post-card-category">TESDA &bull; NITESD</span>
-            <h3 class="post-card-title">English for Business &amp; Entrepreneurship</h3>
-          </div>
-        </div>
-
-        <!-- Certificate 4: Educator's Legal Toolkit -->
-        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/cabinta-jerome-p.png"
-          data-title="Educator's Legal Toolkit: Law 101 Essentials for the Classroom"
-          data-category-name="Educational Law"
-          data-desc="Certified on May 17, 2024 by CARL Institute and Carl E. Balita Review Center in educational compliance and classroom legal policy.">
-          <div class="certificate-img-wrap">
-            <img src="Assets/certificate/cabinta-jerome-p.png" alt="Educator's Legal Toolkit Certificate"
-              loading="lazy" />
-            <div class="post-card-overlay">
-              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Gemini.png" alt="Gemini" loading="lazy">
             </div>
+            <p class="skill-name">Gemini</p>
           </div>
-          <div class="post-card-info">
-            <span class="post-card-category">CARL INSTITUTE &bull; DR. CARL BALITA</span>
-            <h3 class="post-card-title">Educator's Legal Toolkit: Law 101</h3>
-          </div>
-        </div>
-
-        <!-- Certificate 5: TEFL Certificate -->
-        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/TEFL-certificate-1.png"
-          data-title="TEFL Professional Certification — 120 Hours" data-category-name="International Accreditation"
-          data-desc="Internationally accredited Teaching English as a Foreign Language (TEFL) certification for global instruction and communication.">
-          <div class="certificate-img-wrap">
-            <img src="Assets/certificate/TEFL-certificate-1.png" alt="TEFL Certificate" loading="lazy" />
-            <div class="post-card-overlay">
-              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Apollo.png" alt="Apollo.io" loading="lazy">
             </div>
+            <p class="skill-name">Apollo.io</p>
           </div>
-          <div class="post-card-info">
-            <span class="post-card-category">TEFL INTERNATIONAL</span>
-            <h3 class="post-card-title">TEFL Professional Certification</h3>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Slack.png" alt="Slack" loading="lazy">
+            </div>
+            <p class="skill-name">Slack</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon-wrapper">
+              <img src="Assets/Tools/Google sheet.png" alt="Google Sheets" loading="lazy">
+            </div>
+            <p class="skill-name">Google Sheets</p>
           </div>
         </div>
       </div>
@@ -1985,57 +2116,99 @@
   </section>
 
   <!-- =========================
-       TOOLS & SKILLS
+       #CERTIFICATES (VERIFIED CREDENTIALS & SPECIALIZATIONS)
   ========================= -->
-  <section id="skills" class="section-behance" style="padding: 70px 0;">
+  <section id="certificates" class="section-behance" style="padding: 70px 0;">
     <div class="behance-container">
-      <div class="behance-section-header text-center">
-        <h2 class="behance-title-condensed">TOOLS &amp; SKILLS</h2>
-        <span class="behance-subtitle-lime">Creative Platforms &amp; Growth Technologies</span>
+      <div class="behance-section-header">
+        <h2 class="behance-title-condensed">#CERTIFICATES</h2>
+        <span class="behance-subtitle-lime">Verified Accreditations, Cyber Security &amp; Professional
+          Credentials</span>
       </div>
 
-      <div class="skills-category">
-        <h3 class="category-title"
-          style="color: var(--behance-lime); font-family: var(--font-condensed); font-size: 1.5rem; letter-spacing: 1px;">
-          DESIGN &amp; CREATIVE TOOLS</h3>
-        <div class="skills-grid">
-          <div class="skill-card"><img src="Assets/Tools/photoshop.png" alt="Photoshop">
-            <p>Photoshop</p>
+      <div class="certificates-showcase-grid">
+        <!-- Certificate 1: Cyber Hygiene Training -->
+        <div class="certificate-card-behance open-lightbox"
+          data-img="Assets/certificate/acf-cybersecurity-certificate.jpg"
+          data-title="Cyber Hygiene Training — APAC Cybersecurity Fund" data-category-name="Cyber Security"
+          data-desc="Awarded by PCCI HRDF, The Asia Foundation, and Google.org on January 27, 2026 for completing advanced cyber hygiene and security defense training.">
+          <div class="certificate-img-wrap">
+            <img src="Assets/certificate/acf-cybersecurity-certificate.jpg" alt="Cyber Hygiene Training Certificate"
+              loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
           </div>
-          <div class="skill-card"><img src="Assets/Tools/Figma.png" alt="Figma">
-            <p>Figma</p>
-          </div>
-          <div class="skill-card"><img src="Assets/Tools/Canva.png" alt="Canva">
-            <p>Canva</p>
-          </div>
-          <div class="skill-card"><img src="Assets/Tools/XD.png" alt="Adobe XD">
-            <p>Adobe XD</p>
-          </div>
-          <div class="skill-card"><img src="Assets/Tools/Wix.png" alt="Wix">
-            <p>Wix.com</p>
+          <div class="post-card-info">
+            <span class="post-card-category">APAC CYBERSECURITY FUND &bull; GOOGLE.ORG</span>
+            <h3 class="post-card-title">Cyber Hygiene Training</h3>
           </div>
         </div>
-      </div>
 
-      <div class="skills-category" style="margin-top: 30px;">
-        <h3 class="category-title"
-          style="color: var(--behance-lime); font-family: var(--font-condensed); font-size: 1.5rem; letter-spacing: 1px;">
-          AI &amp; GROWTH PLATFORMS</h3>
-        <div class="skills-grid">
-          <div class="skill-card"><img src="Assets/Tools/ChatGPT.png" alt="ChatGPT">
-            <p>ChatGPT</p>
+        <!-- Certificate 2: World English Institute -->
+        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/WEI_82932.jpg"
+          data-title="World English Institute — Intermediate Course" data-category-name="English Proficiency"
+          data-desc="Awarded on August 07, 2025 by World English Institute (Gresham, Oregon, USA) certifying international business English proficiency.">
+          <div class="certificate-img-wrap">
+            <img src="Assets/certificate/WEI_82932.jpg" alt="World English Institute Certificate" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
           </div>
-          <div class="skill-card"><img src="Assets/Tools/Gemini.png" alt="Gemini">
-            <p>Gemini</p>
+          <div class="post-card-info">
+            <span class="post-card-category">WORLD ENGLISH INSTITUTE (USA)</span>
+            <h3 class="post-card-title">English Proficiency Intermediate Course</h3>
           </div>
-          <div class="skill-card"><img src="Assets/Tools/Apollo.png" alt="Apollo.io">
-            <p>Apollo.io</p>
+        </div>
+
+        <!-- Certificate 3: TESDA English for Business -->
+        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/Certificate_of_Completion.png"
+          data-title="English for Business and Entrepreneurship — TESDA" data-category-name="Business English"
+          data-desc="Credentialed by TESDA and National Institute for Technical Education (NITESD) on May 7, 2024 for mastering entrepreneurial correspondence and professional marketing English.">
+          <div class="certificate-img-wrap">
+            <img src="Assets/certificate/Certificate_of_Completion.png" alt="TESDA English for Business Certificate"
+              loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
           </div>
-          <div class="skill-card"><img src="Assets/Tools/Slack.png" alt="Slack">
-            <p>Slack</p>
+          <div class="post-card-info">
+            <span class="post-card-category">TESDA &bull; NITESD</span>
+            <h3 class="post-card-title">English for Business &amp; Entrepreneurship</h3>
           </div>
-          <div class="skill-card"><img src="Assets/Tools/Google sheet.png" alt="Google Sheets">
-            <p>Google Sheets</p>
+        </div>
+
+        <!-- Certificate 4: Educator's Legal Toolkit -->
+        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/cabinta-jerome-p.png"
+          data-title="Educator's Legal Toolkit: Law 101 Essentials for the Classroom"
+          data-category-name="Educational Law"
+          data-desc="Certified on May 17, 2024 by CARL Institute and Carl E. Balita Review Center in educational compliance and classroom legal policy.">
+          <div class="certificate-img-wrap">
+            <img src="Assets/certificate/cabinta-jerome-p.png" alt="Educator's Legal Toolkit Certificate"
+              loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">CARL INSTITUTE &bull; DR. CARL BALITA</span>
+            <h3 class="post-card-title">Educator's Legal Toolkit: Law 101</h3>
+          </div>
+        </div>
+
+        <!-- Certificate 5: TEFL Certificate -->
+        <div class="certificate-card-behance open-lightbox" data-img="Assets/certificate/TEFL-certificate-1.png"
+          data-title="TEFL Professional Certification — 120 Hours" data-category-name="International Accreditation"
+          data-desc="Internationally accredited Teaching English as a Foreign Language (TEFL) certification for global instruction and communication.">
+          <div class="certificate-img-wrap">
+            <img src="Assets/certificate/TEFL-certificate-1.png" alt="TEFL Certificate" loading="lazy" />
+            <div class="post-card-overlay">
+              <div class="glass-play-btn"><i class="fas fa-magnifying-glass-plus"></i></div>
+            </div>
+          </div>
+          <div class="post-card-info">
+            <span class="post-card-category">TEFL INTERNATIONAL</span>
+            <h3 class="post-card-title">TEFL Professional Certification</h3>
           </div>
         </div>
       </div>
@@ -2199,25 +2372,42 @@
                 </a>
               </div>
 
-              <!-- Social Channels -->
-              <div class="outro-action-item">
-                <div class="outro-action-left">
-                  <div class="outro-action-icon"><i class="fas fa-share-nodes"></i></div>
-                  <div class="outro-action-text">
-                    <h4>SOCIAL CHANNELS</h4>
-                    <p>Instagram &bull; LinkedIn &bull; Facebook</p>
-                  </div>
+              <!-- Social Channels QR Hub -->
+              <div class="social-qr-container">
+                <div class="social-qr-header-bar">
+                  <span class="social-qr-title"><i class="fas fa-qrcode"></i> SCAN TO CONNECT &bull; SOCIAL QR
+                    CODES</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-light);">TAP OR
+                    SCAN</span>
                 </div>
-                <div style="display: flex; gap: 8px;">
+
+                <div class="social-qr-grid">
+                  <!-- Instagram QR -->
                   <a href="https://www.instagram.com/jerome_cabinta/" target="_blank" rel="noopener noreferrer"
-                    class="btn-behance-outline" style="padding: 8px 12px;" title="Instagram"><i
-                      class="fab fa-instagram"></i></a>
+                    class="social-qr-card ig" title="Scan or tap to open Instagram">
+                    <span class="social-qr-platform-badge"><i class="fab fa-instagram"></i> Instagram</span>
+                    <div class="social-qr-frame">
+                      <img src="Assets/QR/instagram-qr.svg" alt="Jerome Cabinta Instagram QR Code" loading="lazy" />
+                    </div>
+                  </a>
+
+                  <!-- LinkedIn QR -->
                   <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" target="_blank"
-                    rel="noopener noreferrer" class="btn-behance-outline" style="padding: 8px 12px;" title="LinkedIn"><i
-                      class="fab fa-linkedin-in"></i></a>
+                    rel="noopener noreferrer" class="social-qr-card li" title="Scan or tap to connect on LinkedIn">
+                    <span class="social-qr-platform-badge"><i class="fab fa-linkedin-in"></i> LinkedIn</span>
+                    <div class="social-qr-frame">
+                      <img src="Assets/QR/linkedin-qr.svg" alt="Jerome Cabinta LinkedIn QR Code" loading="lazy" />
+                    </div>
+                  </a>
+
+                  <!-- Facebook QR -->
                   <a href="https://www.facebook.com/profile.php?id=61579246614635" target="_blank"
-                    rel="noopener noreferrer" class="btn-behance-outline" style="padding: 8px 12px;" title="Facebook"><i
-                      class="fab fa-facebook-f"></i></a>
+                    rel="noopener noreferrer" class="social-qr-card fb" title="Scan or tap to message on Facebook">
+                    <span class="social-qr-platform-badge"><i class="fab fa-facebook-f"></i> Facebook</span>
+                    <div class="social-qr-frame">
+                      <img src="Assets/QR/facebook-qr.svg" alt="Jerome Cabinta Facebook QR Code" loading="lazy" />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -2227,7 +2417,8 @@
           <div class="growth-proposal-card"
             style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 24px; padding: 34px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-              <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0; color: #ffffff;">REQUEST GROWTH PROPOSAL</h3>
+              <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0; color: var(--text);">REQUEST GROWTH PROPOSAL
+              </h3>
               <span
                 style="background: var(--behance-lime); color: #000; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;">24H
                 RESPONSE</span>
@@ -2298,12 +2489,6 @@
       <div class="slider-dots" id="slider-dots"></div>
       <h3 id="modal-title" style="margin-top: 14px; font-weight: 800;"></h3>
       <p id="modal-desc" style="color: var(--text-light); font-size: 0.95rem;"></p>
-      <div class="modal-footer">
-        <a id="modal-visit-btn" href="#" target="_blank" class="btn-behance-primary"
-          style="display: none; padding: 8px 18px; font-size: 0.85rem;">
-          <i class="fas fa-arrow-up-right-from-square"></i> Visit Project
-        </a>
-      </div>
     </div>
   </div>
 
@@ -2314,7 +2499,7 @@
     <div class="modal-content"
       style="max-width: 800px; padding: 20px; background: #000000; border: 1px solid var(--border); border-radius: 24px;">
       <button class="close" id="videoModalClose" aria-label="Close video"><i class="fas fa-times"></i></button>
-      <h3 id="videoModalTitle" style="color: #ffffff; margin-bottom: 16px; font-weight: 800;">Video Showcase</h3>
+      <h3 id="videoModalTitle" style="color: var(--text); margin-bottom: 16px; font-weight: 800;">Video Showcase</h3>
       <div id="videoModalContainer"
         style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #070d08;">
         <!-- Video element or iframe inserted via JS -->
