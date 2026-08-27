@@ -1483,6 +1483,42 @@ document.addEventListener("DOMContentLoaded", () => {
     highlightNavOnScroll();
   }
 
+  // Smooth scroll handler for all in-page anchor links including Home & Brand Logo
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (!href || href === "#") return;
+
+      if (href === "#hero") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (history.pushState) {
+          history.pushState(null, null, " ");
+        }
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const navOffset = 70;
+        const targetPos = target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - navOffset;
+        window.scrollTo({ top: targetPos, behavior: "smooth" });
+        if (history.pushState) {
+          history.pushState(null, null, href);
+        }
+      }
+    });
+  });
+
+  // Ensure page resets to top on initial page load if hash is empty or #hero
+  if (window.location.hash === "" || window.location.hash === "#hero") {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }
+
   /* ==========================================================================
      TESTIMONIAL SLIDER ENGINE
      ========================================================================== */
@@ -1608,14 +1644,22 @@ document.addEventListener("DOMContentLoaded", () => {
         t.classList.toggle("active", isActive);
         const offset = i - newIndex;
         t.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${Math.abs(offset) * 0.05}s`;
-        if (isActive && typeof t.scrollIntoView === "function") {
-          t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
       });
+
+      // Update thumbnail pill container scroll directly without window scroll
+      if (thumbStrip && thumbs[newIndex] && thumbStrip.scrollWidth > thumbStrip.clientWidth) {
+        const activeThumb = thumbs[newIndex];
+        const targetLeft = activeThumb.offsetLeft - (thumbStrip.clientWidth / 2) + (activeThumb.clientWidth / 2);
+        thumbStrip.scrollLeft = targetLeft;
+      }
     }
+
+    let autoSlide = null;
+    let isTestiVisible = false;
 
     function resetAutoSlide() {
       if (autoSlide) clearInterval(autoSlide);
+      if (!isTestiVisible) return;
       autoSlide = setInterval(() => {
         const newIndex = (currentTestiIndex + 1) % testimonials.length;
         goToTestiSlide(newIndex);
@@ -1698,14 +1742,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, { passive: true });
 
-    let autoSlide = setInterval(() => {
-      const newIndex = (currentTestiIndex + 1) % testimonials.length;
-      goToTestiSlide(newIndex);
-    }, 6000);
-
     const testiSection = document.querySelector(".testi-slider-section");
+    if (testiSection && "IntersectionObserver" in window) {
+      const testiObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isTestiVisible = entry.isIntersecting;
+          if (isTestiVisible) {
+            resetAutoSlide();
+          } else {
+            if (autoSlide) clearInterval(autoSlide);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      testiObserver.observe(testiSection);
+    } else {
+      isTestiVisible = true;
+      resetAutoSlide();
+    }
+
     if (testiSection) {
-      testiSection.addEventListener("mouseenter", () => clearInterval(autoSlide));
+      testiSection.addEventListener("mouseenter", () => {
+        if (autoSlide) clearInterval(autoSlide);
+      });
       testiSection.addEventListener("mouseleave", () => resetAutoSlide());
     }
 
