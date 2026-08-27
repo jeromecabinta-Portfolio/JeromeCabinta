@@ -26,7 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (parent) {
           e.preventDefault();
           e.stopPropagation();
-          parent.classList.toggle("open");
+          const isCurrentlyOpen = parent.classList.contains("open");
+          navLinks.querySelectorAll(".nav-dropdown-item.open").forEach(d => {
+            if (d !== parent) {
+              d.classList.remove("open");
+              const t = d.querySelector(".nav-dropdown-toggle");
+              if (t) t.setAttribute("aria-expanded", "false");
+            }
+          });
+          parent.classList.toggle("open", !isCurrentlyOpen);
+          toggle.setAttribute("aria-expanded", !isCurrentlyOpen ? "true" : "false");
         }
       });
     });
@@ -36,7 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
         hamburger.classList.remove("active");
         navLinks.classList.remove("show");
         const openDropdowns = navLinks.querySelectorAll(".nav-dropdown-item.open");
-        openDropdowns.forEach(d => d.classList.remove("open"));
+        openDropdowns.forEach(d => {
+          d.classList.remove("open");
+          const t = d.querySelector(".nav-dropdown-toggle");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
 
         const targetFilter = link.getAttribute("data-switch-filter");
         if (targetFilter) {
@@ -49,11 +62,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.addEventListener("click", (e) => {
+      const openDropdowns = document.querySelectorAll(".nav-dropdown-item.open");
+      openDropdowns.forEach(d => {
+        if (!d.contains(e.target)) {
+          d.classList.remove("open");
+          const toggle = d.querySelector(".nav-dropdown-toggle");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+
       if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove("active");
         navLinks.classList.remove("show");
-        const openDropdowns = navLinks.querySelectorAll(".nav-dropdown-item.open");
-        openDropdowns.forEach(d => d.classList.remove("open"));
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll(".nav-dropdown-item.open").forEach(d => {
+          d.classList.remove("open");
+          const toggle = d.querySelector(".nav-dropdown-toggle");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+        });
       }
     });
   }

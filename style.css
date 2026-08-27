@@ -432,7 +432,6 @@ body:not(.dark) #custom-nav {
   color: var(--text-light);
 }
 
-.nav-dropdown-item:hover .nav-dropdown-toggle .nav-caret,
 .nav-dropdown-item.open .nav-dropdown-toggle .nav-caret {
   transform: rotate(180deg);
   color: var(--behance-lime);
@@ -477,9 +476,7 @@ body:not(.dark) #custom-nav {
   border-top: 1px solid var(--canvas-border);
 }
 
-/* Hover & Open States */
-.nav-dropdown-item:hover .nav-dropdown-menu,
-.nav-dropdown-item:focus-within .nav-dropdown-menu,
+/* Click Triggered Open State */
 .nav-dropdown-item.open .nav-dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -571,29 +568,50 @@ body:not(.dark) .dropdown-link:hover {
   .nav-dropdown-item {
     width: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .nav-dropdown-toggle {
-    width: 100%;
-    justify-content: space-between;
-    padding: 10px 0;
+    width: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 600;
   }
 
   .nav-dropdown-menu {
     position: static;
     transform: none !important;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    width: 90%;
+    min-width: unset;
+    box-shadow: none;
+    border: 1px solid var(--canvas-border);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 8px;
+    margin-top: 10px;
+    transition: all 0.25s ease;
+  }
+
+  body:not(.dark) .nav-dropdown-menu {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-dropdown-item.open .nav-dropdown-menu {
+    display: flex;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    width: 100%;
-    min-width: 100%;
-    box-shadow: none;
-    border: none;
-    background: transparent;
-    padding: 4px 0 6px 12px;
-    border-left: 2px solid var(--behance-lime-dim);
-    margin-top: 2px;
   }
 
   .nav-dropdown-menu::before {
@@ -602,6 +620,8 @@ body:not(.dark) .dropdown-link:hover {
 
   .dropdown-link {
     padding: 8px 10px;
+    width: 100%;
+    text-align: left;
   }
 }
 
