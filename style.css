@@ -270,6 +270,121 @@ body:not(.dark) #custom-nav {
   font-size: 1.5rem;
 }
 
+/* Brand Logo in Navbar */
+.nav-brand-wrap {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.nav-brand-wrap:hover {
+  transform: translateY(-1px);
+}
+
+.nav-brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 0 15px rgba(249, 158, 26, 0.35);
+  border: 1.5px solid rgba(249, 158, 26, 0.4);
+  background: #000000;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.nav-brand-wrap:hover .nav-brand-logo {
+  transform: scale(1.06) rotate(5deg);
+  box-shadow: 0 0 22px rgba(249, 158, 26, 0.6);
+  border-color: var(--behance-lime);
+}
+
+.nav-brand-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.nav-brand-name {
+  font-family: var(--font-condensed);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--text);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.nav-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--behance-lime);
+  letter-spacing: 1.5px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Hero Brand Pill */
+.hero-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(249, 158, 26, 0.08);
+  border: 1px solid rgba(249, 158, 26, 0.25);
+  padding: 6px 18px 6px 8px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(249, 158, 26, 0.15);
+  transition: all 0.3s ease;
+}
+
+.hero-brand-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--behance-lime);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--behance-lime-glow);
+  background: rgba(249, 158, 26, 0.12);
+}
+
+.hero-brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 1px solid rgba(249, 158, 26, 0.4);
+  background: #000000;
+  flex-shrink: 0;
+}
+
+.hero-brand-pill-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.hero-brand-pill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--behance-lime);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero-brand-pill-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
 .nav-links {
   display: flex;
   list-style: none;
