@@ -1604,9 +1604,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateThumbs(newIndex) {
       thumbs.forEach((t, i) => {
-        t.classList.toggle("active", i === newIndex);
+        const isActive = i === newIndex;
+        t.classList.toggle("active", isActive);
         const offset = i - newIndex;
         t.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${Math.abs(offset) * 0.05}s`;
+        if (isActive && typeof t.scrollIntoView === "function") {
+          t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
       });
     }
 
@@ -1665,6 +1669,34 @@ document.addEventListener("DOMContentLoaded", () => {
         goToTestiSlide(idx);
       });
     });
+
+    // Touch Swipe Gesture Support for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    testiBg.addEventListener("touchstart", (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
+    }, { passive: true });
+
+    testiBg.addEventListener("touchend", (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) {
+            // Swipe Left -> Next
+            const newIndex = (currentTestiIndex + 1) % testimonials.length;
+            goToTestiSlide(newIndex);
+          } else {
+            // Swipe Right -> Prev
+            const newIndex = (currentTestiIndex - 1 + testimonials.length) % testimonials.length;
+            goToTestiSlide(newIndex);
+          }
+        }
+      }
+    }, { passive: true });
 
     let autoSlide = setInterval(() => {
       const newIndex = (currentTestiIndex + 1) % testimonials.length;
