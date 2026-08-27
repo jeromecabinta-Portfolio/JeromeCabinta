@@ -1492,6 +1492,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         name: "Jonel Uligan",
         role: "Web Developer",
+        company: "Agape Reaching People Ministries Benguet PH",
         text: '"Thank you Jerome for your commitment and enthusiasm for the work. All the best!"',
         img: "Assets/Test/JU.avif",
         stars: 5
@@ -1499,6 +1500,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         name: "Angelito James Bustos",
         role: "School Administrative",
+        company: "Northridge Institute of Business and Technology Inc. - Baguio",
         text: '"Jerome is one of the most dedicated and reliable employees I\'ve worked with. He is proactive in addressing issues, always coming up with creative and effective solutions."',
         img: "Assets/Test/JB.avif",
         stars: 5
@@ -1506,13 +1508,15 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         name: "Arlene Diola",
         role: "Graphics Designer",
+        company: "Ar & Co. Rock Creatives",
         text: '"Thank you, Jerome, for your dedication and creative energy. Your attention to detail and collaborative spirit truly made a difference."',
         img: "Assets/Test/AR.jpg",
         stars: 5
       },
       {
         name: "Rodilene Binay-an Ricardo",
-        role: "MPSP - Coordinator",
+        role: "MPSP Coordinator",
+        company: "Agape Reaching People Ministries Benguet PH",
         text: '"Thank you, Jerome, for your dedication and creative energy. Your attention to detail and collaborative spirit truly made a difference."',
         img: "Assets/Test/RR.avif",
         stars: 5
@@ -1520,6 +1524,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         name: "Gemma Lawangen",
         role: "Social Media Manager",
+        company: "Calvary Baptist Church of Baguio City Inc.",
         text: '"Jerome is a reliable and creative team player. He consistently delivers high-quality work and brings fresh ideas to every project."',
         img: "Assets/Test/Jem.png",
         stars: 5
@@ -1531,6 +1536,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const activeName = document.getElementById("testi-active-name");
     const activeRole = document.getElementById("testi-active-role");
+    const activeCompany = document.getElementById("testi-active-company");
     const activeText = document.getElementById("testi-active-text");
     const activeStars = document.getElementById("testi-active-stars");
     const activeImg = document.getElementById("testi-active-img");
@@ -1551,7 +1557,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animateContentOut() {
-      const elements = [label, activeName, activeRole, activeText, activeStars].filter(Boolean);
+      const elements = [label, activeName, activeRole, activeCompany, activeText, activeStars].filter(Boolean);
       elements.forEach((el, i) => {
         el.style.transition = `all 0.35s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.04}s`;
         el.style.opacity = "0";
@@ -1561,7 +1567,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animateContentIn() {
-      const elements = [label, activeName, activeRole, activeText, activeStars].filter(Boolean);
+      const elements = [label, activeName, activeRole, activeCompany, activeText, activeStars].filter(Boolean);
       elements.forEach(el => {
         el.style.transition = "none";
         el.style.opacity = "0";
@@ -1624,6 +1630,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         if (activeName) activeName.textContent = data.name;
         if (activeRole) activeRole.textContent = data.role;
+        if (activeCompany) activeCompany.textContent = data.company;
         if (activeText) activeText.textContent = data.text;
         if (activeStars) activeStars.innerHTML = generateStars(data.stars);
         if (counterCurrent) counterCurrent.textContent = padIndex(newIndex);
