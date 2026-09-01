@@ -2909,11 +2909,13 @@ body.light .social-btn {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 2000;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(6px);
+  z-index: 100005;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 20px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -2926,16 +2928,19 @@ body.light .social-btn {
   position: relative;
   text-align: center;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .close {
   position: absolute;
   top: 18px;
-  right: 24px;
+  right: 20px;
   width: 44px;
   height: 44px;
-  background: var(--surface-2, rgba(255, 255, 255, 0.15));
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.25));
+  background: rgba(18, 16, 14, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2943,18 +2948,24 @@ body.light .social-btn {
   font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
-  color: var(--text, #fff);
+  color: #ffffff;
   z-index: 100;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
   outline: none;
+  padding: 0;
 }
 
 .close:hover {
   background: #ff4757;
   color: #ffffff;
   border-color: #ff4757;
-  transform: scale(1.12) rotate(90deg);
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.5);
+}
+
+.close:active {
+  transform: scale(0.95);
 }
 
 .modal-slider-wrapper {
@@ -3477,11 +3488,11 @@ body.dark .author-name {
   }
 
   .close {
-    top: 12px;
+    top: 14px;
     right: 14px;
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1.15rem;
   }
 
   /* YouTube thumbnail on mobile */
@@ -8548,7 +8559,7 @@ body.dark .cer-dot {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 100005;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8600,14 +8611,14 @@ body.dark .cer-dot {
 
 .lightbox-close {
   position: fixed;
-  top: 24px;
-  right: 28px;
+  top: 20px;
+  right: 20px;
   width: 48px;
   height: 48px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(18, 16, 14, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -8616,10 +8627,10 @@ body.dark .cer-dot {
   line-height: 1;
   color: #ffffff;
   cursor: pointer;
-  z-index: 99999;
+  z-index: 100010;
   pointer-events: auto;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   outline: none;
 }
 
@@ -11218,9 +11229,9 @@ body {
   .close {
     top: 12px;
     right: 12px;
-    width: 38px;
-    height: 38px;
-    font-size: 1.1rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1.15rem;
   }
 
   #modal-image-scroll img {
