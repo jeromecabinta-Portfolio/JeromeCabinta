@@ -9946,8 +9946,9 @@ body.dark .carousel-btn {
    ========================================================================== */
 .thumbnails-showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 28px;
+  width: 100%;
 }
 
 .thumbnail-card-behance {
@@ -9955,8 +9956,14 @@ body.dark .carousel-btn {
   border: 1px solid var(--canvas-border);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.35s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .thumbnail-card-behance:hover {
@@ -9965,11 +9972,16 @@ body.dark .carousel-btn {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 158, 26, 0.2);
 }
 
+.thumbnail-card-behance:active {
+  transform: scale(0.98);
+}
+
 .thumbnail-img-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  background: #141210;
 }
 
 .thumbnail-img-wrap img {
@@ -9977,11 +9989,18 @@ body.dark .carousel-btn {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .thumbnail-card-behance:hover .thumbnail-img-wrap img {
   transform: scale(1.05);
+}
+
+.thumbnail-card-behance .post-card-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /* ==========================================================================
@@ -10908,7 +10927,8 @@ body {
   }
 
   .thumbnails-showcase-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 24px;
   }
 }
 
@@ -10972,6 +10992,11 @@ body {
 
   .services-behance-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .thumbnails-showcase-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 22px;
   }
 }
 
@@ -11075,8 +11100,8 @@ body {
   }
 
   .thumbnails-showcase-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 18px;
   }
 
   .certificates-showcase-grid {
@@ -11302,6 +11327,28 @@ body {
     width: 16px;
   }
 
+  .thumbnails-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .thumbnail-card-behance {
+    border-radius: 16px;
+  }
+
+  .thumbnail-card-behance .post-card-info {
+    padding: 14px 14px 16px 14px;
+  }
+
+  .thumbnail-card-behance .post-card-title {
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .thumbnail-card-behance .post-card-category {
+    font-size: 0.68rem;
+  }
+
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
@@ -11409,6 +11456,27 @@ body {
 
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .thumbnails-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .thumbnail-card-behance {
+    border-radius: 14px;
+  }
+
+  .thumbnail-card-behance .post-card-info {
+    padding: 12px 10px 14px 10px;
+  }
+
+  .thumbnail-card-behance .post-card-title {
+    font-size: 0.92rem;
+  }
+
+  .thumbnail-card-behance .post-card-category {
+    font-size: 0.62rem;
   }
 
   .testi-slider-bg {
