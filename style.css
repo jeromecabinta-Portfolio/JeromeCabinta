@@ -9692,6 +9692,7 @@ body.dark .timeline-behance-card {
 }
 
 .post-card-behance:hover .post-card-overlay,
+.thumbnail-card-behance:hover .post-card-overlay,
 .certificate-card-behance:hover .post-card-overlay,
 .story-card-916:hover .post-card-overlay {
   opacity: 1;
