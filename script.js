@@ -2060,7 +2060,7 @@ document.addEventListener("DOMContentLoaded", () => {
       imageElem.alt = title;
       imageElem.id = "modal-img";
       imageElem.style.width = "100%";
-      imageElem.style.maxHeight = "72vh";
+      imageElem.style.maxHeight = window.innerWidth <= 768 ? "58dvh" : "70vh";
       imageElem.style.objectFit = "contain";
       imageElem.style.display = "block";
       imageElem.style.margin = "0 auto";

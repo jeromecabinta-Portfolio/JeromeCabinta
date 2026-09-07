@@ -9960,6 +9960,7 @@ body.dark .carousel-btn {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 28px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .thumbnail-card-behance {
@@ -9967,7 +9968,10 @@ body.dark .carousel-btn {
   border: 1px solid var(--canvas-border);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              background-color 0.35s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -9975,16 +9979,33 @@ body.dark .carousel-btn {
   width: 100%;
   box-sizing: border-box;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.thumbnail-card-behance:hover {
-  transform: translateY(-5px);
-  border-color: var(--behance-lime);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 158, 26, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .thumbnail-card-behance:hover {
+    transform: translateY(-5px);
+    border-color: var(--behance-lime);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 158, 26, 0.2);
+  }
+
+  .thumbnail-card-behance:hover .thumbnail-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .thumbnail-card-behance:hover .post-card-overlay {
+    opacity: 1;
+  }
 }
 
 .thumbnail-card-behance:active {
   transform: scale(0.98);
+  border-color: var(--behance-lime);
 }
 
 .thumbnail-img-wrap {
@@ -9993,6 +10014,10 @@ body.dark .carousel-btn {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #141210;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .thumbnail-img-wrap img {
@@ -10001,10 +10026,9 @@ body.dark .carousel-btn {
   object-fit: cover;
   display: block;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.thumbnail-card-behance:hover .thumbnail-img-wrap img {
-  transform: scale(1.05);
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .thumbnail-card-behance .post-card-info {
@@ -10012,6 +10036,31 @@ body.dark .carousel-btn {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 18px 20px 22px 20px;
+  box-sizing: border-box;
+  gap: 6px;
+}
+
+.thumbnail-card-behance .post-card-category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--behance-lime);
+  display: block;
+}
+
+.thumbnail-card-behance .post-card-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 /* ==========================================================================
@@ -11215,27 +11264,50 @@ body {
 
   /* Modals */
   .modal {
-    padding: 12px;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .modal[style*="display: block"],
+  .modal[style*="display: flex"],
+  .modal.active {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   .modal-content {
-    margin: 15px auto;
+    margin: auto;
     padding: 24px 16px;
     border-radius: 20px;
-    max-width: 96vw;
-    width: 96vw;
+    max-width: 100%;
+    width: 100%;
+    max-height: calc(100dvh - max(24px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
   }
 
   .close {
     top: 12px;
     right: 12px;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     font-size: 1.15rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   #modal-image-scroll img {
-    max-height: 65vh;
+    max-height: 60dvh;
+    max-height: min(60vh, 60dvh);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
   }
 }
 
