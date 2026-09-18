@@ -1933,7 +1933,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (videoContainer) videoContainer.innerHTML = "";
 
       const modalContent = videoModal ? videoModal.querySelector(".modal-content") : null;
-      const isVertical = videoSrc.includes("Assets/Reels/") || videoSrc.includes("/Shoes/") || trigger.closest(".reel-card-behance");
+      const isVertical = videoSrc.includes("Assets/Reels/") || videoSrc.includes("Assets/Promotional Ads/") || videoSrc.includes("Promotional Ads") || videoSrc.includes("/Shoes/") || trigger.closest(".reel-card-behance");
 
       if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
         if (videoContainer) {
