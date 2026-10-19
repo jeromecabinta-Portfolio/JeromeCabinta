@@ -2094,5 +2094,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
 });

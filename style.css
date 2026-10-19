@@ -9544,14 +9544,260 @@ body.dark .superpower-card {
   opacity: 0.85;
 }
 
-/* Timeline Cards */
+/* ==========================================================================
+   WORK EXPERIENCE COLUMN (STANDALONE RIGHT COLUMN)
+   ========================================================================== */
+.about-experience-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.experience-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px 6px 4px;
+  border-bottom: 1px solid rgba(0, 102, 255, 0.12);
+}
+
+body.dark .experience-header-strip {
+  border-bottom-color: rgba(0, 102, 255, 0.2);
+}
+
+.experience-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.experience-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  background: rgba(0, 102, 255, 0.1);
+  color: #0066ff;
+  border: 1px solid rgba(0, 102, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.1);
+}
+
+body.dark .experience-icon-wrap {
+  background: rgba(0, 102, 255, 0.2);
+  color: #38bdf8;
+  border-color: rgba(0, 102, 255, 0.38);
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+
+.experience-main-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.experience-sub-title {
+  font-size: 0.76rem;
+  color: var(--text-light);
+  display: block;
+  font-family: var(--font-body);
+}
+
+.experience-badge-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(0, 102, 255, 0.08);
+  color: #0066ff;
+  border: 1px solid rgba(0, 102, 255, 0.22);
+  letter-spacing: 0.5px;
+}
+
+body.dark .experience-badge-count {
+  background: rgba(0, 102, 255, 0.16);
+  color: #38bdf8;
+  border-color: rgba(0, 102, 255, 0.32);
+}
+
 .about-timeline-cards {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-height: 720px;
-  overflow-y: auto;
-  padding-right: 6px;
+}
+
+.timeline-behance-card.timeline-exp-card {
+  border-left: 4px solid var(--behance-lime);
+}
+
+/* ==========================================================================
+   DEDICATED EDUCATION SECTION (SEPARATED FULL-WIDTH BLOCK)
+   ========================================================================== */
+.about-education-container {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 2px dashed rgba(0, 102, 255, 0.22);
+  position: relative;
+}
+
+body.dark .about-education-container {
+  border-top-color: rgba(0, 102, 255, 0.3);
+}
+
+.education-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.education-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.education-header-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: rgba(0, 210, 255, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 210, 255, 0.15);
+}
+
+body.dark .education-header-icon {
+  background: rgba(0, 210, 255, 0.18);
+  color: #00d2ff;
+  border-color: rgba(0, 210, 255, 0.4);
+  box-shadow: 0 4px 18px rgba(0, 210, 255, 0.25);
+}
+
+.education-main-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.education-sub-heading {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-body);
+}
+
+.education-degrees-pill {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 210, 255, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+body.dark .education-degrees-pill {
+  background: rgba(0, 210, 255, 0.16);
+  color: #00d2ff;
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.about-education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 860px) {
+  .about-education-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.education-standalone-card {
+  padding: 24px;
+  border-radius: 18px;
+  border-left: 4px solid #00d2ff !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.education-standalone-card:hover {
+  transform: translateY(-4px);
+  border-color: #00d2ff;
+  box-shadow: 0 12px 30px rgba(0, 210, 255, 0.18);
+}
+
+body.dark .education-standalone-card:hover {
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.25);
+}
+
+.edu-institution-tag {
+  font-size: 0.86rem;
+  color: var(--text-light);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.edu-major-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(0, 210, 255, 0.08);
+  color: #0284c7;
+  margin-top: 10px;
+  border: 1px solid rgba(0, 210, 255, 0.22);
+  align-self: flex-start;
+}
+
+body.dark .edu-major-badge {
+  background: rgba(0, 210, 255, 0.14);
+  color: #38bdf8;
+  border-color: rgba(0, 210, 255, 0.32);
+}
+
+.timeline-year-tag.education-tag {
+  background: rgba(0, 210, 255, 0.15);
+  color: #0284c7;
+  border: 1px solid rgba(0, 210, 255, 0.35);
+}
+
+body.dark .timeline-year-tag.education-tag {
+  background: rgba(0, 210, 255, 0.18);
+  color: #00d2ff;
+  border: 1px solid rgba(0, 210, 255, 0.45);
 }
 
 .about-timeline-cards::-webkit-scrollbar {
