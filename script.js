@@ -140,17 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         const counter = entry.target;
         const target = +counter.getAttribute("data-target");
+        const prefix = counter.getAttribute("data-prefix") || "";
+        const suffix = counter.getAttribute("data-suffix") || "";
         let count = 0;
 
         const updateCounter = () => {
-          const increment = target / 60;
+          const increment = Math.max(1, target / 40);
 
           if (count < target) {
             count += increment;
-            counter.textContent = Math.floor(count);
+            counter.textContent = prefix + Math.min(target, Math.floor(count)) + suffix;
             requestAnimationFrame(updateCounter);
           } else {
-            counter.textContent = target;
+            counter.textContent = prefix + target + suffix;
           }
         };
 
