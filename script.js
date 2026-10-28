@@ -1818,6 +1818,11 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.add("active");
         const filterValue = btn.getAttribute("data-filter");
 
+        const postsGridElem = document.getElementById("postsGrid");
+        if (postsGridElem) {
+          postsGridElem.classList.toggle("grid-case-studies-active", filterValue === "case-studies");
+        }
+
         postCards.forEach(card => {
           const category = card.getAttribute("data-category");
           if (filterValue === "all" || category === filterValue || (category && category.split(" ").includes(filterValue))) {
@@ -2013,7 +2018,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".open-video-modal")) return; // Let overlay handler fire naturally
+      if (e.target.closest(".open-video-modal") || e.target.closest("a") || e.target.closest(".post-card-cs-btn") || e.target.closest(".glass-play-btn")) return;
+
+      if (card.getAttribute("data-category") === "case-studies") {
+        const csLink = card.querySelector(".post-card-cs-btn");
+        if (csLink) {
+          window.location.href = csLink.href;
+          return;
+        }
+      } // Let overlay handler fire naturally
       if (overlay) overlay.click();
     });
   });

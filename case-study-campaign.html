@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: Social Media Content Campaign | Jerome Cabinta</title>
+  <meta name="description"
+    content="Case Study A: Strategic 1-Week Social Media Content Campaign, Canva post creatives, 7-day scheduling workflow, and measurement plan by Jerome Cabinta." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Assets/logo.png" />
+  <link rel="apple-touch-icon" href="Assets/logo.png" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2026.23" />
+
+  <style>
+    :root {
+      --cs-orange: #f39200;
+      --cs-orange-glow: rgba(243, 146, 0, 0.2);
+      --cs-orange-subtle: rgba(243, 146, 0, 0.08);
+      --cs-slate: #16171b;
+      --cs-border-subtle: rgba(255, 255, 255, 0.08);
+      --cs-card-bg: rgba(24, 25, 29, 0.85);
+      --cs-text-muted: #9aa0a6;
+    }
+
+    body:not(.dark) {
+      --cs-card-bg: rgba(255, 255, 255, 0.95);
+      --cs-border-subtle: rgba(0, 0, 0, 0.08);
+      --cs-text-muted: #5f6368;
+    }
+
+    /* Page Hero */
+    .cs-hero {
+      position: relative;
+      padding: 130px 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cs-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cs-orange);
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-breadcrumb:hover {
+      transform: translateX(-4px);
+    }
+
+    .cs-concept-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cs-orange-subtle);
+      border: 1px solid var(--cs-orange);
+      color: var(--cs-orange);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cs-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .cs-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--cs-text-muted);
+      max-width: 820px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
+
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      padding: 24px;
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      margin-bottom: 50px;
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cs-meta-label {
+      font-size: 0.72rem;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cs-text-muted);
+    }
+
+    .cs-meta-value {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* Section Wrapper */
+    .cs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .cs-section {
+      margin-bottom: 80px;
+    }
+
+    .cs-section-header {
+      margin-bottom: 35px;
+    }
+
+    .cs-section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--cs-orange);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .cs-section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+
+    .cs-section-desc {
+      font-size: 1rem;
+      color: var(--cs-text-muted);
+      max-width: 750px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Brief & Pillars Cards */
+    .cs-brief-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+    }
+
+    .cs-card {
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .cs-card:hover {
+      border-color: rgba(243, 146, 0, 0.3);
+    }
+
+    .cs-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cs-card h3 i {
+      color: var(--cs-orange);
+    }
+
+    .cs-card p {
+      font-size: 0.95rem;
+      color: var(--cs-text-muted);
+      line-height: 1.65;
+      margin: 0 0 20px;
+    }
+
+    .cs-pill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cs-pillar-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 14px;
+    }
+
+    .cs-pillar-num {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 10px;
+      background: var(--cs-orange-subtle);
+      border: 1px solid var(--cs-orange);
+      color: var(--cs-orange);
+      font-family: 'Space Mono', monospace;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .cs-pillar-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+
+    .cs-pillar-info p {
+      font-size: 0.85rem;
+      color: var(--cs-text-muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* Sample Posts Grid */
+    .cs-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    .cs-post-card {
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: var(--shadow);
+    }
+
+    .cs-post-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--cs-orange);
+      box-shadow: 0 16px 36px rgba(243, 146, 0, 0.12);
+    }
+
+    .cs-post-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--cs-border-subtle);
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .cs-post-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--cs-orange-subtle);
+      color: var(--cs-orange);
+      border: 1px solid var(--cs-orange);
+    }
+
+    .cs-post-format {
+      font-size: 0.72rem;
+      color: var(--cs-text-muted);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cs-post-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #0d0e12;
+      overflow: hidden;
+    }
+
+    .cs-post-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .cs-post-card:hover .cs-post-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .cs-post-body {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 14px;
+    }
+
+    .cs-post-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .cs-post-caption-box {
+      background: rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text);
+      position: relative;
+    }
+
+    body:not(.dark) .cs-post-caption-box {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .cs-caption-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--cs-orange);
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cs-post-cta {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--cs-orange-subtle);
+      border: 1px dashed var(--cs-orange);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    .cs-post-cta i {
+      color: var(--cs-orange);
+      margin-top: 2px;
+    }
+
+    .cs-post-tags {
+      font-size: 0.75rem;
+      color: var(--cs-text-muted);
+      font-family: 'Space Mono', monospace;
+      word-break: break-all;
+    }
+
+    /* Content Calendar Table */
+    .cs-calendar-wrapper {
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 20px;
+      overflow-x: auto;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .cs-table th {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 16px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cs-orange);
+      border-bottom: 1px solid var(--cs-border-subtle);
+      white-space: nowrap;
+    }
+
+    body:not(.dark) .cs-table th {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .cs-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cs-border-subtle);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .cs-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cs-table tr:hover td {
+      background: rgba(243, 146, 0, 0.03);
+    }
+
+    .cs-day-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--cs-orange-subtle);
+      color: var(--cs-orange);
+      border: 1px solid var(--cs-orange);
+    }
+
+    .cs-table-time {
+      font-size: 0.78rem;
+      color: var(--cs-text-muted);
+      font-family: 'Space Mono', monospace;
+      margin-top: 4px;
+    }
+
+    /* Scheduling Workflow Steps */
+    .cs-workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      position: relative;
+    }
+
+    .cs-step-card {
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .cs-step-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cs-orange);
+    }
+
+    .cs-step-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--cs-orange);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .cs-step-card h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .cs-step-card p {
+      font-size: 0.85rem;
+      color: var(--cs-text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .cs-step-tool {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cs-border-subtle);
+      font-size: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--cs-orange);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Measurement Framework */
+    .cs-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .cs-metric-card {
+      background: var(--cs-card-bg);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 18px;
+      padding: 26px;
+      transition: all 0.3s ease;
+    }
+
+    .cs-metric-card:hover {
+      border-color: var(--cs-orange);
+      box-shadow: 0 10px 25px rgba(243, 146, 0, 0.08);
+    }
+
+    .cs-metric-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--cs-orange-subtle);
+      color: var(--cs-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+
+    .cs-metric-card h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .cs-metric-card p {
+      font-size: 0.88rem;
+      color: var(--cs-text-muted);
+      line-height: 1.55;
+      margin: 0 0 14px;
+    }
+
+    .cs-metric-formula {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--cs-border-subtle);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--cs-orange);
+    }
+
+    body:not(.dark) .cs-metric-formula {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    /* Bottom Navigation & CTA Banner */
+    .cs-bottom-cta {
+      background: linear-gradient(135deg, rgba(243, 146, 0, 0.12) 0%, rgba(20, 21, 25, 0.95) 100%);
+      border: 1px solid var(--cs-orange);
+      border-radius: 24px;
+      padding: 50px 40px;
+      text-align: center;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-bottom-cta h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .cs-bottom-cta p {
+      font-size: 1.05rem;
+      color: var(--cs-text-muted);
+      max-width: 650px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .cs-cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .cs-brief-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-posts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark dark-grid-canvas">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.remove("dark");
+      } else {
+        document.body.classList.add("dark");
+      }
+    })();
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="custom-nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo custom-logo nav-brand-wrap">
+        <img src="Assets/logo.png" alt="Jerome Cabinta Logo" class="nav-brand-logo" />
+        <div class="nav-brand-text-col">
+          <span class="nav-brand-name">JEROME CABINTA</span>
+          <span class="nav-brand-sub">SOCIAL MEDIA VA</span>
+        </div>
+      </a>
+
+      <ul class="nav-links custom-nav-links" id="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#posts">Social Media Work</a></li>
+        <li><a href="case-study-campaign.html" class="active" style="color: var(--cs-orange); font-weight: 800;">Case Study A</a></li>
+        <li><a href="case-study-brand-system.html" style="font-weight: 700;">Case Study B</a></li>
+        <li><a href="resume.html" target="_blank">Resume</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-pill-socials">
+          <a href="https://www.facebook.com/profile.php?id=61579246614635" target="_blank" rel="noopener noreferrer"
+            class="nav-pill" title="Facebook"><i class="fab fa-facebook-f"></i> <span>Facebook</span></a>
+          <a href="https://www.instagram.com/jerome_cabinta/" target="_blank" rel="noopener noreferrer" class="nav-pill"
+            title="Instagram"><i class="fab fa-instagram"></i> <span>Instagram</span></a>
+          <a href="https://www.linkedin.com/in/jerome-cabinta-0344293a3/" target="_blank" rel="noopener noreferrer"
+            class="nav-pill" title="LinkedIn"><i class="fab fa-linkedin-in"></i> <span>LinkedIn</span></a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light or dark theme">🌙</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="cs-hero">
+    <a href="index.html#posts" class="cs-breadcrumb"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    <br />
+    <div class="cs-concept-banner">
+      <i class="fas fa-flask"></i> CONCEPT PROJECT &bull; STRATEGY &amp; SMM VA WORKFLOW PLAYBOOK
+    </div>
+
+    <h1 class="cs-title">Social Media Content Campaign</h1>
+    <p class="cs-subtitle">
+      A complete, execution-ready 7-day social media content campaign designed for a multi-campus community organization. Demonstrating strategic content pillars, Canva visual creatives, an end-to-end scheduling workflow, and a verified measurement framework without invented statistics.
+    </p>
+
+    <div class="cs-meta-grid">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Hypothetical Client</span>
+        <span class="cs-meta-value">Agape Community Fellowship</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Primary Goal</span>
+        <span class="cs-meta-value">Increase Service Attendance &amp; Engagement</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role &amp; Deliverables</span>
+        <span class="cs-meta-value">Social Media VA &amp; Content Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools Used</span>
+        <span class="cs-meta-value">Canva, Meta Business Suite, Notion, Photoshop</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="cs-container">
+
+    <!-- 1. BRIEF, AUDIENCE & CONTENT PILLARS -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-tag">01 / Foundation</span>
+        <h2 class="cs-section-title">Client Brief, Audience &amp; Content Strategy</h2>
+        <p class="cs-section-desc">Establishing clear objectives, audience personas, and content pillars before designing a single pixel.</p>
+      </div>
+
+      <div class="cs-brief-grid">
+        <!-- Client Challenge & Business Goal -->
+        <div class="cs-card">
+          <h3><i class="fas fa-bullseye"></i> The Business Goal &amp; Challenge</h3>
+          <p>
+            <strong>The Problem:</strong> The organization relied on last-minute, text-heavy announcements posted irregularly across Instagram and Facebook. As a result, organic reach was declining, young adults felt disconnected from midweek events, and event volunteer onboarding had stalled.
+          </p>
+          <p>
+            <strong>The Goal:</strong> Build a predictable, high-retention weekly content rhythm that transforms followers from passive scrollers into active attendees. The objective was to increase weekend service attendance, generate save-worthy midweek devotionals, and streamline volunteer sign-ups through clear, low-friction calls to action.
+          </p>
+          <div style="background: rgba(243, 146, 0, 0.08); border-left: 3px solid var(--cs-orange); padding: 14px; border-radius: 0 10px 10px 0;">
+            <span style="font-weight: 800; font-size: 0.85rem; color: var(--text);">VA Execution Scope:</span>
+            <span style="font-size: 0.82rem; color: var(--cs-text-muted); display: block; margin-top: 4px;">
+              Manage the end-to-end weekly cycle: copy drafting, Canva template design, client approval staging in Notion, automated scheduling via Meta Business Suite, and first-30-minute comment moderation.
+            </span>
+          </div>
+        </div>
+
+        <!-- Audience & Pillars -->
+        <div class="cs-card">
+          <h3><i class="fas fa-users"></i> Audience &amp; Core Content Pillars</h3>
+          <p>
+            <strong>Target Audience:</strong> Young adults, university students, and young families (ages 18–38) seeking authentic community, spiritual encouragement, and opportunities to connect locally.
+          </p>
+
+          <div class="cs-pill-list">
+            <div class="cs-pillar-item">
+              <div class="cs-pillar-num">P1</div>
+              <div class="cs-pillar-info">
+                <h4>Inspiration &amp; Reflection (40%)</h4>
+                <p>High-share scripture quote cards, Monday motivation, and reflection carousels optimized for saves and story reposts.</p>
+              </div>
+            </div>
+
+            <div class="cs-pillar-item">
+              <div class="cs-pillar-num">P2</div>
+              <div class="cs-pillar-info">
+                <h4>Community &amp; Event Invites (35%)</h4>
+                <p>Weekend service reminders, youth night fellowships, and acoustic worship nights with direct RSVP link CTAs.</p>
+              </div>
+            </div>
+
+            <div class="cs-pillar-item">
+              <div class="cs-pillar-num">P3</div>
+              <div class="cs-pillar-info">
+                <h4>People &amp; Behind-the-Scenes (25%)</h4>
+                <p>Volunteer spotlights, community outreach recaps, and interactive question polls that spark genuine conversations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SAMPLE POSTS (6-9 POSTS WITH CAPTIONS & CTAS) -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-tag">02 / Creative Deliverables</span>
+        <h2 class="cs-section-title">8 Sample Campaign Posts with Captions &amp; CTAs</h2>
+        <p class="cs-section-desc">Each post is crafted with dedicated visual assets, strategic hooks, community-driven captions, and explicit next-step actions.</p>
+      </div>
+
+      <div class="cs-posts-grid">
+
+        <!-- Post 1 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 2 &bull; Community</span>
+            <span class="cs-post-format"><i class="fas fa-image"></i> 1:1 Feed Post</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/church_ad_1.png" alt="Sunday Service Invitation Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Sunday Service: "You Belong Here"</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              No matter what your week looked like, Sunday is a fresh start. Join us this weekend at 9:00 AM &amp; 11:15 AM as we continue our series: 'Rooted &amp; Resilient.' Fresh coffee's on us, and our kids' ministry is ready for your little ones.<br /><br />
+              Tag someone you'd love to sit with this Sunday! 👇
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-link"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Tap the link in bio to pre-register your visit or bookmark this post for your Sunday alarm!"</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#AgapeCommunity #SundayService #YouBelongHere #CommunityMatters</div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 1 &bull; Inspiration</span>
+            <span class="cs-post-format"><i class="fas fa-quote-left"></i> 1:1 Quote Card</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/agape_ad1.png" alt="Midweek Reflection Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Midweek Reflection: "Faith Over Fear"</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              Midweek reminder: Peace isn’t the absence of trouble—it’s the presence of God in the middle of it. Take a deep breath today, release what you can't control, and trust that you're being guided through every step.<br /><br />
+              Drop a ❤️ in the comments if you needed this reminder today.
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-bookmark"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Save this post to your weekly inspiration folder to read when things get busy."</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#MidweekMotivation #DailyScripture #FaithOverFear #GraceUponGrace</div>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 1 &bull; Carousel</span>
+            <span class="cs-post-format"><i class="fas fa-layer-group"></i> 4:5 Swipe Deck</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/carousell/1/1.png" alt="Educational Growth Carousel Deck" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Growth Deck: 5 Daily Rest Habits</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              Feeling burnt out by Wednesday? Most of us run on empty because we treat rest as an optional reward instead of a spiritual necessity. Swipe through 👉 to discover 5 micro-habits that restore clarity and calm to your week.<br /><br />
+              Which slide spoke to you the most? Share below!
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-hand-point-right"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"👉 Swipe through all 5 slides and share this deck with someone running on empty."</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#SpiritualRest #MentalClarity #BurnoutPrevention #MindfulLiving</div>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 2 &bull; Community</span>
+            <span class="cs-post-format"><i class="fas fa-calendar-alt"></i> Event Promo</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/agape_ad2.png" alt="Youth Night Announcement" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Friday Youth Night: "Ignite Fellowship"</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              This Friday at 7:00 PM! Free taco bar, acoustic worship set, and open roundtable conversations about navigating faith during college and early career. Whether you’re brand new or bringing your whole crew, our doors are open.<br /><br />
+              Doors open at 6:30 PM. Acoustic worship starts sharp at 7:00 PM.
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-ticket-alt"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"RSVP for free via the link in bio so our hospitality team has an accurate dinner count!"</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#IgniteYouth #YoungAdults #FridayFellowship #CollegeMinistry</div>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 3 &bull; People</span>
+            <span class="cs-post-format"><i class="fas fa-hands-helping"></i> Volunteer Spotlight</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/agape_ad3.png" alt="Volunteer Spotlight Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Behind the Scenes: Meet the AV Team</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              Before the first chord is played on Sunday, our tech crew arrives at 7:00 AM calibrating sound levels, tuning broadcast cameras, and ensuring families at home experience church seamlessly.<br /><br />
+              Drop some appreciation in the comments for our unsung heroes! 🙌 Want to learn live sound or media?
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-comment-dots"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Send us a DM with the word 'SERVE' to shadow our media booth this Sunday!"</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#ChurchTech #VolunteerSpotlight #BehindTheScenes #ServeWithJoy</div>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 2 &bull; Interactive</span>
+            <span class="cs-post-format"><i class="fas fa-poll"></i> Saturday Poll Post</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/church_ad_2.png" alt="Saturday Service Poll Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Saturday Check-In: Service Choice</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              Setting our alarms for tomorrow morning! Pastor Marcus is addressing a topic we've received dozens of DMs about: 'Finding Peace in Unanswered Questions.'<br /><br />
+              Which service are you attending tomorrow?<br />
+              🅰️ 9:00 AM (Early Acoustic)<br />
+              🅱️ 11:15 AM (Full Band + Kids Church)
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-vote-yea"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Vote 'A' or 'B' below or turn on Sunday morning post notifications!"</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#SundayIsComing #ChurchFamily #FaithInAction #WeekendVibes</div>
+          </div>
+        </article>
+
+        <!-- Post 7 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 3 &bull; Outreach</span>
+            <span class="cs-post-format"><i class="fas fa-heart"></i> Community Impact</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/agape_ad4.png" alt="Community Outreach Impact Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">City Outreach: 250 Care Packages</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              Because of your kindness, 250 school supply kits and fresh meal bags were packed and distributed across local shelters this week. Faith isn't just an hour on Sunday—it’s how we show up for our city Monday through Saturday.<br /><br />
+              Huge thank you to the 30+ volunteers who gave up their Saturday morning!
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-globe"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Visit the link in bio to see our upcoming monthly community pantry dates."</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#CityOutreach #LoveYourNeighbor #HandsAndFeet #GiveBack</div>
+          </div>
+        </article>
+
+        <!-- Post 8 -->
+        <article class="cs-post-card">
+          <div class="cs-post-header">
+            <span class="cs-post-badge">Pillar 1 &bull; Sermon Recap</span>
+            <span class="cs-post-format"><i class="fas fa-headphones"></i> Podcast &amp; Recap</span>
+          </div>
+          <div class="cs-post-img-wrap">
+            <img src="Assets/SMM/Agape/church_ad_3.png" alt="Sermon Recap Quote Graphic" loading="lazy" />
+          </div>
+          <div class="cs-post-body">
+            <h3 class="cs-post-title">Sunday Recap: "Carrying Truth"</h3>
+            <div class="cs-post-caption-box">
+              <span class="cs-caption-label">Caption Copy</span>
+              'Your purpose isn't measured by your speed; it’s anchored by your direction.' If you were traveling this weekend or missed the livestream, the complete audio and video podcast is now live on Spotify and YouTube.<br /><br />
+              What was your biggest takeaway from Sunday's message?
+            </div>
+            <div class="cs-post-cta">
+              <i class="fas fa-play"></i>
+              <div>
+                <strong>Call to Action (CTA):</strong>
+                <span>"Tap the link in bio to listen to the full podcast during your morning commute!"</span>
+              </div>
+            </div>
+            <div class="cs-post-tags">#SermonRecap #WeeklyTakeaway #PodcastEpisode #FaithWalk</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 3. ONE-WEEK CONTENT CALENDAR -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-tag">03 / Execution Plan</span>
+        <h2 class="cs-section-title">One-Week Social Media Content Calendar</h2>
+        <p class="cs-section-desc">A structured 7-day schedule mapping platforms, posting times, content pillars, and strategic CTAs to build consistent weekly momentum.</p>
+      </div>
+
+      <div class="cs-calendar-wrapper">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Day &amp; Time (EST)</th>
+              <th>Platform</th>
+              <th>Pillar</th>
+              <th>Format</th>
+              <th>Core Hook / Focus</th>
+              <th>Asset Target</th>
+              <th>Call to Action (CTA)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="cs-day-badge">MON</span>
+                <div class="cs-table-time">8:30 AM EST</div>
+              </td>
+              <td><strong>IG &bull; FB</strong></td>
+              <td>Inspiration</td>
+              <td>Quote Card</td>
+              <td>"Start your week anchored in calm"</td>
+              <td><code>agape_ad1.png</code></td>
+              <td>Save to Personal Collection</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">TUE</span>
+                <div class="cs-table-time">12:15 PM EST</div>
+              </td>
+              <td><strong>IG &bull; FB</strong></td>
+              <td>Inspiration</td>
+              <td>Carousel (5 slides)</td>
+              <td>5 Habits to Build Spiritual Rest</td>
+              <td><code>carousell/1/</code></td>
+              <td>Swipe &amp; Share to Story</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">WED</span>
+                <div class="cs-table-time">6:30 PM EST</div>
+              </td>
+              <td><strong>IG Stories &bull; FB</strong></td>
+              <td>Inspiration</td>
+              <td>Reflection Graphic</td>
+              <td>Midweek Faith Over Fear Check-In</td>
+              <td><code>agape_ad3.png</code></td>
+              <td>Drop a ❤️ in Comments</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">THU</span>
+                <div class="cs-table-time">11:00 AM EST</div>
+              </td>
+              <td><strong>IG &bull; FB</strong></td>
+              <td>Outreach</td>
+              <td>Impact Story</td>
+              <td>250 Care Packages Assembled</td>
+              <td><code>agape_ad4.png</code></td>
+              <td>Visit Bio Link for Volunteer Dates</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">FRI</span>
+                <div class="cs-table-time">4:00 PM EST</div>
+              </td>
+              <td><strong>IG Stories &bull; Reels</strong></td>
+              <td>Community</td>
+              <td>Event Announcement</td>
+              <td>Ignite Friday Youth Fellowship Night</td>
+              <td><code>agape_ad2.png</code></td>
+              <td>RSVP via Story Sticker Link</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">SAT</span>
+                <div class="cs-table-time">7:00 PM EST</div>
+              </td>
+              <td><strong>IG &bull; FB</strong></td>
+              <td>Community</td>
+              <td>Interactive Poll</td>
+              <td>Which Sunday Service? (A vs B)</td>
+              <td><code>church_ad_2.png</code></td>
+              <td>Comment A or B to Vote</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">SUN</span>
+                <div class="cs-table-time">8:00 AM EST</div>
+              </td>
+              <td><strong>IG Stories &bull; FB</strong></td>
+              <td>Live Event</td>
+              <td>Countdown Hook</td>
+              <td>Doors Open in 1 Hour &bull; Warm Coffee</td>
+              <td><code>church_ad_1.png</code></td>
+              <td>Get Directions / Stream Online</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="cs-day-badge">SUN</span>
+                <div class="cs-table-time">6:00 PM EST</div>
+              </td>
+              <td><strong>IG &bull; FB</strong></td>
+              <td>Inspiration</td>
+              <td>Sermon Recap</td>
+              <td>Weekly Takeaway &bull; Full Audio Podcast</td>
+              <td><code>church_ad_3.png</code></td>
+              <td>Listen to Full Talk via Bio Link</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. SCHEDULING WORKFLOW -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-tag">04 / Operational Rigor</span>
+        <h2 class="cs-section-title">SMM VA Scheduling &amp; Publishing Workflow</h2>
+        <p class="cs-section-desc">How this campaign is reliably planned, proofed, scheduled, and managed in 5 repeatable steps every single week.</p>
+      </div>
+
+      <div class="cs-workflow-grid">
+        <div class="cs-step-card">
+          <div class="cs-step-number">01</div>
+          <h4>Batch Content Planning</h4>
+          <p>Draft 7-day captions, headline hooks, hashtags, and CTAs inside a collaborative Notion / Google Sheets calendar 7 days before rollout.</p>
+          <div class="cs-step-tool"><i class="fas fa-table"></i> Notion / Google Sheets</div>
+        </div>
+
+        <div class="cs-step-card">
+          <div class="cs-step-number">02</div>
+          <h4>Canva Asset Production</h4>
+          <p>Generate on-brand 1:1 feed posts, 4:5 carousels, and 9:16 story covers using pre-locked brand kits to maintain 100% visual consistency.</p>
+          <div class="cs-step-tool"><i class="fas fa-palette"></i> Canva &amp; Photoshop</div>
+        </div>
+
+        <div class="cs-step-card">
+          <div class="cs-step-number">03</div>
+          <h4>Asynchronous Client Review</h4>
+          <p>Share an organized preview deck with client leadership for 1-click approvals, copy refinements, and calendar sign-off with zero friction.</p>
+          <div class="cs-step-tool"><i class="fas fa-check-circle"></i> Loom / Google Drive</div>
+        </div>
+
+        <div class="cs-step-card">
+          <div class="cs-step-number">04</div>
+          <h4>Automated Scheduling</h4>
+          <p>Batch upload approved creative assets and finalized copy into Meta Business Suite &amp; Buffer, queued for optimal audience time slots.</p>
+          <div class="cs-step-tool"><i class="fas fa-clock"></i> Meta Business Suite / Buffer</div>
+        </div>
+
+        <div class="cs-step-card">
+          <div class="cs-step-number">05</div>
+          <h4>Real-Time Community Care</h4>
+          <p>Active 30-minute window post-publishing to reply to comments, engage with community stories, and direct message event registration links.</p>
+          <div class="cs-step-tool"><i class="fas fa-comments"></i> Native IG &amp; FB Apps</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MEASUREMENT FRAMEWORK (WITHOUT INVENTED RESULTS) -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-tag">05 / Accountable Analytics</span>
+        <h2 class="cs-section-title">Proposed Framework to Measure Success</h2>
+        <p class="cs-section-desc">
+          <em>Note: Because this is a strategic concept project, no fabricated engagement metrics or fictional results are presented.</em> Below is the validated KPI framework used to measure real client campaign performance.
+        </p>
+      </div>
+
+      <div class="cs-metrics-grid">
+        <div class="cs-metric-card">
+          <div class="cs-metric-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>True Engagement Rate (%)</h4>
+          <p>Measures genuine audience resonance against total accounts reached, rather than vanity impressions.</p>
+          <div class="cs-metric-formula">(Likes + Comments + Saves + Shares) / Reach &times; 100</div>
+        </div>
+
+        <div class="cs-metric-card">
+          <div class="cs-metric-icon"><i class="fas fa-bookmark"></i></div>
+          <h4>High-Intent Save &amp; Share Ratio</h4>
+          <p>Tracks how many users save quote carousels or share announcements to personal stories, signaling genuine utility.</p>
+          <div class="cs-metric-formula">Benchmark: >15-20 Saves &amp; Shares per 1k Reach</div>
+        </div>
+
+        <div class="cs-metric-card">
+          <div class="cs-metric-icon"><i class="fas fa-mouse-pointer"></i></div>
+          <h4>UTM Link-in-Bio Clicks</h4>
+          <p>Tracks direct conversions from social traffic to event registrations, service sign-ups, and full podcast views.</p>
+          <div class="cs-metric-formula">Google Analytics 4 + UTM Tag Tracking</div>
+        </div>
+
+        <div class="cs-metric-card">
+          <div class="cs-metric-icon"><i class="fas fa-file-invoice"></i></div>
+          <h4>Weekly Client Reporting Dashboard</h4>
+          <p>Every Monday, leadership receives a 1-page Looker Studio dashboard highlighting top 3 posts, demographic shifts, and next-week optimizations.</p>
+          <div class="cs-metric-formula">Monday 9:00 AM EST Weekly Delivery</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA & NAVIGATION -->
+    <div class="cs-bottom-cta">
+      <h2>Looking for a Reliable Social Media VA?</h2>
+      <p>
+        I bring 3+ years of Philippine experience running content calendars, designing high-converting Canva posts, and handling end-to-end scheduling for remote clients during US hours (EST/PST).
+      </p>
+      <div class="cs-cta-actions">
+        <a href="index.html#contact" class="btn-behance-primary">
+          <i class="fas fa-calendar-check"></i> Book a 15-Minute Intro Call
+        </a>
+        <a href="case-study-brand-system.html" class="btn-behance-outline" style="border-color: rgba(255, 255, 255, 0.25);">
+          <i class="fas fa-arrow-right"></i> Next: View Case Study B (Brand System)
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="cs-lightbox" id="csLightbox" style="position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(12px); z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;">
+    <div style="background: var(--cs-slate); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; max-width: 820px; width: 100%; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); position: relative;">
+      <button id="csLightboxClose" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; z-index: 10;">&times;</button>
+      <div style="background: #090b0e; display: flex; align-items: center; justify-content: center; padding: 30px; min-height: 420px;">
+        <img id="csLightboxImg" src="" alt="Campaign Asset" style="max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px;" />
+      </div>
+      <div style="padding: 24px 30px; background: rgba(22, 23, 27, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <h3 id="csLightboxTitle" style="font-size: 1.3rem; font-weight: 800; margin: 0 0 6px; color: #fff;">Asset Title</h3>
+        <p id="csLightboxCta" style="font-size: 0.85rem; color: var(--cs-orange); margin: 0; font-family: monospace;">Call to Action</p>
+      </div>
+    </div>
+  </div>
+
+    <!-- FOOTER -->
+  <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--cs-border-subtle); color: var(--cs-text-muted); font-size: 0.85rem;">
+    &copy; 2026 Jerome Cabinta &bull; Social Media VA &amp; Graphic Designer &bull; Case Study A: Social Media Content Campaign
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

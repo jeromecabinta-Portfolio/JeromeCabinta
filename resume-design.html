@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerome Cabinta — Resume | Graphic Designer &amp; Visual Brand Specialist</title>
+  <meta name="description"
+    content="Resume of Jerome Cabinta — Graphic Designer specializing in Visual Branding, Marketing Collateral, Social Media Creatives, and Web Design. Available for US remote hours (EST/PST)." />
+
+  <link rel="icon" type="image/png" href="Assets/logo.png" />
+  <link rel="apple-touch-icon" href="Assets/logo.png" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #ffffff;
+      --text: #1a1e29;
+      --text-muted: #555e6d;
+      --accent-blue: #0066ff;
+      --accent-cyan: #00d2ff;
+      --accent-design: #ff9f43;
+      --border-color: #e5e9f0;
+      --sheet-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.4;
+      padding: 30px 16px 60px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Control Bar */
+    .resume-nav-bar {
+      max-width: 820px;
+      width: 100%;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .resume-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .nav-btn-back {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-btn-back:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateX(-3px);
+    }
+
+    .nav-btn-print {
+      background: #0066ff;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 102, 255, 0.4);
+    }
+
+    .nav-btn-print:hover {
+      background: #0052cc;
+      transform: translateY(-2px);
+    }
+
+    .nav-btn-email {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-btn-email:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Main Resume Sheet */
+    .resume-sheet {
+      width: 100%;
+      max-width: 820px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 38px 46px 44px 46px;
+      box-shadow: var(--sheet-shadow);
+      font-size: 9.6pt;
+      line-height: 1.45;
+    }
+
+    /* Badge banner for Design Edition */
+    .design-edition-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 159, 67, 0.12);
+      border: 1px solid rgba(255, 159, 67, 0.35);
+      color: #d35400;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 7.8pt;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* Header */
+    .resume-header {
+      border-bottom: 2px solid #000000;
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+    }
+
+    .resume-name {
+      font-size: 22pt;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #000000;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .resume-contact-bar {
+      font-size: 9pt;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .resume-contact-bar a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    .resume-job-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #d35400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 10.5pt;
+      font-weight: 800;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1.2px solid #000000;
+      padding-bottom: 2px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    /* Body text */
+    .summary-text {
+      color: #222222;
+      line-height: 1.5;
+      text-align: justify;
+      margin-bottom: 4px;
+    }
+
+    /* Lists */
+    .resume-list {
+      list-style-type: disc;
+      padding-left: 18px;
+      margin-bottom: 4px;
+    }
+
+    .resume-list li {
+      margin-bottom: 3.5px;
+      color: #222222;
+      line-height: 1.45;
+    }
+
+    .tools-text {
+      color: #222222;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* Experience Items */
+    .exp-item {
+      margin-bottom: 12px;
+    }
+
+    .role-heading {
+      font-weight: 800;
+      font-size: 10.5pt;
+      color: #000000;
+      display: inline-block;
+    }
+
+    .company-subhead {
+      font-size: 9.2pt;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    /* Education */
+    .edu-item {
+      margin-bottom: 8px;
+    }
+
+    .edu-degree {
+      font-weight: 700;
+      color: #000000;
+      font-size: 9.5pt;
+    }
+
+    .edu-school {
+      color: var(--text-muted);
+      font-size: 9pt;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+
+      .resume-nav-bar {
+        display: none !important;
+      }
+
+      .resume-sheet {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 24px 30px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      @page {
+        margin: 12mm 15mm;
+        size: letter portrait;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px 10px 40px 10px;
+      }
+
+      .resume-sheet {
+        padding: 24px 20px;
+      }
+
+      .resume-name {
+        font-size: 18pt;
+      }
+
+      .resume-contact-bar {
+        font-size: 8.8pt;
+        line-height: 1.4;
+      }
+
+      .resume-nav-bar {
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navigation & Action Controls -->
+  <header class="resume-nav-bar">
+    <div class="resume-nav-left">
+      <a href="index.html" class="nav-btn nav-btn-back">
+        <i class="fas fa-arrow-left"></i> Portfolio
+      </a>
+      <a href="case-study-campaign.html" class="nav-btn nav-btn-email" style="border-color: rgba(243, 146, 0, 0.5); color: #f39200;" title="View Case Study A: Social Media Campaign">
+        <i class="fas fa-bullhorn"></i> Case Study A
+      </a>
+      <a href="case-study-brand-system.html" class="nav-btn nav-btn-email" style="border-color: rgba(197, 160, 89, 0.5); color: #c5a059;" title="View Case Study B: Brand Design System">
+        <i class="fas fa-compass"></i> Case Study B
+      </a>
+      <a href="resume.html" class="nav-btn nav-btn-email" style="border-color: rgba(0, 229, 255, 0.45); color: #00e5ff;" title="Switch to Social Media VA resume">
+        <i class="fas fa-mobile-screen"></i> Social Media VA Version
+      </a>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button onclick="window.print()" class="nav-btn nav-btn-print">
+        <i class="fas fa-print"></i> Print / Save PDF
+      </button>
+      <button
+        onclick="navigator.clipboard.writeText('jeromecabinta7@gmail.com'); alert('Email copied: jeromecabinta7@gmail.com');"
+        class="nav-btn nav-btn-email">
+        <i class="far fa-copy"></i> Copy Email
+      </button>
+    </div>
+  </header>
+
+  <!-- Resume Main Document Sheet (Graphic Design Application Version) -->
+  <main class="resume-sheet">
+
+    <!-- Header -->
+    <header class="resume-header">
+      <div class="design-edition-tag">
+        <i class="fas fa-palette"></i> Graphic Design Application Version
+      </div>
+      <h1 class="resume-name">JEROME CABINTA</h1>
+      <div class="resume-contact-bar">
+        Baguio, Philippines &nbsp;|&nbsp; jeromecabinta7@gmail.com &nbsp;|&nbsp; <a
+          href="https://jerome-cabinta.vercel.app" target="_blank"
+          rel="noopener noreferrer">jerome-cabinta.vercel.app</a>
+      </div>
+      <div class="resume-job-title">Graphic Designer &amp; Visual Brand Specialist</div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section>
+      <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+      <p class="summary-text">
+        Creative Graphic Designer and Web Designer with 3+ years of professional experience in the Philippines, delivering high-impact visual branding, marketing collateral, social media assets, and responsive client websites. Proficient in Adobe Photoshop, Figma, Canva, and Wix, translating client goals into clean, conversion-focused design. Available on US remote hours (EST/PST) to support marketing teams, agencies, and founders with agency-quality visual assets and dependable turnarounds.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h2 class="section-title">CORE DESIGN SKILLS</h2>
+      <ul class="resume-list">
+        <li>Brand Identity Systems &amp; Visual Guidelines (Logos, Color Palettes, Typography)</li>
+        <li>Marketing Collateral Design (Posters, Event Ads, Product Mockups, Book Covers)</li>
+        <li>Social Media Creative Asset Production (Carousels, High-CTR Thumbnails, Ads)</li>
+        <li>UI/UX &amp; Responsive Web Design (Figma Wireframing, Wix CMS Engineering)</li>
+        <li>AI Creative Tools for Fast Prototyping &amp; High-Resolution Visual Ideation</li>
+      </ul>
+    </section>
+
+    <!-- Technical Tools -->
+    <section>
+      <h2 class="section-title">DESIGN &amp; TECHNICAL TOOLS</h2>
+      <p class="tools-text">
+        Adobe Photoshop &nbsp;|&nbsp; Figma &nbsp;|&nbsp; Canva &nbsp;|&nbsp; Wix.com &nbsp;|&nbsp; Vector &amp; Raster Art &nbsp;|&nbsp; Google Workspace &nbsp;|&nbsp; Slack &nbsp;|&nbsp; AI Design Tools
+      </p>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+      <h2 class="section-title">WORK EXPERIENCE</h2>
+
+      <!-- Experience 1: Agape -->
+      <article class="exp-item">
+        <div class="role-heading">Graphic Designer &amp; Social Media Lead</div>
+        <div class="company-subhead">Agape Reaching People Ministries &nbsp;|&nbsp; 2024 - 2026</div>
+        <ul class="resume-list">
+          <li>Designed engaging visual campaign assets and social media graphics that helped grow engagement by an estimated <strong>20%</strong></li>
+          <li>Created creative visual storytelling, sermon series graphics, event posters, and carousel layouts</li>
+          <li>Developed consistent brand styling, event promotional posters, sermon graphics, and multi-slide carousel layouts</li>
+          <li>Maintained visual brand integrity across multi-platform digital channels</li>
+        </ul>
+      </article>
+
+      <!-- Experience 2: Northridge -->
+      <article class="exp-item">
+        <div class="role-heading">Marketing Head | Web Designer &amp; Graphic Designer</div>
+        <div class="company-subhead">Northridge Institute of Business and Technology &nbsp;|&nbsp; 2021 - 2024</div>
+        <ul class="resume-list">
+          <li>Designed and launched <strong>2+ responsive Wix websites</strong>, improving mobile UX and navigation structure</li>
+          <li>Created complete promotional design collateral, marketing banners, and email templates that boosted brand visibility by <strong>30%</strong></li>
+          <li>Engineered user-centric website layout architectures, visual wireframes, and digital brand identities</li>
+          <li>Established visual standards and typography systems for institute-wide promotional materials</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="section-title">FEATURED CASE STUDIES</h2>
+      <ul class="resume-list">
+        <li><strong>Case Study A &bull; Social Media Campaign:</strong> 7-day social campaign playbook, 3 audience-aligned pillars, 8 sample posts with copy/CTAs, 1-week calendar table, and scheduling workflow. (<a href="case-study-campaign.html" target="_blank" style="color: #0066ff; text-decoration: underline; font-weight: 700;">Read Case Study A</a>)</li>
+        <li><strong>Case Study B &bull; Brand Design System:</strong> Apex Outdoors visual identity spec, Alpine Olive design tokens, typography rules, and 16 multi-format social assets. (<a href="case-study-brand-system.html" target="_blank" style="color: #0066ff; text-decoration: underline; font-weight: 700;">Read Case Study B</a>)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">EDUCATION</h2>
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Science in Information Technology - Web &amp; Mobile Development</div>
+        <div class="edu-school">Kings College of the Philippines</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Secondary Education - Social Studies</div>
+        <div class="edu-school">Baguio Central University</div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section>
+      <h2 class="section-title">CERTIFICATIONS</h2>
+      <ul class="resume-list">
+        <li>Creative Web Design</li>
+        <li>Data Analytics Level III</li>
+        <li>TEFL (Teaching English as a Foreign Language)</li>
+      </ul>
+    </section>
+
+    <!-- Additional Information -->
+    <section>
+      <h2 class="section-title">REMOTE WORK READINESS &amp; CLIENT COLLABORATION</h2>
+      <ul class="resume-list">
+        <li><strong>Timezone Alignment:</strong> Available for US remote business hours (EST / PST) for live design reviews and fast turnaround</li>
+        <li><strong>Flawless Communication:</strong> Proactive English collaboration via Slack, Zoom, Google Meet, and Figma comments</li>
+        <li><strong>Fast &amp; Receptive:</strong> Low-friction onboarding with a focus on quick turnaround times and receptive adaptation to brand guides</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
