@@ -13502,3 +13502,111 @@ body.dark .post-card-behance[data-category="case-studies"] {
     display: inline-flex;
   }
 }
+
+/* ==========================================================================
+   BRIEF DISPATCH BOX STYLING (PROPOSAL FORM FIX)
+   ========================================================================== */
+.brief-dispatch-box {
+  margin-top: 18px;
+  padding: 18px 20px;
+  background: var(--surface-1);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: fadeInBrief 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInBrief {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.brief-dispatch-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #00ff88;
+  margin-bottom: 6px;
+}
+
+.brief-dispatch-desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.brief-dispatch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .brief-dispatch-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-dispatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.btn-dispatch.gmail {
+  background: #ea4335;
+  color: #ffffff !important;
+}
+
+.btn-dispatch.gmail:hover {
+  background: #d93025;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(234, 67, 53, 0.45);
+}
+
+.btn-dispatch.wa {
+  background: #25d366;
+  color: #ffffff !important;
+}
+
+.btn-dispatch.wa:hover {
+  background: #1eb857;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+}
+
+.btn-dispatch.mail {
+  background: #0066ff;
+  color: #ffffff !important;
+}
+
+.btn-dispatch.mail:hover {
+  background: #0052cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.45);
+}
+
+.btn-dispatch.copy {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-dispatch.copy:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}

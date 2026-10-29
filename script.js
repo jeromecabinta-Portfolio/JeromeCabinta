@@ -1430,51 +1430,136 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!name || !email || !goals) {
         if (proposalFeedback) {
           proposalFeedback.className = "proposal-feedback error";
-          proposalFeedback.textContent = "Please fill in all fields.";
+          proposalFeedback.innerHTML = '<span style="color: #ef4444;"><i class="fas fa-triangle-exclamation"></i> Please fill in your name, email, and goals.</span>';
         }
         return;
       }
 
       if (submitProposalBtn) {
-        submitProposalBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Preparing Brief...</span>';
+        submitProposalBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Compiling Brief...</span>';
         submitProposalBtn.disabled = true;
       }
 
-      // Build mailto link to immediately launch user's email client
-      const subject = encodeURIComponent(`Growth Proposal Request from ${name}`);
-      const body = encodeURIComponent(
-        `Hi Jerome,\n\nI would like to request a Social Media Growth Audit and strategy roadmap.\n\n` +
-        `Name & Brand: ${name}\n` +
-        `Email: ${email}\n\n` +
-        `Handles & Goals:\n${goals}\n\n` +
-        `Looking forward to hearing from you within 24 hours!`
-      );
-      const mailtoUrl = `mailto:jeromecabinta7@gmail.com?subject=${subject}&body=${body}`;
+      const rawBrief =
+`Hi Jerome,
 
-      setTimeout(() => {
-        window.location.href = mailtoUrl;
+I would like to request a Social Media Growth Audit and strategy proposal.
 
-        if (proposalFeedback) {
-          proposalFeedback.className = "proposal-feedback success";
-          proposalFeedback.innerHTML = '✨ Brief submitted! Opening email client...';
+• Name & Brand: ${name}
+• Email: ${email}
+• Handles & Growth Goals:
+${goals}
+
+Looking forward to your response within 24 hours!`;
+
+      // 1. Immediately copy to clipboard so client never loses their brief
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(rawBrief).catch(() => {});
+      } else {
+        try {
+          const ta = document.createElement("textarea");
+          ta.value = rawBrief;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        } catch(err) {}
+      }
+
+      const subject = `Growth Proposal Request from ${name}`;
+      const encodedSubject = encodeURIComponent(subject);
+      const encodedBody = encodeURIComponent(rawBrief);
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=jeromecabinta7@gmail.com&su=${encodedSubject}&body=${encodedBody}`;
+      const mailtoUrl = `mailto:jeromecabinta7@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+      const whatsappText = encodeURIComponent(`Hi Jerome, I am ${name} (${email}). Here is my growth proposal brief:\n\n${goals}`);
+      const whatsappUrl = `https://wa.me/639274682635?text=${whatsappText}`;
+
+      // 2. Synchronous attempt to open Gmail or native client in user event loop
+      try {
+        const win = window.open(gmailUrl, "_blank");
+        if (!win || win.closed || typeof win.closed === "undefined") {
+          const a = document.createElement("a");
+          a.href = mailtoUrl;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
         }
+      } catch(e) {}
 
-        if (submitProposalBtn) {
-          submitProposalBtn.innerHTML = '<i class="fas fa-check"></i> <span>Brief Sent!</span>';
-          submitProposalBtn.disabled = false;
+      // 3. Render interactive multi-channel dispatch box
+      if (proposalFeedback) {
+        proposalFeedback.className = "proposal-feedback";
+        proposalFeedback.innerHTML = `
+          <div class="brief-dispatch-box">
+            <div class="brief-dispatch-title">
+              <i class="fas fa-circle-check"></i> Brief Compiled &amp; Copied!
+            </div>
+            <p class="brief-dispatch-desc">
+              Your brief has been formatted and copied to your clipboard. Select your preferred app to send it directly to Jerome:
+            </p>
+            <div class="brief-dispatch-grid">
+              <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="btn-dispatch gmail">
+                <i class="fab fa-google"></i> Send via Gmail
+              </a>
+              <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn-dispatch wa">
+                <i class="fab fa-whatsapp"></i> Send via WhatsApp
+              </a>
+              <a href="${mailtoUrl}" class="btn-dispatch mail">
+                <i class="far fa-envelope"></i> Open Mail App
+              </a>
+              <button type="button" class="btn-dispatch copy" id="reCopyBriefBtn">
+                <i class="far fa-copy"></i> <span id="reCopyText">Re-Copy Brief</span>
+              </button>
+            </div>
+            <div id="directDeliveryStatus" style="margin-top: 12px; font-size: 0.78rem; color: #94a3b8; text-align: center;">
+              <i class="fas fa-clock"></i> Response guaranteed within 24 hours at ${email}
+            </div>
+          </div>
+        `;
+
+        const reCopyBtn = document.getElementById("reCopyBriefBtn");
+        if (reCopyBtn) {
+          reCopyBtn.addEventListener("click", () => {
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(rawBrief);
+            }
+            const t = document.getElementById("reCopyText");
+            if (t) {
+              t.textContent = "Copied! ✓";
+              setTimeout(() => { t.textContent = "Re-Copy Brief"; }, 2000);
+            }
+          });
         }
+      }
 
-        growthProposalForm.reset();
+      // 4. Background direct submission attempt to FormSubmit
+      try {
+        fetch("https://formsubmit.co/ajax/jeromecabinta7@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            goals: goals,
+            _subject: `New Growth Proposal Request from ${name}`
+          })
+        }).then(r => r.json()).then(data => {
+          const statusElem = document.getElementById("directDeliveryStatus");
+          if (statusElem && (data.success === "true" || data.success === true)) {
+            statusElem.innerHTML = '<span style="color: #00ff88; font-weight: 700;"><i class="fas fa-check-double"></i> Direct server transmission confirmed to jeromecabinta7@gmail.com!</span>';
+          }
+        }).catch(() => {});
+      } catch(err) {}
 
-        setTimeout(() => {
-          if (submitProposalBtn) {
-            submitProposalBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Submit Growth Brief</span>';
-          }
-          if (proposalFeedback) {
-            proposalFeedback.textContent = '';
-          }
-        }, 5000);
-      }, 700);
+      if (submitProposalBtn) {
+        submitProposalBtn.innerHTML = '<i class="fas fa-check"></i> <span>Brief Ready to Dispatch</span>';
+        submitProposalBtn.disabled = false;
+      }
     });
   }
 
