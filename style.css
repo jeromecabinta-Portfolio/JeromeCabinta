@@ -11378,7 +11378,7 @@ body {
 /* Tablet & Laptop (<= 1199px) */
 @media (max-width: 1199px) {
   .services-behance-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .thumbnails-showcase-grid {
@@ -13296,5 +13296,209 @@ body.dark .post-card-behance[data-category="case-studies"] {
 @media (max-width: 850px) {
   .posts-showcase-grid.grid-case-studies-active {
     grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ==========================================================================
+   CREDIBILITY & CONTACT ENHANCEMENTS (2026 AUDIT)
+   ========================================================================== */
+
+/* Navbar Get In Touch Button */
+.nav-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%);
+  color: #ffffff !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.nav-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.55);
+  color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+  .nav-contact-btn span {
+    display: none;
+  }
+  .nav-contact-btn {
+    padding: 7px 11px;
+  }
+}
+
+/* Hero Quick Contact Email Link */
+.hero-email-quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 999px;
+  color: #00e5ff !important;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.hero-email-quick-link:hover {
+  background: rgba(0, 229, 255, 0.25);
+  border-color: #00e5ff;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Credibility Legend Strip */
+.project-credibility-legend {
+  margin: 20px 0 28px 0;
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cred-legend-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--behance-lime);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cred-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+}
+
+.cred-badge strong {
+  color: var(--text);
+}
+
+.cred-badge.client-work {
+  border-color: rgba(0, 255, 136, 0.3);
+  background: rgba(0, 255, 136, 0.06);
+}
+
+.cred-badge.client-work i {
+  color: #00ff88;
+}
+
+.cred-badge.concept-work {
+  border-color: rgba(243, 146, 0, 0.3);
+  background: rgba(243, 146, 0, 0.06);
+}
+
+.cred-badge.concept-work i {
+  color: #f39200;
+}
+
+/* Post Type Badge on Cards */
+.post-type-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.post-type-tag.client-tag {
+  background: rgba(0, 255, 136, 0.15);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.35);
+}
+
+.post-type-tag.concept-tag {
+  background: rgba(243, 146, 0, 0.15);
+  color: #f39200;
+  border: 1px solid rgba(243, 146, 0, 0.35);
+}
+
+.post-type-tag.live-client {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+}
+
+/* Outro Clickable Email */
+.outro-email-link {
+  color: #00e5ff !important;
+  text-decoration: underline;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.outro-email-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+/* Mobile Quick Contact Floating Button */
+.mobile-quick-contact-pill {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  z-index: 999;
+  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%);
+  color: #fff !important;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.5);
+  text-decoration: none;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.mobile-quick-contact-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 102, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .mobile-quick-contact-pill {
+    display: inline-flex;
   }
 }
