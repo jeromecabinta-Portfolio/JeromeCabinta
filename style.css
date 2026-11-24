@@ -14502,10 +14502,24 @@ body.dark .post-card-behance[data-category="case-studies"] {
 }
 
 /* ==========================================================================
-   RESPONSIVE NAVBAR BREAKPOINT AT 1150px
-   (Prevents any cramped horizontal stacking on laptops & tablets)
+   RESPONSIVE NAVBAR & GLOBAL DEVICE BREAKPOINTS
+   (Guarantees zero wrapping, perfect spacing across desktops, laptops, tablets & mobile)
    ========================================================================== */
-@media (max-width: 1150px) {
+@media (max-width: 1380px) {
+  .nav-pill-socials .nav-pill span {
+    display: none !important;
+  }
+
+  .nav-pill-socials .nav-pill {
+    padding: 6px 9px !important;
+  }
+
+  .custom-nav-links {
+    gap: clamp(6px, 1.1vw, 14px) !important;
+  }
+}
+
+@media (max-width: 1220px) {
   .nav-pill-socials {
     display: none !important;
   }
@@ -14602,5 +14616,126 @@ body.dark .post-card-behance[data-category="case-studies"] {
 
   .nav-contact-btn {
     padding: 7px 10px !important;
+  }
+
+  /* Swipeable Archive Filter Tabs */
+  .archive-tabs-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    justify-content: flex-start !important;
+    padding: 4px 2px 12px 2px !important;
+    gap: 8px !important;
+    scrollbar-width: none !important;
+  }
+
+  .archive-tabs-container::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .archive-tab-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    font-size: 0.75rem !important;
+    padding: 7px 14px !important;
+  }
+
+  /* Responsive Credibility Legend */
+  .project-credibility-legend {
+    padding: 12px 14px !important;
+    margin: 16px 0 20px 0 !important;
+  }
+
+  .cred-badge {
+    border-radius: 12px !important;
+    padding: 8px 12px !important;
+    font-size: 0.74rem !important;
+    width: 100% !important;
+  }
+
+  /* Responsive Outro Contact Card */
+  .outro-contact-card {
+    padding: 26px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .outro-action-item {
+    padding: 12px 14px !important;
+    gap: 12px !important;
+  }
+
+  .contact-input,
+  .contact-textarea {
+    padding: 12px 14px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  .nav-brand-logo {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .nav-brand-name {
+    font-size: 0.8rem !important;
+  }
+
+  .nav-brand-sub {
+    font-size: 0.56rem !important;
+  }
+
+  .nav-contact-btn {
+    padding: 6px 9px !important;
+  }
+
+  .theme-toggle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .hamburger {
+    width: 22px !important;
+    height: 16px !important;
+  }
+
+  .behance-section-header {
+    margin-bottom: 24px !important;
+  }
+
+  .behance-title-condensed {
+    font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
+    letter-spacing: 1px !important;
+  }
+
+  .behance-subtitle-lime {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-container {
+    padding: 6px 8px !important;
+  }
+
+  .nav-brand-name {
+    font-size: 0.74rem !important;
+  }
+
+  .nav-brand-sub {
+    font-size: 0.52rem !important;
+  }
+
+  .nav-contact-btn {
+    padding: 5px 8px !important;
+    font-size: 0.72rem !important;
   }
 }
